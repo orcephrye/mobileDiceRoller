@@ -10,7 +10,7 @@ require(["dojo/ready"], function(ready){
 });
 
 function success(data) {
-    document.getElementById("diceOutput").innerHTML = "Rolls: " + data['rolls'] + " = " + data['total'];
+    document.getElementById("diceOutput").innerHTML = "Rolls: " + data['rolls'] + " = " + data['total'] + "  <=";
 }
 
 function getMethod(apiCall) {
@@ -28,6 +28,7 @@ function myFunction() {
     var fullURL = "http://api.d20futurepath.com/tasks/roll/"
     var apiCall
 
+	document.getElementById("diceOutput").innerHTML = "<="
     text = document.getElementById("diceInput").value;
     apiCall = fullURL + text;
     getMethod(apiCall)
@@ -35,6 +36,9 @@ function myFunction() {
 
 function changeField(newStr) {
 	currentText = document.getElementById("diceInput").value
+	if (currentText == "Example: d20+2d4+1" ) {
+		currentText = ""
+	}
 	document.getElementById("diceInput").value = currentText + newStr
 }
 

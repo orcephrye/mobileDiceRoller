@@ -59,7 +59,8 @@ html,body {
 	display:       inline-block;
 	padding:       8px 20px;
 	font:          normal 700 24px/1 "Calibri", sans-serif;
-	text-align:    left;
+	text-align:	center;
+	text-indent: 0.0em;
 	text-shadow:  none;
 }
 
