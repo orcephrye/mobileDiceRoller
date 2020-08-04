@@ -17,10 +17,11 @@
 
   </head>
   
-  <body style="background-color:white;" onload="preLoadSession()">
+  <body class="bodyWidth" style="background-color:white;" onload="preLoadSession()">
 
     <!-- JavaScript from local libs -->
-    <script type="text/javascript" src="libs/app.js" integrity="sha384-BkpedP7BZ2nnibIDLEgWi3yGRxlL787kn+/LdU41/hdvjgZi/d5wQTF/ghysy49k" crossorigin="anonymous" ></script>
+    <script type="text/javascript" src="libs/app.js" integrity="sha384-mD55mKr7UVlylrqvAQmxSw6aWQETolYPdXtEqIZH8rvFaQ4GzA20rooH9mcE+8CT" crossorigin="anonymous" ></script>
+    <!-- <script type="text/javascript" src="libs/app.js" crossorigin="anonymous" ></script> -->
     <script type="text/javascript" src="libs/amplify.min.js" integrity="sha384-NQiaZrOrRhTJSXW9TiBMdfY+zth3IM0/NbCy/rzZHybmBMPcr5IMdxSJxbCdotPd" crossorigin="anonymous"></script>
 
     <!-- Navivation Bar -->
@@ -203,6 +204,36 @@
       <!-- Buttons for Dice -->
       <div class="row no-gutters align-items-center">
         <div class="col colButtons">
+          <button type="button" class="btn keypad" id="d100" onclick="changeDie('d100')"><img class="diceImages" src="assists/d100b_png.png"></button>
+        </div>
+        <div class="col colButtons">
+          <button type="button" class="btn btn-primary keypad" id="d20" onclick="changeDie('d20')"><img class="diceImages" src="assists/d20_png.png"></button>
+        </div>
+        <div class="col colButtons">
+          <button type="button" class="btn btn-secondary keypad" id="d12" onclick="changeDie('d12')"><img class="diceImages" src="assists/d12_png.png"></button>
+        </div>
+        <div class="col colButtons">
+          <button type="button" class="btn btn-info keypad" id="d10" onclick="changeDie('d10')"><img class="diceImages" src="assists/d10a_png.png"></button>
+        </div>
+      </div>
+      
+      <div class="row no-gutters align-items-center">
+        <div class="col colButtons">
+          <button type="button" class="btn btn-warning keypad" id="d8" onclick="changeDie('d8')"><img class="diceImages" src="assists/d8_png.png"></button>
+        </div>
+        <div class="col colButtons">
+          <button type="button" class="btn btn-danger keypad" id="d6" onclick="changeDie('d6')"><img class="diceImages" src="assists/d6_png.png"></button>
+        </div>
+        <div class="col colButtons">
+          <button type="button" class="btn btn-dark keypad" id="d4" onclick="changeDie('d4')"><img class="diceImages" src="assists/d4_png.png"></button>
+        </div>
+        <div class="col colButtons">
+          <button type="button" class="btn btn-light keypad" id="d2" onclick="changeDie('d2')"><img class="diceImages" src="assists/d2_png.png"></button>
+        </div>
+      </div>
+      
+      <div class="row no-gutters align-items-center">
+        <div class="col colButtons">
           <button type="button" class="btn btn-dark keypad" id="7" onclick="changeField(7)">7</button>
         </div>
         <div class="col colButtons">
@@ -254,7 +285,21 @@
           <button type="button" class="btn btn-dark keypad" id="0" onclick="changeField(0)">0</button>
         </div>
         <div class="col-6 colButtons">
-          <button type="button" class="btn btn-success successButton" id="ROLL" onclick="rollFunc()">ROLL</button>
+          <button type="button" class="btn btn-secondary keypad" id="backspace" onclick="changeField('backspace')">
+          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-backspace" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M6.603 2h7.08a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-7.08a1 1 0 0 1-.76-.35L1 8l4.844-5.65A1 1 0 0 1 6.603 2zm7.08-1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-7.08a2 2 0 0 1-1.519-.698L.241 8.65a1 1 0 0 1 0-1.302L5.084 1.7A2 2 0 0 1 6.603 1h7.08z"/>
+            <path fill-rule="evenodd" d="M5.83 5.146a.5.5 0 0 0 0 .708l5 5a.5.5 0 0 0 .707-.708l-5-5a.5.5 0 0 0-.708 0z"/>
+            <path fill-rule="evenodd" d="M11.537 5.146a.5.5 0 0 1 0 .708l-5 5a.5.5 0 0 1-.708-.708l5-5a.5.5 0 0 1 .707 0z"/>
+          </svg> Backspace
+          </button>
+        </div>
+      </div>
+      
+      <div class="row no-gutters align-items-center">
+        <div class="col colButtons">
+          <button type="button" class="btn btn-success successButton" id="ROLL" onclick="rollFunc()">
+          <h5><img class="buttonImages" src="assists/roll_png.png">  ROLL</h5>
+          </button>
         </div>
       </div>
     </div>

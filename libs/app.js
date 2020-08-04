@@ -44,6 +44,15 @@ var defaultFavItem = `
 `;
 
 
+// history of DiceText input element
+var DiceTextHistory = []
+
+// history of die button presses
+var DieButtonHistory = []
+
+// last change
+var changeHistory = []
+
 //Used to control the flash of color for success or failure. 
 var flash = function(elements, color, resetColor) {
   var opacity = 100;
@@ -273,6 +282,53 @@ function removeFavArrayElement(favId) {
 }
 
 
+function countDiesInArray(die) {
+    for (i = -1; Math.abs(i) <= DieButtonHistory.length; i--) {
+        if (DieButtonHistory.slice(i)[0] != die) {
+            break;
+        }
+    }
+    return DieButtonHistory.slice(i+1).length
+}
+
+
+function changeDie(die) {
+    DieButtonHistory.push(die);
+    searchText = '[1-9]*'+die+'$'
+    re = new RegExp(searchText);
+    tempText = document.getElementById("DiceText").value;
+    console.log(die)
+    console.log(tempText);
+    dieNum = countDiesInArray(die)
+    endCharacter = "";
+    if (tempText.length <= 0) {
+        console.log('The tempText is zero setting endCharacter to nothing')
+        endCharacter = "";
+    } else if (tempText.endsWith('+')) {
+        console.log('tempText ends with +')
+        endCharacter = "+";
+        tempText = tempText.slice(0,-1);
+    } else if (tempText.endsWith('-')) {
+        console.log('tempText ends with -')
+        endCharacter = "-";
+        tempText = tempText.slice(0,-1);
+    }
+    console.log('endCharacter is: '+endCharacter)
+    if (tempText.search(re) >= 0) {
+        DiceTextHistory.push(tempText);
+        tempText = tempText.replace(re, dieNum + die);
+        document.getElementById("DiceText").value = tempText;
+    } else {
+        DiceTextHistory.push(tempText+endCharacter);
+        if (dieNum == 1 && endCharacter == "" && tempText.length > 0) {
+            endCharacter = "+"
+        }
+        document.getElementById("DiceText").value = tempText+endCharacter+dieNum+die
+    }
+    changeHistory.push('die')
+}
+
+
 function changeField(newStr) {
     currentText = document.getElementById("DiceText")
     if (currentText.value == "IE: d20+2d4+1" ) {
@@ -281,13 +337,31 @@ function changeField(newStr) {
     if (currentText.placeholder == "IE: d20+2d4+1" ) {
         currentText.placeholder = "";
     }
-    document.getElementById("DiceText").value = currentText.value + newStr
+    if (newStr == "backspace") {
+        if (DiceTextHistory.length > 0) {
+            document.getElementById("DiceText").value = DiceTextHistory.pop()
+            if (changeHistory.length > 0) {
+                if (changeHistory.pop() == 'die') {
+                    if (DieButtonHistory.length > 0) {
+                        DieButtonHistory.pop()
+                    }
+                }
+            }
+        }
+    } else {
+        DiceTextHistory.push(currentText.value)
+        document.getElementById("DiceText").value = currentText.value + newStr
+        changeHistory.push('str')
+    }
 }
 
 
 function clearField() {
     document.getElementById("DiceText").value = "";
     document.getElementById("DiceText").placeholder = "";
+    DiceTextHistory = []
+    DieButtonHistory = []
+    changeHistory = []
     clearDieOptions()
 }
 
