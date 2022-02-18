@@ -99,7 +99,7 @@ function modalHistoryRoll(text, dieOptions) {
 
 
 function rollFunc(text = null, dieOptions = null) {
-    var fullURL = "http://api.d20futurepath.com/tasks/roll/"
+    var fullURL = "http://api.d20futurepath.com/v1/tasks/roll/"
     var apiCall
     if (text == null) {
         text = document.getElementById("DiceText").value;
