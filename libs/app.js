@@ -6,7 +6,7 @@
  */
 
 // This is a HTML template for an entry in the dice history. This code will be injected into a bootstrap modal popup to show the history of past rolls.
-var defaultDiceHistoryItem = `                    
+const defaultDiceHistoryItem = `                    
     <div class="input-group-prepend">
         <button type="button" class="btn btn-sm btn-outline-success" onclick="modalHistoryRoll('%DIC', '%OPT')">
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-clockwise" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3.17 6.706a5 5 0 0 1 7.103-3.16.5.5 0 1 0 .454-.892A6 6 0 1 0 13.455 5.5a.5.5 0 0 0-.91.417 5 5 0 1 1-9.375.789z"/><path fill-rule="evenodd" d="M8.147.146a.5.5 0 0 1 .707 0l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 1 1-.707-.708L10.293 3 8.147.854a.5.5 0 0 1 0-.708z"/></svg>
@@ -26,7 +26,7 @@ var defaultDiceHistoryItem = `
 `;
 
 // This is a HTML template for an entry in favorite dice rolls. This code will be injected into a bootstrap modal popup to show favorite dice.
-var defaultFavItem = `                    
+const defaultFavItem = `                    
     <div class="input-group-prepend">
         <button type="button" class="btn btn-sm btn-outline-success" onclick="favReRoll('%DIC', '%OPT')">
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-clockwise" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3.17 6.706a5 5 0 0 1 7.103-3.16.5.5 0 1 0 .454-.892A6 6 0 1 0 13.455 5.5a.5.5 0 0 0-.91.417 5 5 0 1 1-9.375.789z"/><path fill-rule="evenodd" d="M8.147.146a.5.5 0 0 1 .707 0l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 1 1-.707-.708L10.293 3 8.147.854a.5.5 0 0 1 0-.708z"/></svg>
@@ -45,18 +45,18 @@ var defaultFavItem = `
 
 
 // history of DiceText input element
-var DiceTextHistory = []
+let DiceTextHistory = []
 
 // history of die button presses
-var DieButtonHistory = []
+let DieButtonHistory = []
 
 // last change
-var changeHistory = []
+let changeHistory = [];
 
 //Used to control the flash of color for success or failure. 
-var flash = function(elements, color, resetColor) {
-  var opacity = 100;
-  var interval = setInterval(function() {
+let flash = function(elements, color, resetColor) {
+  let opacity = 100;
+  let interval = setInterval(function() {
     opacity -= 3;
     if (opacity <= 15) {
         clearInterval(interval);
@@ -66,20 +66,6 @@ var flash = function(elements, color, resetColor) {
     }
   }, 20)
 };
-
-// Used to count the number of children elements under a given HTML element id.
-function getElementChildCount(parent, getChildrensChildren){
-    var relevantChildren = 0;
-    var children = parent.childNodes.length;
-    for(var i=0; i < children; i++){
-        if(parent.childNodes[i].nodeType != 3){
-            if(getChildrensChildren)
-                relevantChildren += getCount(parent.childNodes[i],true);
-            relevantChildren++;
-        }
-    }
-    return relevantChildren;
-}
 
 /*
  * <Below are the primary rolling methods that build the roll api call and then use ajax to do the call and finish with a success or failure method.>
@@ -99,18 +85,17 @@ function modalHistoryRoll(text, dieOptions) {
 
 
 function rollFunc(text = null, dieOptions = null) {
-    var fullURL = "http://api.d20futurepath.com/v1/tasks/roll/"
-    var apiCall
+    let fullURL = "http://api.d20futurepath.com/v1/tasks/roll/"
     if (text == null) {
         text = document.getElementById("DiceText").value;
     }
     if (dieOptions == null) {
         dieOptions = loadDieOptions();
     }
-    var apiCall = fullURL + text + dieOptions;
+    let apiCall = fullURL + text + dieOptions;
     window.sessionStorage.setItem('currentRoll', text)
     window.sessionStorage.setItem('currentOptions', dieOptions)
-    if (window.sessionStorage['numOfRolls'] == undefined) {
+    if (window.sessionStorage['numOfRolls'] === undefined) {
         window.sessionStorage.setItem('numOfRolls', 1);
     } else {
         window.sessionStorage.setItem('numOfRolls', parseInt(window.sessionStorage.getItem('numOfRolls'))+1);
@@ -152,18 +137,21 @@ function preLoadSession() {
     preLoadFavs()
 }
 
+function getHistory() {
+    if (window.localStorage['history'] === undefined) {
+        window.localStorage.setItem('history', '[]');
+    }
+    return JSON.parse(window.localStorage.getItem('history'));
+}
 
 // Used to save the current roll too history. This is called by the 'rollSuccess' function
 function saveCurrentRoll(data) {
-    var tmpJson = '{"roll": "%ROL", "options": "%OPT", "results": "%RES", "total": "%TOT"}';
+    let tmpJson = '{"roll": "%ROL", "options": "%OPT", "results": "%RES", "total": "%TOT"}';
     tmpJson = tmpJson.replace('%ROL', window.sessionStorage.getItem('currentRoll'));
     tmpJson = tmpJson.replace('%OPT', window.sessionStorage.getItem('currentOptions'));
     tmpJson = tmpJson.replace('%RES', data['Dice']);
     tmpJson = tmpJson.replace('%TOT', data['DiceTotal']);
-    if (window.localStorage['history'] == undefined) {
-        window.localStorage.setItem('history', '[]');
-    }
-    var tmpHistory = JSON.parse(window.localStorage.getItem('history'));
+    let tmpHistory = getHistory()
     if (tmpHistory.length > 9) {
         tmpHistory.shift()
     }
@@ -174,14 +162,14 @@ function saveCurrentRoll(data) {
 
 // Used to update the history modal. This can be called from different places and tries to act differently based on the state of the modal.
 function updateHistory() {
-    var tmpHistory = JSON.parse(window.localStorage.getItem('history'));
+    let tmpHistory = getHistory()
     if (document.getElementById("historyMain").getElementsByClassName('input-group').length >= 10) {
         document.getElementById("historyMain").getElementsByClassName('input-group')[0].remove();
     } 
-    if (document.getElementById("historyMain").getElementsByClassName('input-group').length == 0) {
+    if (document.getElementById("historyMain").getElementsByClassName('input-group').length === 0) {
         for (i = 0; i < tmpHistory.length; i++) {
-            var latestHistory = tmpHistory[i];
-            var newEntry = defaultDiceHistoryItem.replace('%NUM', i+1);
+            let latestHistory = tmpHistory[i];
+            let newEntry = defaultDiceHistoryItem.replace('%NUM', i+1);
             newEntry = newEntry.replace('$VAL', "Dice: "+latestHistory['roll']+" // "+latestHistory['total']);
             newEntry = newEntry.replace('%DIC', latestHistory['roll']).replace('%DIC', latestHistory['roll']);
             newEntry = newEntry.replace('%OPT', latestHistory['options']).replace('%OPT', latestHistory['options']);
@@ -189,9 +177,9 @@ function updateHistory() {
         }
         window.sessionStorage.setItem('numOfRolls', i)
     } else {
-        var latestHistory = tmpHistory[tmpHistory.length-1];
-        var num = parseInt(window.sessionStorage.getItem('numOfRolls'));
-        var newEntry = defaultDiceHistoryItem.replace('%NUM', num);
+        let latestHistory = tmpHistory[tmpHistory.length-1];
+        let num = parseInt(window.sessionStorage.getItem('numOfRolls'));
+        let newEntry = defaultDiceHistoryItem.replace('%NUM', num);
         newEntry = newEntry.replace('$VAL', "Dice: "+latestHistory['roll']+" // "+latestHistory['total']);
         newEntry = newEntry.replace('%DIC', latestHistory['roll']).replace('%DIC', latestHistory['roll']);
         newEntry = newEntry.replace('%OPT', latestHistory['options']).replace('%OPT', latestHistory['options']);
@@ -201,7 +189,7 @@ function updateHistory() {
 
 
 function appendModalHistory(newEntry, num) {
-    var div = document.createElement('div');
+    let div = document.createElement('div');
     div.setAttribute('class', 'input-group mb-3');
     div.setAttribute('id', "history-"+num.toString());
     div.innerHTML = newEntry
@@ -210,10 +198,10 @@ function appendModalHistory(newEntry, num) {
 
 
 function newSaveRoll(dice, dieOptions) {
-    var tmpJson = '{"id": "%ID", "roll": "%ROL", "options": "%OPT"}';
-    var favId = document.getElementById("favMain").getElementsByClassName('input-group').length+1
-    var favIdStr = "favID-"+favId.toString()+dice
-    var newEntry = defaultFavItem.replace('%NUM', favId)
+    let tmpJson = '{"id": "%ID", "roll": "%ROL", "options": "%OPT"}';
+    let favId = document.getElementById("favMain").getElementsByClassName('input-group').length+1
+    let favIdStr = "favID-"+favId.toString()+dice
+    let newEntry = defaultFavItem.replace('%NUM', favId)
     newEntry = newEntry.replace('$VAL', "Dice To Roll: "+dice);
     newEntry = newEntry.replace('%DIC', dice);
     newEntry = newEntry.replace('%OPT', dieOptions);
@@ -222,10 +210,10 @@ function newSaveRoll(dice, dieOptions) {
     tmpJson = tmpJson.replace('%OPT', dieOptions);
     tmpJson = tmpJson.replace('%ID', favIdStr)
     appendFavRoll(newEntry, favIdStr)
-    if (window.localStorage['favRolls'] == undefined) {
+    if (window.localStorage['favRolls'] === undefined) {
         window.localStorage.setItem('favRolls', '[]');
     } else {
-        var tmpFavs = JSON.parse(window.localStorage.getItem('favRolls'));
+        let tmpFavs = JSON.parse(window.localStorage.getItem('favRolls'));
         tmpFavs.push(JSON.parse(tmpJson));
         window.localStorage.setItem('favRolls', JSON.stringify(tmpFavs));
     }
@@ -233,13 +221,13 @@ function newSaveRoll(dice, dieOptions) {
 
 
 function preLoadFavs() {
-    var newEntry = ""
-    if (window.localStorage['favRolls'] == undefined) {
+    let newEntry = ""
+    if (window.localStorage['favRolls'] === undefined) {
         window.localStorage.setItem('favRolls', '[]');
     }  
-    var tmpFavs = JSON.parse(window.localStorage.getItem('favRolls'));
+    let tmpFavs = JSON.parse(window.localStorage.getItem('favRolls'));
     if (tmpFavs.length > 0) {
-        var tmpFavs = JSON.parse(window.localStorage.getItem('favRolls'));
+        let tmpFavs = JSON.parse(window.localStorage.getItem('favRolls'));
         for (i = 0; i < tmpFavs.length; i++) {
             tmpFavs[i]
             newEntry = defaultFavItem.replace('%NUM', tmpFavs[i]['id'])
@@ -254,7 +242,7 @@ function preLoadFavs() {
 
 
 function appendFavRoll(newEntry, favId) {
-    var div = document.createElement('div');
+    let div = document.createElement('div');
     div.setAttribute('class', 'input-group mb-3');
     div.setAttribute('id', favId);
     div.innerHTML = newEntry;
@@ -262,7 +250,7 @@ function appendFavRoll(newEntry, favId) {
 }
 
 
-//This removes the HTML element of the id provied. However it is designed in such a way to only work with favorite roll modal as it is tied to the 'removeFavArrayElement' function.
+//This removes the HTML element of the id provided. However, it is designed in such a way to only work with favorite roll modal as it is tied to the 'removeFavArrayElement' function.
 function removeMe(idStr) {
     document.getElementById(idStr).remove();
     removeFavArrayElement(idStr)
@@ -270,21 +258,21 @@ function removeMe(idStr) {
 
 
 function removeFavArrayElement(favId) {
-    var tmpFavs = JSON.parse(window.localStorage.getItem('favRolls'));
-    var newFavs = []
+    let tmpFavs = JSON.parse(window.localStorage.getItem('favRolls'));
+    let newFavs = []
     for (i = 0; i < tmpFavs.length; i++) {
         x = tmpFavs.shift()
-        if (x['id'] != favId) {
+        if (x['id'] !== favId) {
             newFavs.push(x)
         }
     }
-    window.localStorage.setItem('favRolls', JSON.stringify(tmpFavs));
+    window.localStorage.setItem('favRolls', JSON.stringify(newFavs));
 }
 
 
 function countDiesInArray(die) {
     for (i = -1; Math.abs(i) <= DieButtonHistory.length; i--) {
-        if (DieButtonHistory.slice(i)[0] != die) {
+        if (DieButtonHistory.slice(i)[0] !== die) {
             break;
         }
     }
@@ -320,7 +308,7 @@ function changeDie(die) {
         document.getElementById("DiceText").value = tempText;
     } else {
         DiceTextHistory.push(tempText+endCharacter);
-        if (dieNum == 1 && endCharacter == "" && tempText.length > 0) {
+        if (dieNum === 1 && endCharacter === "" && tempText.length > 0) {
             endCharacter = "+"
         }
         document.getElementById("DiceText").value = tempText+endCharacter+dieNum+die
@@ -331,17 +319,17 @@ function changeDie(die) {
 
 function changeField(newStr) {
     currentText = document.getElementById("DiceText")
-    if (currentText.value == "IE: d20+2d4+1" ) {
+    if (currentText.value === "IE: d20+2d4+1" ) {
         currentText.value = "";
     }
-    if (currentText.placeholder == "IE: d20+2d4+1" ) {
+    if (currentText.placeholder === "IE: d20+2d4+1" ) {
         currentText.placeholder = "";
     }
-    if (newStr == "backspace") {
+    if (newStr === "backspace") {
         if (DiceTextHistory.length > 0) {
             document.getElementById("DiceText").value = DiceTextHistory.pop()
             if (changeHistory.length > 0) {
-                if (changeHistory.pop() == 'die') {
+                if (changeHistory.pop() === 'die') {
                     if (DieButtonHistory.length > 0) {
                         DieButtonHistory.pop()
                     }
@@ -386,7 +374,7 @@ function clearDieOptions() {
 // Finds and returns all the values from the Die Options modal. 
 function loadDieOptions() {
 
-    var text = ""
+    let text = ""
 
     if($('#DieO-dropLowest').prop('checked')){
         text = appendGETOptions(text, "dropLowest=", document.getElementById("DieO-dropLowest-text").value)
