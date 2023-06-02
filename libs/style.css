@@ -1,8 +1,3 @@
-@viewport {
-  width: device-width ;
-  zoom: 1.0 ;
-}
-
 .bodyWidth {
     max-width: 574px;
     margin: auto;
@@ -18,17 +13,15 @@
 
 
 .no-gutters {
-  margin-right: 0;
-  margin-left: 0;
-  margin-top: 0.25rem !important;
-  margin-bottom: 0.25rem !important;
+    margin-right: 0;
+    margin-left: 0;
+    margin-top: 0.25rem !important;
+    margin-bottom: 0.25rem !important;
+}
 
-
-  > .col,
-  > [class*="col-"] {
+.col, [class*="col-"] {
     padding-right: 0.25rem !important;
     padding-left: 0.25rem !important;
-  }
 }
 
 
@@ -41,8 +34,6 @@
   width:40px; 
   height:40px; 
   border: 0;
-  background-size: 100%; /* To fill the dimensions of container (button), or */
-  background-size: 40px auto; /* to specify dimensions explicitly */
 }
 
 .diceImages {

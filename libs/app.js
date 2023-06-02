@@ -53,6 +53,119 @@ let DieButtonHistory = []
 // last change
 let changeHistory = [];
 
+class DieOptions {
+    constructor(dropLowest, rerollTotal, rerollDie, subAll, addAll) {
+        this.dropLowest = dropLowest
+        this.rerollTotal = rerollTotal
+        this.rerollDie = rerollDie
+        this.subAll = subAll
+        this.addAll = addAll
+    }
+}
+
+class DiceOptions {
+    constructor(dropLowest, repeatRoll, subAll, addAll) {
+        this.dropLowest = dropLowest
+        this.repeatRoll = repeatRoll
+        this.subAll = subAll
+        this.addAll = addAll
+    }
+}
+
+class Die {
+    constructor(id, dString, modifier, connectorString, dieOptions) {
+        this.id = id
+        this.dString = dString
+        this.modifier = modifier
+        this.connectorString = connectorString
+        this.dieOptions = dieOptions
+    }
+}
+
+class Message {
+    constructor(dice, diceOptions) {
+        this.dice = dice
+        this.diceOptions = diceOptions
+    }
+}
+
+let splitDStr = new RegExp("(\\+|-)", "gi");
+let determineDie = new RegExp("d\\d{1,3}", "ig");
+let determineMultiplier = new RegExp('^(\\d){1,3}', "gi");
+
+function buildDiceOptions(diceOptions = null) {
+    return (diceOptions) ? diceOptions : new DieOptions()
+}
+
+function buildDieOptions(dieOptions = null) {
+
+    if (dieOptions !== null) {
+        return dieOptions
+    }
+
+    let dieOpt = new DieOptions()
+
+    if($('#DieO-dropLowest').prop('checked')){
+        dieOpt.dropLowest = document.getElementById("DieO-dropLowest-text").value
+    }
+    if($('#DieO-rerollTotal').prop('checked')){
+        dieOpt.rerollDie = document.getElementById("DieO-rerollTotal-text").value
+    }
+    if($('#DieO-rerollDie').prop('checked')){
+        dieOpt.rerollDie = document.getElementById("DieO-rerollDie-text").value
+    }
+    if($('#DieO-subAll').prop('checked')){
+        dieOpt.subAll = document.getElementById("DieO-subAll-text").value
+    }
+    if($('#DieO-addAll').prop('checked')){
+        dieOpt.addAll = document.getElementById("DieO-addAll-text").value
+    }
+
+    return dieOpt
+}
+
+function buildDiceArray(text = null, dieOptions = null) {
+    let dieOpt = buildDieOptions(dieOptions)
+    let DiceText;
+    let Dice = [];
+    if (text == null) {
+        DiceText = document.getElementById("DiceText").value;
+    } else {
+        DiceText = text
+    }
+    let die_count = (DiceText.match(determineDie) || []).length
+    if (die_count < 1) {
+        return Dice
+    }
+    let dice_text_arr = DiceText.split(splitDStr);
+    let die_text;
+    let modifier;
+    let connectorStr;
+    for (let i = dice_text_arr.length-1; i >= 0; i--) {
+        tmpText = dice_text_arr[i];
+        if (tmpText.match(determineDie)) {
+            die_text = tmpText;
+            Dice.push(new Die(i, die_text, modifier, connectorStr, dieOpt))
+            die_text = undefined
+            modifier = undefined
+            connectorStr = undefined
+        } else if (tmpText === '+' || tmpText === '-') {
+            if (modifier === undefined || modifier.includes('+') || modifier.includes('-')) {
+                connectorStr = tmpText
+            } else {
+                modifier = tmpText + modifier
+            }
+        } else {
+            modifier = tmpText
+        }
+    }
+    return Dice
+}
+
+function buildMessage(text, dieOptions, diceOptions) {
+    return new Message(buildDiceArray(text, dieOptions), buildDiceOptions(diceOptions))
+}
+
 //Used to control the flash of color for success or failure. 
 let flash = function(elements, color, resetColor) {
   let opacity = 100;
@@ -85,7 +198,11 @@ function modalHistoryRoll(text, dieOptions) {
 
 
 function rollFunc(text = null, dieOptions = null) {
-    let fullURL = "http://api.d20futurepath.com/v1/tasks/roll/"
+    let host = window.location.origin;
+    if (host.includes('0.0.0.0')) {
+        host = 'http://0.0.0.0:8000'
+    }
+    let fullURL = host+"/v1/tasks/roll/"
     if (text == null) {
         text = document.getElementById("DiceText").value;
     }
@@ -103,6 +220,25 @@ function rollFunc(text = null, dieOptions = null) {
     getMethod(apiCall)
 }
 
+function rollFuncPost() {
+    let mesg = buildMessage()
+    let host = window.location.origin;
+    if (host.includes('0.0.0.0')) {
+        host = 'http://0.0.0.0:8000'
+    }
+    let fullURL = host+"/v1/tasks/roll"
+
+    window.sessionStorage.setItem('currentRollObj', JSON.stringify(mesg))
+
+    if (window.sessionStorage['numOfRolls'] === undefined) {
+        window.sessionStorage.setItem('numOfRolls', 1);
+    } else {
+        window.sessionStorage.setItem('numOfRolls', parseInt(window.sessionStorage.getItem('numOfRolls'))+1);
+    }
+
+    postMethod(fullURL, JSON.stringify(mesg))
+}
+
 function getMethod(apiCall) {
 $.ajax({
   type: 'GET',
@@ -114,10 +250,25 @@ $.ajax({
 });
 }
 
+function postMethod(url, data) {
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: data,
+        contentType: 'application/json',
+        async: true,
+        dataType: 'JSON',
+        success: rollSuccess,
+        error: rollFailure
+    });
+}
 
 function rollSuccess(data) {
-    document.getElementById("DiceResults").placeholder = "Rolls: " + data['Dice'] + " = Total:" + data['DiceTotal'];
+    diceData = data['Rolls'][0]
+    document.getElementById("DiceResults").placeholder = "Rolls: " + diceData['Dice'] + " = Total:" + diceData['Total'];
     flash($('#DiceResults'), "0, 100, 0", "233, 236, 239");
+    // This process of saving current roll and updating history needs another look into
+    // It is partially broken. The data as seen by the localHistory vs the HTML/State of the page is not in perfect sync.
     saveCurrentRoll(data)
     updateHistory()
 }
@@ -133,10 +284,14 @@ function rollFailure(data) {
 
 //This function is called onload of the mRoller.html page. It two methods that build out the bootstrap modal for both history and favorite rolls using localStorage.
 function preLoadSession() {
+    // Needs another look see
     updateHistory()
     preLoadFavs()
 }
 
+/*
+ * < Functions for get/set/update Local Storage rolling history
+ */
 function getHistory() {
     if (window.localStorage['history'] === undefined) {
         window.localStorage.setItem('history', '[]');
@@ -144,15 +299,79 @@ function getHistory() {
     return JSON.parse(window.localStorage.getItem('history'));
 }
 
+function setHistory(historyArr) {
+    historyArr = trimHistory(historyArr)
+    window.localStorage.setItem('history', JSON.stringify(historyArr));
+    genHTMLHistory()
+}
+
+function appendHistory(historyObj) {
+    let historyArr = getHistory();
+    historyArr.push(historyObj);
+    setHistory(historyArr);
+}
+
+function popHistory() {
+    let historyArr = getHistory();
+    historyArr.pop();
+    setHistory(historyArr);
+}
+
+function trimHistory(historyArr) {
+    if (historyArr.length > 8) {
+        return historyArr.slice(0, 8)
+    } else {
+        return historyArr
+    }
+}
+
+function clearHistory() {
+    setHistory([])
+}
+
+function clearHTMLHistory() {
+    for (historyDiv of document.getElementById("historyMain").getElementsByClassName('input-group')) {
+        historyDiv.remove()
+    }
+    if (document.getElementById("historyMain").getElementsByClassName('input-group').length > 0) {
+        clearHTMLHistory()
+    }
+}
+
+function genHTMLHistory() {
+    let historyArr = getHistory()
+    clearHTMLHistory()
+    for (let i = historyArrLen.length-1; i > -1; i--) {
+        let latestHistory = historyArr[i];
+        let newEntry = defaultDiceHistoryItem.replace('%NUM', i+1);
+        newEntry = newEntry.replace('$VAL', "Dice: "+latestHistory['roll']+" // "+latestHistory['total']);
+        newEntry = newEntry.replace('%DIC', latestHistory['roll']).replace('%DIC', latestHistory['roll']);
+        newEntry = newEntry.replace('%OPT', latestHistory['options']).replace('%OPT', latestHistory['options']);
+        appendModalHistory(newEntry, i+1)
+    }
+}
+
+function trimHTMLHistory() {
+    let historyHTMLLength = document.getElementById("historyMain").getElementsByClassName('input-group').length
+    let histArr = getHistory()
+    for ( ; historyHTMLLength > 7; historyHTMLLength--) {
+        document.getElementById("historyMain").getElementsByClassName('input-group')[historyHTMLLength-1].remove()
+        histArr.pop()
+    }
+    window.localStorage.setItem('history', JSON.stringify(histArr));
+}
+
 // Used to save the current roll too history. This is called by the 'rollSuccess' function
 function saveCurrentRoll(data) {
+    diceData = data['Rolls'][0]
     let tmpJson = '{"roll": "%ROL", "options": "%OPT", "results": "%RES", "total": "%TOT"}';
-    tmpJson = tmpJson.replace('%ROL', window.sessionStorage.getItem('currentRoll'));
-    tmpJson = tmpJson.replace('%OPT', window.sessionStorage.getItem('currentOptions'));
-    tmpJson = tmpJson.replace('%RES', data['Dice']);
-    tmpJson = tmpJson.replace('%TOT', data['DiceTotal']);
+    let tmpObj = JSON.parse(window.sessionStorage.getItem('currentRollObj'));
+    tmpJson = tmpJson.replace('%ROL', tmpObj.dice[0].dString);
+    tmpJson = tmpJson.replace('%OPT', JSON.stringify(tmpObj.dice[0].dieOptions));
+    tmpJson = tmpJson.replace('%RES', diceData['Dice']);
+    tmpJson = tmpJson.replace('%TOT', diceData['Total']);
     let tmpHistory = getHistory()
-    if (tmpHistory.length > 9) {
+    if (tmpHistory.length > 7) {
         tmpHistory.shift()
     }
     tmpHistory.push(JSON.parse(tmpJson))
@@ -163,9 +382,7 @@ function saveCurrentRoll(data) {
 // Used to update the history modal. This can be called from different places and tries to act differently based on the state of the modal.
 function updateHistory() {
     let tmpHistory = getHistory()
-    if (document.getElementById("historyMain").getElementsByClassName('input-group').length >= 10) {
-        document.getElementById("historyMain").getElementsByClassName('input-group')[0].remove();
-    } 
+    trimHTMLHistory()
     if (document.getElementById("historyMain").getElementsByClassName('input-group').length === 0) {
         for (i = 0; i < tmpHistory.length; i++) {
             let latestHistory = tmpHistory[i];
@@ -394,7 +611,6 @@ function loadDieOptions() {
 
     return text
 }
-
 
 // Helper function for the 'loadDieOptions' this sets up the options into a string to be added to the URL of the API call.
 function appendGETOptions(currentStr, newText, newValue) {
