@@ -5,43 +5,70 @@
  * BlaH 
  */
 
-// This is a HTML template for an entry in the dice history. This code will be injected into a bootstrap modal popup to show the history of past rolls.
-const defaultDiceHistoryItem = `                    
+// This is an HTML template for an entry in the dice history. This code will be injected into a bootstrap modal popup to show the history of past rolls.
+const defaultDiceHistoryItem = `                 
     <div class="input-group-prepend">
-        <button type="button" class="btn btn-sm btn-outline-success" onclick="modalHistoryRoll('%DIC', '%OPT')">
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-clockwise" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3.17 6.706a5 5 0 0 1 7.103-3.16.5.5 0 1 0 .454-.892A6 6 0 1 0 13.455 5.5a.5.5 0 0 0-.91.417 5 5 0 1 1-9.375.789z"/><path fill-rule="evenodd" d="M8.147.146a.5.5 0 0 1 .707 0l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 1 1-.707-.708L10.293 3 8.147.854a.5.5 0 0 1 0-.708z"/></svg>
-        </button>
+        <span class="input-group-text">   
+            <button type="button" class="btn btn-sm btn-outline-success" onclick="modalHistoryRoll('%ROLLID')">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-clockwise" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3.17 6.706a5 5 0 0 1 7.103-3.16.5.5 0 1 0 .454-.892A6 6 0 1 0 13.455 5.5a.5.5 0 0 0-.91.417 5 5 0 1 1-9.375.789z"/><path fill-rule="evenodd" d="M8.147.146a.5.5 0 0 1 .707 0l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 1 1-.707-.708L10.293 3 8.147.854a.5.5 0 0 1 0-.708z"/></svg>
+            </button>
+        </span>   
     </div>
     <input class="form-control" type="text" id="historyDiceResults-%NUM" placeholder="$VAL" readonly>
     <div class="input-group-append">
-        <button type="button" class="btn btn-sm btn-outline-primary" onclick="newSaveRoll('%DIC', '%OPT')">
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-arrow-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 1h5v1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V6h1v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2z"/>
-            <path d="M9 4.5V1l5 5h-3.5A1.5 1.5 0 0 1 9 4.5z"/>
-            <path fill-rule="evenodd" d="M5.646 9.146a.5.5 0 0 1 .708 0L8 10.793l1.646-1.647a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 0-.708z"/>
-            <path fill-rule="evenodd" d="M8 6a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0v-4A.5.5 0 0 1 8 6z"/>
-        </svg>
-        </button>
+        <span class="input-group-text">
+            <button type="button" class="btn btn-sm btn-outline-primary" onclick="newSaveRoll('%ROLLID')">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-earmark-arrow-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 1h5v1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V6h1v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2z"/>
+                <path d="M9 4.5V1l5 5h-3.5A1.5 1.5 0 0 1 9 4.5z"/>
+                <path fill-rule="evenodd" d="M5.646 9.146a.5.5 0 0 1 .708 0L8 10.793l1.646-1.647a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 0-.708z"/>
+                <path fill-rule="evenodd" d="M8 6a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0v-4A.5.5 0 0 1 8 6z"/>
+            </svg>
+            </button>
+        </span>
     </div>
 `;
 
-// This is a HTML template for an entry in favorite dice rolls. This code will be injected into a bootstrap modal popup to show favorite dice.
+// This is an HTML template for an entry in favorite dice rolls. This code will be injected into a bootstrap modal popup to show favorite dice.
 const defaultFavItem = `                    
     <div class="input-group-prepend">
-        <button type="button" class="btn btn-sm btn-outline-success" onclick="favReRoll('%DIC', '%OPT')">
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-clockwise" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3.17 6.706a5 5 0 0 1 7.103-3.16.5.5 0 1 0 .454-.892A6 6 0 1 0 13.455 5.5a.5.5 0 0 0-.91.417 5 5 0 1 1-9.375.789z"/><path fill-rule="evenodd" d="M8.147.146a.5.5 0 0 1 .707 0l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 1 1-.707-.708L10.293 3 8.147.854a.5.5 0 0 1 0-.708z"/></svg>
-        </button>
+        <span class="input-group-text">
+            <button type="button" class="btn btn-sm btn-outline-success" onclick="favReRoll('%ROLLID')">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-clockwise" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3.17 6.706a5 5 0 0 1 7.103-3.16.5.5 0 1 0 .454-.892A6 6 0 1 0 13.455 5.5a.5.5 0 0 0-.91.417 5 5 0 1 1-9.375.789z"/><path fill-rule="evenodd" d="M8.147.146a.5.5 0 0 1 .707 0l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 1 1-.707-.708L10.293 3 8.147.854a.5.5 0 0 1 0-.708z"/></svg>
+            </button>
+        </span>
     </div>
     <input class="form-control" type="text" id="favDieDetails-%NUM" placeholder="$VAL" readonly>
     <div class="input-group-append">
-        <button type="button" class="btn btn-sm btn-outline-danger" onclick="removeMe('%IDN')">
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-minus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" d="M4 1h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H4z"/>
-        <path fill-rule="evenodd" d="M5.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5z"/>
-        </svg>
-        </button>
+        <span class="input-group-text">
+            <button type="button" class="btn btn-sm btn-outline-danger" onclick="removeMe('%ROLLID')">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-minus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M4 1h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H4z"/>
+            <path fill-rule="evenodd" d="M5.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5z"/>
+            </svg>
+            </button>
+        </span>
     </div>
 `;
+
+const diceListFromDString = `<button class="dropdown-item" href="#" id="dropDown-%MAPVAL" value="%MAPVAL" onclick="setActiveDropDown('%MAPVAL')">%DSTRING</button>`
+
+// Support for UUID even when not in HTTPs
+const getUUID = () =>
+    (String(1e7) + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
+        (
+            Number(c) ^
+            (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (Number(c) / 4)))
+        ).toString(16)
+    );
+
+// Copy to Clipboard code taking from online example
+function copyToClipBoard(target) {
+    if (target === undefined) {
+        target = 'rollDetailsJSONResponse'
+    }
+    navigator.clipboard.writeText(document.getElementById(target).innerText);
+}
 
 
 // history of DiceText input element
@@ -52,6 +79,15 @@ let DieButtonHistory = []
 
 // last change
 let changeHistory = [];
+
+// Roll Hashmap
+let rollMap = new Map();
+
+// DieOptionsMap
+let DieOptionsMap = new Map();
+
+//Temp Roll to be saved
+let tmpRoll;
 
 class DieOptions {
     constructor(dropLowest, rerollTotal, rerollDie, subAll, addAll) {
@@ -83,18 +119,43 @@ class Die {
 }
 
 class Message {
-    constructor(dice, diceOptions) {
+    constructor(name, dString, dice, diceOptions, diceRoll, rollText, rollID) {
+        this.name = name
+        this.dString = dString
         this.dice = dice
         this.diceOptions = diceOptions
+        this.diceRoll = diceRoll
+        this.rollText = rollText
+        this.rollID = (rollID) ? rollID : getUUID()
     }
 }
 
-let splitDStr = new RegExp("(\\+|-)", "gi");
+let splitDStr = new RegExp("(\[\+|-])", "gi");
 let determineDie = new RegExp("d\\d{1,3}", "ig");
-let determineMultiplier = new RegExp('^(\\d){1,3}', "gi");
+let getDies = new RegExp("(\\d{0,2}d\\d{1,3})", "ig");
+// let determineMultiplier = new RegExp('^(\\d){1,3}', "gi");
 
 function buildDiceOptions(diceOptions = null) {
-    return (diceOptions) ? diceOptions : new DieOptions()
+    if (diceOptions !== null) {
+        return diceOptions
+    }
+
+    let diceOpt = new DiceOptions()
+
+    if($('#Dice-dropLowest').prop('checked')){
+        diceOpt.dropLowest = document.getElementById("Dice-dropLowest-text").value
+    }
+    if($('#Dice-repeatRoll').prop('checked')){
+        diceOpt.repeatRoll = document.getElementById("Dice-repeatRoll-text").value
+    }
+    if($('#Dice-subAll').prop('checked')){
+        diceOpt.subAll = document.getElementById("Dice-subAll-text").value
+    }
+    if($('#Dice-addAll').prop('checked')){
+        diceOpt.addAll = document.getElementById("Dice-addAll-text").value
+    }
+
+    return diceOpt
 }
 
 function buildDieOptions(dieOptions = null) {
@@ -109,7 +170,7 @@ function buildDieOptions(dieOptions = null) {
         dieOpt.dropLowest = document.getElementById("DieO-dropLowest-text").value
     }
     if($('#DieO-rerollTotal').prop('checked')){
-        dieOpt.rerollDie = document.getElementById("DieO-rerollTotal-text").value
+        dieOpt.rerollTotal = document.getElementById("DieO-rerollTotal-text").value
     }
     if($('#DieO-rerollDie').prop('checked')){
         dieOpt.rerollDie = document.getElementById("DieO-rerollDie-text").value
@@ -125,7 +186,6 @@ function buildDieOptions(dieOptions = null) {
 }
 
 function buildDiceArray(text = null, dieOptions = null) {
-    let dieOpt = buildDieOptions(dieOptions)
     let DiceText;
     let Dice = [];
     if (text == null) {
@@ -139,31 +199,56 @@ function buildDiceArray(text = null, dieOptions = null) {
     }
     let dice_text_arr = DiceText.split(splitDStr);
     let die_text;
-    let modifier;
+    let modifier = [];
     let connectorStr;
     for (let i = dice_text_arr.length-1; i >= 0; i--) {
         tmpText = dice_text_arr[i];
         if (tmpText.match(determineDie)) {
             die_text = tmpText;
-            Dice.push(new Die(i, die_text, modifier, connectorStr, dieOpt))
+            Dice.push(new Die(i, die_text, parseModifierArr(modifier), connectorStr, DieOptionsMap.get(i+'-'+die_text)))
             die_text = undefined
-            modifier = undefined
+            modifier = []
             connectorStr = undefined
         } else if (tmpText === '+' || tmpText === '-') {
-            if (modifier === undefined || modifier.includes('+') || modifier.includes('-')) {
+            if (modifier.length === 0) {
                 connectorStr = tmpText
             } else {
-                modifier = tmpText + modifier
+                modifier.push(tmpText)
             }
         } else {
-            modifier = tmpText
+            modifier.push(tmpText)
         }
     }
     return Dice
 }
 
+function parseModifierArr(modArr) {
+    let outputNum = 0;
+    let plussOrMinus = '+';
+    let val = '';
+    for (let i = modArr.length-1; i >= 0; i--) {
+        val = modArr[i];
+        if (val === '+' || val === '-') {
+            plussOrMinus = val;
+        } else {
+            if (plussOrMinus === '+') {
+                outputNum = outputNum + parseInt(val);
+            } else {
+                outputNum = outputNum - parseInt(val);
+            }
+        }
+    }
+    let outputStr = outputNum.toString();
+    if (outputStr.length < 1 || outputStr === '0') {
+        return undefined
+    } else if (! outputStr.startsWith('-') ) {
+        return '+'+outputStr
+    }
+    return outputStr
+}
+
 function buildMessage(text, dieOptions, diceOptions) {
-    return new Message(buildDiceArray(text, dieOptions), buildDiceOptions(diceOptions))
+    return new Message(undefined, text, buildDiceArray(text, dieOptions), buildDiceOptions(diceOptions), undefined, undefined, undefined)
 }
 
 //Used to control the flash of color for success or failure. 
@@ -180,74 +265,54 @@ let flash = function(elements, color, resetColor) {
   }, 20)
 };
 
+
+function dStringHashMap(dString = null) {
+    let text = (dString === null) ? document.getElementById("DiceText").value : dString
+    let dStringHash = new Map();
+    let dice_text_arr = DiceText.split(splitDStr);
+
+}
+
 /*
  * <Below are the primary rolling methods that build the roll api call and then use ajax to do the call and finish with a success or failure method.>
  */
-function favReRoll(text, dieOptions) {
-    document.getElementById("DiceText").value = text
-    $( "#favRolls").modal('hide');
-    rollFunc(text, dieOptions)
-}
-
-
-function modalHistoryRoll(text, dieOptions) {
-    document.getElementById("DiceText").value = text
-    $( "#historyRolls").modal('hide');
-    rollFunc(text, dieOptions)
-}
-
-
-function rollFunc(text = null, dieOptions = null) {
-    let host = window.location.origin;
-    if (host.includes('0.0.0.0')) {
-        host = 'http://0.0.0.0:8000'
-    }
-    let fullURL = host+"/v1/tasks/roll/"
-    if (text == null) {
-        text = document.getElementById("DiceText").value;
-    }
-    if (dieOptions == null) {
-        dieOptions = loadDieOptions();
-    }
-    let apiCall = fullURL + text + dieOptions;
-    window.sessionStorage.setItem('currentRoll', text)
-    window.sessionStorage.setItem('currentOptions', dieOptions)
-    if (window.sessionStorage['numOfRolls'] === undefined) {
-        window.sessionStorage.setItem('numOfRolls', 1);
+function rollFuncPost(messageJSON = null) {
+    let mesg;
+    if (messageJSON !== null) {
+        if ( typeof(messageJSON) !== 'object'){
+            mesg = JSON.parse(messageJSON)
+        } else {
+            mesg = messageJSON
+        }
     } else {
-        window.sessionStorage.setItem('numOfRolls', parseInt(window.sessionStorage.getItem('numOfRolls'))+1);
+        mesg = buildMessage()
     }
-    getMethod(apiCall)
-}
 
-function rollFuncPost() {
-    let mesg = buildMessage()
     let host = window.location.origin;
     if (host.includes('0.0.0.0')) {
         host = 'http://0.0.0.0:8000'
     }
     let fullURL = host+"/v1/tasks/roll"
 
-    window.sessionStorage.setItem('currentRollObj', JSON.stringify(mesg))
+    mesg.dString = document.getElementById("DiceText").value
 
-    if (window.sessionStorage['numOfRolls'] === undefined) {
-        window.sessionStorage.setItem('numOfRolls', 1);
-    } else {
-        window.sessionStorage.setItem('numOfRolls', parseInt(window.sessionStorage.getItem('numOfRolls'))+1);
-    }
+    rollMap.set(mesg.rollID, mesg);
 
     postMethod(fullURL, JSON.stringify(mesg))
 }
 
-function getMethod(apiCall) {
-$.ajax({
-  type: 'GET',
-  url: apiCall,
-  async: true,
-  dataType: 'json',
-  success: rollSuccess,
-  error: rollFailure
-});
+function modalHistoryRoll(rollID) {
+    let histRoll = getHistoryByID(rollID)
+    document.getElementById("DiceText").value = histRoll.dString
+    $( "#historyRolls").modal('hide');
+    rollFuncPost(histRoll)
+}
+
+function favReRoll(rollID) {
+    let favRoll = getFavByID(rollID)
+    document.getElementById("DiceText").value = favRoll.dString
+    $( "#favRolls").modal('hide');
+    rollFuncPost(favRoll)
 }
 
 function postMethod(url, data) {
@@ -263,19 +328,68 @@ function postMethod(url, data) {
     });
 }
 
+function rollCharacter(characterLevel = null) {
+    let host = window.location.origin;
+    if (host.includes('0.0.0.0')) {
+        host = 'http://0.0.0.0:8000'
+    }
+    let fullURL = host+"/v1/tasks/roll/character/"
+
+    let apiCall;
+    if (characterLevel === null) {
+        apiCall = fullURL+'normal'
+    } else {
+        apiCall = fullURL+characterLevel
+    }
+
+    getMethod(apiCall)
+}
+
+function getMethod(apiCall) {
+    $.ajax({
+        type: 'GET',
+        url: apiCall,
+        async: true,
+        dataType: 'json',
+        success: rollCharSuccess,
+        error: rollFailure
+    });
+}
+
 function rollSuccess(data) {
-    diceData = data['Rolls'][0]
-    document.getElementById("DiceResults").placeholder = "Rolls: " + diceData['Dice'] + " = Total:" + diceData['Total'];
+    diceData = data['Rolls']
+    let dieSet;
+    let text = "Rolls: ";
+    for (dieSet of diceData) {
+        text = text + "(" + dieSet['Dice'] + ") = " + dieSet['Total'] + " , ";
+    }
+    updateHTMLFromRoll(text.replace(/\s,\s$/, ''), data, false);
     flash($('#DiceResults'), "0, 100, 0", "233, 236, 239");
-    // This process of saving current roll and updating history needs another look into
-    // It is partially broken. The data as seen by the localHistory vs the HTML/State of the page is not in perfect sync.
-    saveCurrentRoll(data)
-    updateHistory()
+    saveCurrentRoll(data, text)
+}
+
+function rollCharSuccess(data) {
+    let roll;
+    let totalArr = [];
+    for (roll of data['Rolls']) {
+        totalArr.push(roll['Total'])
+    }
+    updateHTMLFromRoll("Rolls: "+totalArr, data, false);
+    flash($('#DiceResults'), "0, 100, 0", "233, 236, 239");
 }
 
 function rollFailure(data) {
-    document.getElementById("DiceResults").placeholder = "";
+    updateHTMLFromRoll("", "", true)
     flash($('#DiceResults'), "139, 0, 0", "233, 236, 239");
+}
+
+function updateHTMLFromRoll(diceResults = "", jsonResponse = undefined, bntStatus = true) {
+    document.getElementById("DiceResults").placeholder = diceResults;
+    document.getElementById("rollDetailsDiceResults").innerText = diceResults;
+    document.getElementById("rollDetailsJSONResponse").innerText = JSON.stringify(jsonResponse, undefined, 2);
+    document.getElementById('rollDetailsSaveToFavBnt').value = (jsonResponse !== undefined) ? jsonResponse['rollID'] : "";
+    document.getElementById('showRollDetailsBnt').disabled = bntStatus;
+    document.getElementById('showRollDetailsBnt').setAttribute('aria-disabled', bntStatus);
 }
 /*
  * </The end of the primary rolling methods. Below are helper methods and other such things.>
@@ -284,13 +398,15 @@ function rollFailure(data) {
 
 //This function is called onload of the mRoller.html page. It two methods that build out the bootstrap modal for both history and favorite rolls using localStorage.
 function preLoadSession() {
-    // Needs another look see
-    updateHistory()
-    preLoadFavs()
+    document.getElementById("DiceText").placeholder = "IE: d20+2d4+1"
+    document.getElementById('showRollDetailsBnt').disabled = true;
+    document.getElementById('showRollDetailsBnt').setAttribute('aria-disabled', true);
+    genHTMLHistory();
+    genHTMLFavRolls();
 }
 
 /*
- * < Functions for get/set/update Local Storage rolling history
+ * < Functions for get/set/update Local Storage rolling history >
  */
 function getHistory() {
     if (window.localStorage['history'] === undefined) {
@@ -319,9 +435,19 @@ function popHistory() {
 
 function trimHistory(historyArr) {
     if (historyArr.length > 8) {
-        return historyArr.slice(0, 8)
+        return historyArr.slice(historyArr.length-8, historyArr.length)
     } else {
         return historyArr
+    }
+}
+
+function getHistoryByID(rollID) {
+    let histArr = getHistory();
+    let hist;
+    for (hist of histArr) {
+        if ( hist.rollID === rollID ) {
+            return hist
+        }
     }
 }
 
@@ -341,69 +467,14 @@ function clearHTMLHistory() {
 function genHTMLHistory() {
     let historyArr = getHistory()
     clearHTMLHistory()
-    for (let i = historyArrLen.length-1; i > -1; i--) {
-        let latestHistory = historyArr[i];
+    for (let i = historyArr.length-1; i > -1; i--) {
+        let hist = historyArr[i];
         let newEntry = defaultDiceHistoryItem.replace('%NUM', i+1);
-        newEntry = newEntry.replace('$VAL', "Dice: "+latestHistory['roll']+" // "+latestHistory['total']);
-        newEntry = newEntry.replace('%DIC', latestHistory['roll']).replace('%DIC', latestHistory['roll']);
-        newEntry = newEntry.replace('%OPT', latestHistory['options']).replace('%OPT', latestHistory['options']);
+        newEntry = newEntry.replace('$VAL', "Dice: "+hist.dString+" // "+hist.rollText);
+        newEntry = newEntry.replace('%ROLLID', hist.rollID).replace('%ROLLID', hist.rollID);
         appendModalHistory(newEntry, i+1)
     }
 }
-
-function trimHTMLHistory() {
-    let historyHTMLLength = document.getElementById("historyMain").getElementsByClassName('input-group').length
-    let histArr = getHistory()
-    for ( ; historyHTMLLength > 7; historyHTMLLength--) {
-        document.getElementById("historyMain").getElementsByClassName('input-group')[historyHTMLLength-1].remove()
-        histArr.pop()
-    }
-    window.localStorage.setItem('history', JSON.stringify(histArr));
-}
-
-// Used to save the current roll too history. This is called by the 'rollSuccess' function
-function saveCurrentRoll(data) {
-    diceData = data['Rolls'][0]
-    let tmpJson = '{"roll": "%ROL", "options": "%OPT", "results": "%RES", "total": "%TOT"}';
-    let tmpObj = JSON.parse(window.sessionStorage.getItem('currentRollObj'));
-    tmpJson = tmpJson.replace('%ROL', tmpObj.dice[0].dString);
-    tmpJson = tmpJson.replace('%OPT', JSON.stringify(tmpObj.dice[0].dieOptions));
-    tmpJson = tmpJson.replace('%RES', diceData['Dice']);
-    tmpJson = tmpJson.replace('%TOT', diceData['Total']);
-    let tmpHistory = getHistory()
-    if (tmpHistory.length > 7) {
-        tmpHistory.shift()
-    }
-    tmpHistory.push(JSON.parse(tmpJson))
-    window.localStorage.setItem('history', JSON.stringify(tmpHistory));
-}
-
-
-// Used to update the history modal. This can be called from different places and tries to act differently based on the state of the modal.
-function updateHistory() {
-    let tmpHistory = getHistory()
-    trimHTMLHistory()
-    if (document.getElementById("historyMain").getElementsByClassName('input-group').length === 0) {
-        for (i = 0; i < tmpHistory.length; i++) {
-            let latestHistory = tmpHistory[i];
-            let newEntry = defaultDiceHistoryItem.replace('%NUM', i+1);
-            newEntry = newEntry.replace('$VAL', "Dice: "+latestHistory['roll']+" // "+latestHistory['total']);
-            newEntry = newEntry.replace('%DIC', latestHistory['roll']).replace('%DIC', latestHistory['roll']);
-            newEntry = newEntry.replace('%OPT', latestHistory['options']).replace('%OPT', latestHistory['options']);
-            appendModalHistory(newEntry, i+1)
-        }
-        window.sessionStorage.setItem('numOfRolls', i)
-    } else {
-        let latestHistory = tmpHistory[tmpHistory.length-1];
-        let num = parseInt(window.sessionStorage.getItem('numOfRolls'));
-        let newEntry = defaultDiceHistoryItem.replace('%NUM', num);
-        newEntry = newEntry.replace('$VAL', "Dice: "+latestHistory['roll']+" // "+latestHistory['total']);
-        newEntry = newEntry.replace('%DIC', latestHistory['roll']).replace('%DIC', latestHistory['roll']);
-        newEntry = newEntry.replace('%OPT', latestHistory['options']).replace('%OPT', latestHistory['options']);
-        appendModalHistory(newEntry, num)
-    }
-}
-
 
 function appendModalHistory(newEntry, num) {
     let div = document.createElement('div');
@@ -413,50 +484,76 @@ function appendModalHistory(newEntry, num) {
     document.getElementById("historyMain").appendChild(div);
 }
 
+function saveCurrentRoll(data, rollText) {
 
-function newSaveRoll(dice, dieOptions) {
-    let tmpJson = '{"id": "%ID", "roll": "%ROL", "options": "%OPT"}';
-    let favId = document.getElementById("favMain").getElementsByClassName('input-group').length+1
-    let favIdStr = "favID-"+favId.toString()+dice
-    let newEntry = defaultFavItem.replace('%NUM', favId)
-    newEntry = newEntry.replace('$VAL', "Dice To Roll: "+dice);
-    newEntry = newEntry.replace('%DIC', dice);
-    newEntry = newEntry.replace('%OPT', dieOptions);
-    newEntry = newEntry.replace('%IDN', favIdStr)
-    tmpJson = tmpJson.replace('%ROL', dice);
-    tmpJson = tmpJson.replace('%OPT', dieOptions);
-    tmpJson = tmpJson.replace('%ID', favIdStr)
-    appendFavRoll(newEntry, favIdStr)
+    let mesg = rollMap.get(data.rollID);
+
+    mesg.diceRoll = data['Rolls'];
+    mesg.rollText = rollText.replace(/\s,\s$/, '').replace(/^Rolls:\s/, '');
+
+    appendHistory(mesg);
+}
+/*
+ * </ End of Functions for editing local roll history >
+ */
+
+
+/*
+ * < Start of Functions for editing local favorite die rolls >
+ */
+function getFavRolls() {
     if (window.localStorage['favRolls'] === undefined) {
         window.localStorage.setItem('favRolls', '[]');
-    } else {
-        let tmpFavs = JSON.parse(window.localStorage.getItem('favRolls'));
-        tmpFavs.push(JSON.parse(tmpJson));
-        window.localStorage.setItem('favRolls', JSON.stringify(tmpFavs));
     }
+    return JSON.parse(window.localStorage.getItem('favRolls'))
 }
 
+function setFavRolls(favArr) {
+    window.localStorage.setItem('favRolls', JSON.stringify(favArr));
+    genHTMLFavRolls();
+}
 
-function preLoadFavs() {
-    let newEntry = ""
-    if (window.localStorage['favRolls'] === undefined) {
-        window.localStorage.setItem('favRolls', '[]');
-    }  
-    let tmpFavs = JSON.parse(window.localStorage.getItem('favRolls'));
-    if (tmpFavs.length > 0) {
-        let tmpFavs = JSON.parse(window.localStorage.getItem('favRolls'));
-        for (i = 0; i < tmpFavs.length; i++) {
-            tmpFavs[i]
-            newEntry = defaultFavItem.replace('%NUM', tmpFavs[i]['id'])
-            newEntry = newEntry.replace('$VAL', "Dice To Roll: "+tmpFavs[i]['roll']);
-            newEntry = newEntry.replace('%DIC', tmpFavs[i]['roll']);
-            newEntry = newEntry.replace('%OPT', tmpFavs[i]['options']);
-            newEntry = newEntry.replace('%IDN', tmpFavs[i]['id'])
-            appendFavRoll(newEntry, tmpFavs[i]['id'])
+function appendFavRolls(favObj) {
+    let favArr = getFavRolls();
+    favArr.push(favObj);
+    setFavRolls(favArr);
+}
+
+function clearFavRolls() {
+    setFavRolls([])
+}
+
+function getFavByID(rollID) {
+    let favArr = getHistory();
+    let fav;
+    for (fav of favArr) {
+        if ( fav.rollID === rollID ) {
+            return fav
         }
     }
 }
 
+function genHTMLFavRolls() {
+    let favArr = getFavRolls()
+    clearHTMLFavRolls()
+    for (let i = favArr.length-1; i > -1; i--) {
+        let fav = favArr[i];
+        let newEntry = defaultFavItem.replace('%NUM', i)
+        let textVal = (fav.name) ? fav.name : "Dice To Roll: "+fav.dString;
+        newEntry = newEntry.replace('$VAL', textVal);
+        newEntry = newEntry.replace('%ROLLID', fav.rollID).replace('%ROLLID', fav.rollID);
+        appendFavRoll(newEntry, fav.rollID)
+    }
+}
+
+function clearHTMLFavRolls() {
+    for (favRollsDiv of document.getElementById("favMain").getElementsByClassName('input-group')) {
+        favRollsDiv.remove()
+    }
+    if (document.getElementById("favMain").getElementsByClassName('input-group').length > 0) {
+        clearHTMLFavRolls()
+    }
+}
 
 function appendFavRoll(newEntry, favId) {
     let div = document.createElement('div');
@@ -466,6 +563,42 @@ function appendFavRoll(newEntry, favId) {
     document.getElementById("favMain").appendChild(div);
 }
 
+function newSaveRoll(rollID) {
+    tmpRoll = getHistoryByID(rollID);
+    if (tmpRoll !== undefined) {
+        $( "#historyRolls").modal('hide');
+        inputObj = document.getElementById('favDie-Name');
+        inputObj.value = tmpRoll.dString;
+        $( "#saveFavDie").modal('show');
+    }
+}
+
+function saveFromRollDetailsToFav() {
+    tmpRoll = getHistoryByID(document.getElementById('rollDetailsSaveToFavBnt').value)
+    if (tmpRoll !== undefined) {
+        $( "#rollDetails").modal('hide');
+        inputObj = document.getElementById('favDie-Name');
+        inputObj.value = tmpRoll.dString;
+        $( "#saveFavDie").modal('show');
+    }
+}
+
+function saveHistRollInFavs() {
+    if ( tmpRoll === undefined ) {
+        return
+    }
+    tmpRoll.name = document.getElementById('favDie-Name').value;
+    appendFavRolls(tmpRoll);
+    tmpRoll = undefined;
+}
+
+function closeSaveFavWindow() {
+    inputObj = document.getElementById('favDie-Name');
+    inputObj.value = ""
+    tmpRoll = undefined;
+    $( "#saveFavDie").modal('hide');
+}
+
 
 //This removes the HTML element of the id provided. However, it is designed in such a way to only work with favorite roll modal as it is tied to the 'removeFavArrayElement' function.
 function removeMe(idStr) {
@@ -473,18 +606,195 @@ function removeMe(idStr) {
     removeFavArrayElement(idStr)
 }
 
-
 function removeFavArrayElement(favId) {
-    let tmpFavs = JSON.parse(window.localStorage.getItem('favRolls'));
-    let newFavs = []
-    for (i = 0; i < tmpFavs.length; i++) {
-        x = tmpFavs.shift()
-        if (x['id'] !== favId) {
-            newFavs.push(x)
+    let favArr = getFavRolls();
+    let favIndex;
+    for (i = 0; i < favArr.length; i++) {
+        if (favArr[i].rollID === favId) {
+            favIndex = i;
+            break;
         }
     }
-    window.localStorage.setItem('favRolls', JSON.stringify(newFavs));
+    favArr.splice(favIndex, 1)
+    setFavRolls(favArr);
 }
+/*
+ * </ End of Functions for editing local favorite die rolls >
+ */
+
+
+/*
+ * < Start of functions for editing die options >
+ */
+function getDiceArr() {
+    return document.getElementById("DiceText").value.split(splitDStr);
+
+}
+
+function getDiceFromText() {
+    return document.getElementById("DiceText").value.match(getDies);
+}
+
+function isDiePresent(mapKey) {
+    let index, dString;
+    if (mapKey !== undefined) {
+        [index, dString] = mapKey.split('-');
+    } else {
+        [index, dString] = getActiveDropDown().split('-');
+    }
+    let diceArr = getDiceArr();
+    return diceArr[Number(index)] === dString
+}
+
+function genDiceDropDown() {
+    clearDiceOptions()
+    clearHTMLDiceDropDown()
+    document.getElementById('dieDropDownMenuText').innerText = "Select Dice for Die Options:";
+    let diceArr = getDiceArr();
+    let index = 0;
+    for (index in diceArr) {
+        if (! diceArr[index].match(determineDie)) {
+            continue
+        }
+        let li = document.createElement('li');
+        li.innerHTML = diceListFromDString
+            .replace('%INDEX', index.toString())
+            .replace('%DSTRING', diceArr[index])
+            .replace('%MAPVAL', index+'-'+diceArr[index])
+            .replace('%MAPVAL', index+'-'+diceArr[index])
+            .replace('%MAPVAL', index+'-'+diceArr[index]);
+        document.getElementById("dieOptionsDropDownMenu").appendChild(li);
+        DieOptionsMap.set(index+'-'+diceArr[index], DieOptionsMap.get(index+'-'+diceArr[index]));
+    }
+}
+
+function clearHTMLDiceDropDown() {
+    for (dropDownDice of document.getElementById("dieOptionsDropDownMenu").children) {
+        dropDownDice.remove()
+    }
+    if (document.getElementById("dieOptionsDropDownMenu").children.length > 0) {
+        clearHTMLDiceDropDown()
+    }
+}
+
+function setActiveDropDown(mapKey) {
+    if (isDiePresent(mapKey) === false) {
+        document.getElementById('dieOptionsDropDownMenu').classList.remove('show');
+        alert('The Dice: '+mapKey+' is not present!')
+        DieOptionsMap.delete(mapKey);
+        genDiceDropDown();
+    } else {
+        saveCurrentDieOptions();
+        let dropDownObj;
+        for (dropDownObj of document.getElementById("dieOptionsDropDownMenu").children) {
+            if ( dropDownObj.firstChild.id === 'dropDown-'+mapKey ) {
+                if (! dropDownObj.firstChild.classList.contains('active') ) {
+                    dropDownObj.firstChild.classList.add('active');
+                }
+                document.getElementById('dieDropDownMenuText').innerText = "Selected Dice is: "+dropDownObj.firstChild.innerText;
+            } else {
+                dropDownObj.firstChild.classList.remove('active');
+            }
+        }
+        clearDieOptions();
+        loadDieOptions(mapKey);
+    }
+}
+
+function getActiveDropDown() {
+    let dropDownObj;
+    for (dropDownObj of document.getElementById("dieOptionsDropDownMenu").children) {
+        if (dropDownObj.firstChild.classList.contains('active') ) {
+            return dropDownObj.firstChild.value;
+        }
+    }
+    return ''
+}
+
+function deActiveDropDowns() {
+    for (dropDownObj of document.getElementById("dieOptionsDropDownMenu").children) {
+        dropDownObj.firstChild.classList.remove('active');
+    }
+    document.getElementById('dieDropDownMenuText').innerText = "Select Dice for Die Options:";
+}
+
+function saveCurrentDieOptions(mapKey) {
+    if (mapKey === undefined) {
+        mapKey = getActiveDropDown();
+    }
+    if (isDiePresent(mapKey) !== false) {
+        DieOptionsMap.set(mapKey, buildDieOptions());
+    }
+}
+
+// Unsets all the options in the Die Options modal
+function clearDieOptions() {
+    document.getElementById("DieO-dropLowest-text").value = 0;
+    document.getElementById("DieO-rerollTotal-text").value = 0;
+    document.getElementById("DieO-rerollDie-text").value = 0;
+    document.getElementById("DieO-subAll-text").value = 0;
+    document.getElementById("DieO-addAll-text").value = 0;
+    $("[class='DieO-CheckBox-0']").prop("checked", false);
+    return true
+}
+
+function loadDieOptions(mapKey) {
+    let dieOptions = DieOptionsMap.get(mapKey);
+    if (dieOptions === undefined) {
+        return
+    }
+    if (dieOptions.dropLowest !== undefined) {
+        $('#DieO-dropLowest').prop('checked', true);
+        document.getElementById("DieO-dropLowest-text").value = dieOptions.dropLowest;
+    }
+    if (dieOptions.rerollTotal !== undefined) {
+        $('#DieO-rerollTotal').prop('checked', true);
+        document.getElementById("DieO-rerollTotal-text").value = dieOptions.rerollTotal;
+    }
+    if (dieOptions.rerollDie !== undefined) {
+        $('#DieO-rerollDie').prop('checked', true);
+        document.getElementById("DieO-rerollDie-text").value = dieOptions.rerollDie;
+    }
+    if (dieOptions.subAll !== undefined) {
+        $('#DieO-subAll').prop('checked', true);
+        document.getElementById("DieO-subAll-text").value = dieOptions.subAll;
+    }
+    if (dieOptions.addAll !== undefined) {
+        $('#DieO-addAll').prop('checked', true);
+        document.getElementById("DieO-addAll-text").value = dieOptions.addAll;
+    }
+}
+
+function clearDiceOptions() {
+    document.getElementById("Dice-dropLowest-text").value = 0;
+    document.getElementById("Dice-repeatRoll-text").value = 0;
+    document.getElementById("Dice-subAll-text").value = 0;
+    document.getElementById("Dice-addAll-text").value = 0;
+    $("[class='Dice-CheckBox']").prop("checked", false);
+    return true
+}
+
+function clearAllOptions() {
+    clearDieOptions()
+    clearDiceOptions()
+    deActiveDropDowns()
+    DieOptionsMap = new Map();
+}
+
+function clearPresentOptions() {
+    if (document.getElementById('DiceOptions').classList.contains('show')) {
+        clearDiceOptions();
+    } else if (document.getElementById('DieOptions').classList.contains('show')) {
+        clearDieOptions()
+        let activeDropDown = getActiveDropDown();
+        if (activeDropDown !== '') {
+            DieOptionsMap.set(activeDropDown, undefined)
+        }
+    }
+}
+/*
+ * </ End of functions for editing die options >
+ */
 
 
 function countDiesInArray(die) {
@@ -502,23 +812,20 @@ function changeDie(die) {
     searchText = '[1-9]*'+die+'$'
     re = new RegExp(searchText);
     tempText = document.getElementById("DiceText").value;
-    console.log(die)
-    console.log(tempText);
+
     dieNum = countDiesInArray(die)
     endCharacter = "";
     if (tempText.length <= 0) {
         console.log('The tempText is zero setting endCharacter to nothing')
         endCharacter = "";
     } else if (tempText.endsWith('+')) {
-        console.log('tempText ends with +')
         endCharacter = "+";
         tempText = tempText.slice(0,-1);
     } else if (tempText.endsWith('-')) {
-        console.log('tempText ends with -')
         endCharacter = "-";
         tempText = tempText.slice(0,-1);
     }
-    console.log('endCharacter is: '+endCharacter)
+
     if (tempText.search(re) >= 0) {
         DiceTextHistory.push(tempText);
         tempText = tempText.replace(re, dieNum + die);
@@ -531,6 +838,7 @@ function changeDie(die) {
         document.getElementById("DiceText").value = tempText+endCharacter+dieNum+die
     }
     changeHistory.push('die')
+    genDiceDropDown()
 }
 
 
@@ -558,71 +866,24 @@ function changeField(newStr) {
         document.getElementById("DiceText").value = currentText.value + newStr
         changeHistory.push('str')
     }
+    genDiceDropDown()
 }
-
 
 function clearField() {
     document.getElementById("DiceText").value = "";
     document.getElementById("DiceText").placeholder = "";
+    document.getElementById("DiceResults").value = "";
+    document.getElementById("DiceResults").placeholder = "";
+    document.getElementById("rollDetailsDiceResults").innerText = "";
+    document.getElementById("rollDetailsJSONResponse").innerText = "";
+    document.getElementById('showRollDetailsBnt').disabled = true;
+    document.getElementById('showRollDetailsBnt').setAttribute('aria-disabled', true);
     DiceTextHistory = []
     DieButtonHistory = []
     changeHistory = []
+    DieOptionsMap = new Map();
+    deActiveDropDowns()
     clearDieOptions()
+    clearDiceOptions()
+    clearHTMLDiceDropDown()
 }
-
-
-// Unsets all the options in the Die Options modal
-function clearDieOptions() {
-    document.getElementById("DieO-dropLowest-text").value = 0
-    document.getElementById("DieO-rerollTotal-text").value = 0
-    document.getElementById("DieO-rerollDie-text").value = 0
-    document.getElementById("DieO-subAll-text").value = 0
-    document.getElementById("DieO-addAll-text").value = 0
-    $('#DieO-dropLowest').removeAttr("checked");
-    $('#DieO-rerollTotal').removeAttr("checked");
-    $('#DieO-rerollDie').removeAttr("checked");
-    $('#DieO-subAll').removeAttr("checked");
-    $('#DieO-addAll').removeAttr("checked");
-    $("[class='DieO-CheckBox-0']").prop("checked", false)
-    return true
-}
-
-
-// Finds and returns all the values from the Die Options modal. 
-function loadDieOptions() {
-
-    let text = ""
-
-    if($('#DieO-dropLowest').prop('checked')){
-        text = appendGETOptions(text, "dropLowest=", document.getElementById("DieO-dropLowest-text").value)
-    }
-    if($('#DieO-rerollTotal').prop('checked')){
-        text = appendGETOptions(text, "rerollTotal=", document.getElementById("DieO-rerollTotal-text").value)
-    }
-    if($('#DieO-rerollDie').prop('checked')){
-        text = appendGETOptions(text, "rerollDie=", document.getElementById("DieO-rerollDie-text").value)
-    }
-    if($('#DieO-subAll').prop('checked')){
-        text = appendGETOptions(text, "subAll=", document.getElementById("DieO-subAll-text").value)
-    }
-    if($('#DieO-addAll').prop('checked')){
-        text = appendGETOptions(text, "addAll=", document.getElementById("DieO-addAll-text").value)
-    }
-
-    return text
-}
-
-// Helper function for the 'loadDieOptions' this sets up the options into a string to be added to the URL of the API call.
-function appendGETOptions(currentStr, newText, newValue) {
-    if (typeof newValue == "number") {
-        newValue = newValue.toString();
-    }
-    if (currentStr.length > 0) {
-        currentStr += "&"
-    } else {
-        currentStr += "?"
-    }
-    currentStr += newText+newValue
-    return currentStr
-}
-

@@ -32,15 +32,9 @@
 
 <!-- Navivation Bar -->
 <div class="container-sm">
-  <div class="pos-f-t">
-    <div class="collapse" id="navbarToggleExternalContent">
-      <div class="bg-dark p-4">
-        <h5 class="text-white h4">Collapsed content</h5>
-        <span class="text-muted">Toggleable via the navbar brand.</span>
-      </div>
-    </div>
-    <nav class="navbar navbar-dark bg-dark">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+  <nav class="navbar bg-dark navbar-expand-sm bg-body-tertiary border-bottom-dark" data-bs-theme="dark">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#optionsModal">
@@ -48,38 +42,62 @@
           <path fill-rule="evenodd" d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 0 0-5.86 2.929 2.929 0 0 0 0 5.858z"/>
         </svg>
       </button>
-    </nav>
-  </div>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <button type="button" class="btn btn-outline-info" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" onclick="rollCharacter('low')">
+              <img width=25px height=25px src="assists/roll_png.png"> Roll Low Fantasy Char</button>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="btn btn-outline-primary" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" onclick="rollCharacter('low')">
+              <img width=25px height=25px src="assists/roll_png.png"> Roll Normal Fantasy Char</button>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="btn btn-outline-success" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" onclick="rollCharacter('high')">
+              <img width=25px height=25px src="assists/roll_png.png"> Roll High Fantasy Char</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 </div>
 
 <!-- Text Input and output section -->
 <div class="container-sm">
   <div class="row">
     <div class="col input-group input-group-lg mb-1">
-      <div class="input-group-prepend">
+      <span class="input-group-text">
         <button type="button" class="btn btn-outline-primary btn-lg" data-bs-toggle="modal" data-bs-target="#favRolls">
           <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-list-stars" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5z"/>
             <path d="M2.242 2.194a.27.27 0 0 1 .516 0l.162.53c.035.115.14.194.258.194h.551c.259 0 .37.333.164.493l-.468.363a.277.277 0 0 0-.094.3l.173.569c.078.256-.213.462-.423.3l-.417-.324a.267.267 0 0 0-.328 0l-.417.323c-.21.163-.5-.043-.423-.299l.173-.57a.277.277 0 0 0-.094-.299l-.468-.363c-.206-.16-.095-.493.164-.493h.55a.271.271 0 0 0 .259-.194l.162-.53zm0 4a.27.27 0 0 1 .516 0l.162.53c.035.115.14.194.258.194h.551c.259 0 .37.333.164.493l-.468.363a.277.277 0 0 0-.094.3l.173.569c.078.255-.213.462-.423.3l-.417-.324a.267.267 0 0 0-.328 0l-.417.323c-.21.163-.5-.043-.423-.299l.173-.57a.277.277 0 0 0-.094-.299l-.468-.363c-.206-.16-.095-.493.164-.493h.55a.271.271 0 0 0 .259-.194l.162-.53zm0 4a.27.27 0 0 1 .516 0l.162.53c.035.115.14.194.258.194h.551c.259 0 .37.333.164.493l-.468.363a.277.277 0 0 0-.094.3l.173.569c.078.255-.213.462-.423.3l-.417-.324a.267.267 0 0 0-.328 0l-.417.323c-.21.163-.5-.043-.423-.299l.173-.57a.277.277 0 0 0-.094-.299l-.468-.363c-.206-.16-.095-.493.164-.493h.55a.271.271 0 0 0 .259-.194l.162-.53z"/>
           </svg>
         </button>
-      </div>
+      </span>
       <input type="text" class="form-control text-center" id="DiceText" placeholder="IE: d20+2d4+1">
     </div>
   </div>
 
   <div class="row">
     <div class="col input-group mb-2" id="DiceResultsRow">
-      <div class="input-group-prepend">
-        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#historyRolls">
+        <span class="input-group-text">
+          <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#historyRolls">
           <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-clock-history" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022l-.074.997zm2.004.45a7.003 7.003 0 0 0-.985-.299l.219-.976c.383.086.76.2 1.126.342l-.36.933zm1.37.71a7.01 7.01 0 0 0-.439-.27l.493-.87a8.025 8.025 0 0 1 .979.654l-.615.789a6.996 6.996 0 0 0-.418-.302zm1.834 1.79a6.99 6.99 0 0 0-.653-.796l.724-.69c.27.285.52.59.747.91l-.818.576zm.744 1.352a7.08 7.08 0 0 0-.214-.468l.893-.45a7.976 7.976 0 0 1 .45 1.088l-.95.313a7.023 7.023 0 0 0-.179-.483zm.53 2.507a6.991 6.991 0 0 0-.1-1.025l.985-.17c.067.386.106.778.116 1.17l-1 .025zm-.131 1.538c.033-.17.06-.339.081-.51l.993.123a7.957 7.957 0 0 1-.23 1.155l-.964-.267c.046-.165.086-.332.12-.501zm-.952 2.379c.184-.29.346-.594.486-.908l.914.405c-.16.36-.345.706-.555 1.038l-.845-.535zm-.964 1.205c.122-.122.239-.248.35-.378l.758.653a8.073 8.073 0 0 1-.401.432l-.707-.707z"/>
             <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0v1z"/>
             <path fill-rule="evenodd" d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/>
           </svg>
         </button>
-      </div>
+        </span>
       <input class="form-control" type="text" id="DiceResults" placeholder="" readonly>
+      <span class="input-group-text" id="basic-addon1">
+        <button type="button" class="btn btn-outline-dark" id="showRollDetailsBnt" data-bs-toggle="modal" data-bs-target="#rollDetails" aria-disabled="true" disabled>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+            <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+            <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+          </svg>
+        </button>
+      </span>
     </div>
   </div>
 
@@ -91,77 +109,187 @@
         <div class="modal-header">
           <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
-              <a class="nav-link active" id="DieOptions-tab" data-bs-toggle="tab" href="#DieOptions" role="tab" aria-controls="DieOptions" aria-selected="true">Die Options</a>
+              <a class="nav-link active" id="DiceOptions-tab" data-bs-toggle="tab" href="#DiceOptions" role="tab" aria-controls="DiceOptions" aria-selected="true">Dice Options</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link disabled" id="DiceOptions-tab" data-bs-toggle="tab" href="#DiceOptions" role="tab" aria-controls="DiceOptions" aria-selected="false">Dice Options</a>
+              <a class="nav-link" id="DieOptions-tab" data-bs-toggle="tab" href="#DieOptions" role="tab" aria-controls="DieOptions" aria-selected="false">Die Options</a>
             </li>
           </ul>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="saveCurrentDieOptions()"></button>
         </div>
 
         <div class="modal-body">
           <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="DieOptions" role="tabpanel" aria-labelledby="DieOptions-tab">
+            <div class="tab-pane fade show active" id="DiceOptions" role="tabpanel" aria-labelledby="DiceOptions-tab">
+
               <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">
-                    <input type="checkbox" class="DieO-CheckBox-0" id="DieO-dropLowest" aria-label="Checkbox for following text input">
-                    <label class="form-check-label" for="DieO-dropLowest">Drop Lowest</label>
+                  <div class="input-group-text gap-1">
+                    <input type="checkbox" class="Dice-CheckBox" id="Dice-dropLowest" aria-label="Checkbox for following text input">
+                    <div class="vr"></div>
+                    <label class="form-check-label" for="Dice-dropLowest">Drop Lowest</label>
+                    <div class="vr"></div>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Should be used in conjunction with repeatRoll. This takes the total of the dice set roll and drops the lowest roll total that was repeated.">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                        <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path>
+                      </svg>
+                    </button>
                   </div>
+                <input type="number" min="0" data-bind="value:Dice-dropLowest-text" class="form-control" id="Dice-dropLowest-text" aria-label="Number input with checkbox">
+              </div>
+
+              <div class="input-group mb-3">
+                  <div class="input-group-text gap-1">
+                    <input type="checkbox" class="Dice-CheckBox" id="Dice-repeatRoll" aria-label="Checkbox for following text input">
+                    <div class="vr"></div>
+                    <label class="form-check-label" for="Dice-repeatRoll">Repeat Roll</label>
+                    <div class="vr"></div>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Treats the whole dice string as a single dice set and re-rolls it. This number represents the total number of rolls so repeatRoll of 1 still only rolls the dice once.'">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                        <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path>
+                      </svg>
+                    </button>
+                  </div>
+                <input type="number" min="0" data-bind="value:Dice-repeatRoll-text" class="form-control" id="Dice-repeatRoll-text" aria-label="Number input with checkbox">
+              </div>
+
+              <div class="input-group mb-3">
+                  <div class="input-group-text gap-1">
+                    <input type="checkbox" class="Dice-CheckBox" id="Dice-subAll" aria-label="Checkbox for following text input">
+                    <div class="vr"></div>
+                    <label class="form-check-label" for="Dice-subAll">Sub All</label>
+                    <div class="vr"></div>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="This should be used in conjunction with repeatRoll. It subtracts the number provided from the total of complete dice roll.">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                        <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path>
+                      </svg>
+                    </button>
+                  </div>
+                <input type="number" min="0" data-bind="value:Dice-subAll-text" class="form-control" id="Dice-subAll-text" aria-label="Number input with checkbox">
+              </div>
+
+              <div class="input-group mb-3">
+                  <div class="input-group-text gap-1">
+                    <input type="checkbox" class="Dice-CheckBox" id="Dice-addAll" aria-label="Checkbox for following text input">
+                    <div class="vr"></div>
+                    <label class="form-check-label" for="Dice-addAll">Add All</label>
+                    <div class="vr"></div>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="This should be used in conjunction with repeatRoll. It adds the number provided too the total of complete dice roll.">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                        <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path>
+                      </svg>
+                    </button>
+                  </div>
+                <input type="number" min="0" data-bind="value:Dice-addAll-text" class="form-control" id="Dice-addAll-text" aria-label="Number input with checkbox">
+              </div>
+
+            </div>
+
+            <div class="tab-pane fade" id="DieOptions" role="tabpanel" aria-labelledby="DieOptions-tab">
+              <div class="text-center">
+                <div class="btn-group dropdown-center">
+                  <button type="button" class="btn btn-outline-primary" id="dieDropDownMenuText">Select Dice for Die Options: </button>
+                  <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="visually-hidden">Toggle Dropdown</span>
+                  </button>
+                  <ul class="dropdown-menu" id="dieOptionsDropDownMenu">
+                  </ul>
                 </div>
+              </div>
+
+              <div class="input-group mb-3">
+                  <div class="input-group-text gap-1">
+                    <input type="checkbox" class="DieO-CheckBox-0" id="DieO-dropLowest" aria-label="Checkbox for following text input">
+                    <div class="vr"></div>
+                    <label class="form-check-label" for="DieO-dropLowest">Drop Lowest</label>
+                    <div class="vr"></div>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="This only works if the die in question is rolled more then once. IE: 2d6 instead of 1d6. It takes the lowest rolled value and removed it before totaling the roll. IE: 4d6 with a dropLowest of 1 would roll d6 die four times but only total the top 3 results.">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                        <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path>
+                      </svg>
+                    </button>
+                  </div>
                 <input type="number" min="0" data-bind="value:DieO-dropLowest-text" class="form-control" id="DieO-dropLowest-text" aria-label="Number input with checkbox">
               </div>
 
               <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">
+                  <div class="input-group-text gap-1">
                     <input type="checkbox" class="DieO-CheckBox-0" id="DieO-rerollTotal" aria-label="Checkbox for following text input">
+                    <div class="vr"></div>
                     <label class="form-check-label" for="DieO-rerollTotal">Reroll Total</label>
+                    <div class="vr"></div>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="This will reroll a die set if the total of the die is at or below the provided value. IE: 3d6 with a rerollTotal of 9 would only result in values 10 or higher. The acceptable range of numbers must have at least a 1% chance of being rolled or else this will fail.">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                        <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path>
+                      </svg>
+                    </button>
                   </div>
-                </div>
                 <input type="number" min="0" data-bind="value:DieO-rerollTotal-text" class="form-control" id="DieO-rerollTotal-text" aria-label="Text input with checkbox">
               </div>
 
               <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">
+                  <div class="input-group-text gap-1">
                     <input type="checkbox" class="DieO-CheckBox-0" id="DieO-rerollDie" aria-label="Checkbox for following text input">
+                    <div class="vr"></div>
                     <label class="form-check-label" for="DieO-rerollDie">Reroll Die</label>
+                    <div class="vr"></div>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="This rerolls the die itself. The rerollDie value has to be within the range that the die could land on. IE: 1d6 the rerollDie value should be a 1 thru 6. This removed the provided number from the stance of rolling without adjust the likely hood of other numbers being rolled.">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                        <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path>
+                      </svg>
+                    </button>
                   </div>
-                </div>
                 <input type="number" min="0" data-bind="value:DieO-rerollDie-text" class="form-control" id="DieO-rerollDie-text" aria-label="Text input with checkbox">
               </div>
 
               <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">
+                  <div class="input-group-text gap-1">
                     <input type="checkbox" class="DieO-CheckBox-0" id="DieO-subAll" aria-label="Checkbox for following text input">
+                    <div class="vr"></div>
                     <label class="form-check-label" for="DieO-subAll">Subtract All</label>
+                    <div class="vr"></div>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="This adjusts the probability range of the base die to be rolled by subtracting the value of ALL possible numbers before rolling. IE: 1d6 with a subAll of 1 has a chance of rolling: 0,1,2,3,4,5">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                        <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path>
+                      </svg>
+                    </button>
                   </div>
-                </div>
                 <input type="number" min="0" data-bind="value:DieO-subAll-text" class="form-control" id="DieO-subAll-text" aria-label="Text input with checkbox">
               </div>
 
               <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">
+                  <div class="input-group-text gap-1">
                     <input type="checkbox" class="DieO-CheckBox-0" id="DieO-addAll" aria-label="Checkbox for following text input">
+                    <div class="vr"></div>
                     <label class="form-check-label" for="DieO-addAll">Add All</label>
+                    <div class="vr"></div>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Like suball this adjusts the probability range of the base die to be rolled by adding the value of ALL possible numbers before rolling. IE: 1d6 with a addAll of 1 has a chance of rolling: 2,3,4,5,6,7">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                        <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path>
+                      </svg>
+                    </button>
                   </div>
-                </div>
                 <input type="number" min="0" data-bind="value:DieO-addAll-text" class="form-control" id="DieO-addAll-text" aria-label="Text input with checkbox">
               </div>
 
             </div>
-            <div class="tab-pane fade" id="DiceOptions" role="tabpanel" aria-labelledby="DiceOptions-tab">Balls</div>
+
           </div>
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" onclick="clearDieOptions()">Clear</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"  onclick="clearDieOptions()">Cancel</button>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
+          <button type="button" class="btn btn-danger" onclick="clearAllOptions()">Clear All</button>
+          <button type="button" class="btn btn-outline-danger" onclick="clearPresentOptions()">Clear Current</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clearDieOptions()">Cancel</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="saveCurrentDieOptions()">Save</button>
         </div>
       </div>
     </div>
@@ -181,7 +309,32 @@
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-danger" onclick="clearFavRolls()">Clear</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for saving Fav. Rolls -->
+  <div class="modal fade" id="saveFavDie" tabindex="-1" role="dialog" aria-labelledby="saveFavDieCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="saveFavDieLongTitle">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeSaveFavWindow()"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="favDie-Name" class="col-form-label">Die Name:</label>
+              <input type="text" class="form-control" id="favDie-Name">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="closeSaveFavWindow()">Close</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="saveHistRollInFavs()">Save</button>
         </div>
       </div>
     </div>
@@ -204,6 +357,39 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" onclick="clearHistory()">Clear</button>
           <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal For Showing Roll details -->
+  <div class="modal fade" id="rollDetails">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+
+        <div class=modal-header>
+          <h5 class="modal-title"> Roll Details </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body" id="rollDetailsMain">
+          <div id="rollDetailsDiceResults">
+
+          </div>
+          <hr class="hr" />
+          <pre id="rollDetailsJSONResponse"></pre>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" onclick="copyToClipBoard('rollDetailsJSONResponse')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+              <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+              <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+            </svg>
+            Copy
+          </button>
+          <button type="button" class="btn btn-primary" id="rollDetailsSaveToFavBnt" value="" onclick="saveFromRollDetailsToFav()">Save to Fav</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
