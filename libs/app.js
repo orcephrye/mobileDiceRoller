@@ -403,6 +403,7 @@ function preLoadSession() {
     document.getElementById('showRollDetailsBnt').setAttribute('aria-disabled', true);
     genHTMLHistory();
     genHTMLFavRolls();
+    $('[data-bs-toggle="tooltip"]').tooltip();
 }
 
 /*
