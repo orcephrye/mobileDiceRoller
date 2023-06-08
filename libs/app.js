@@ -357,7 +357,7 @@ function getMethod(apiCall) {
 }
 
 function rollSuccess(data) {
-    diceData = data['Rolls']
+    let diceData = data['Rolls']
     let dieSet;
     let text = "Rolls: ";
     for (dieSet of diceData) {
