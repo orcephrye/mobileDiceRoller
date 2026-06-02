@@ -1,47 +1,283 @@
-.bodyWidth {
-    max-width: 574px;
-    margin: auto;
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+/* Main Body Configuration */
+body {
+  font-family: 'Outfit', sans-serif;
+  background: radial-gradient(circle at top left, #111827, #030712) !important;
+  color: #f1f5f9 !important;
+  min-height: 100vh;
 }
 
-.successButton {
-    width: 100% !important;
+.bodyWidth {
+  max-width: 574px;
+  margin: auto;
+  padding: 1rem 0.5rem;
+}
+
+/* Navbar Custom Styling */
+.navbar {
+  background: rgba(17, 24, 39, 0.7) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  margin-bottom: 1.25rem;
+  padding: 0.75rem 1rem !important;
+}
+
+.navbar .btn-primary {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8) !important;
+  border: none !important;
+  border-radius: 10px;
+  padding: 8px 14px;
+  transition: all 0.2s ease;
+}
+
+.navbar .btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* Glassmorphism Inputs */
+.form-control,
+.input-group-text {
+  background: rgba(31, 41, 55, 0.45) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: #fff !important;
+  font-weight: 500;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.form-control::placeholder {
+  color: #64748b !important;
+}
+
+.form-control:focus {
+  background: rgba(31, 41, 55, 0.6) !important;
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.25) !important;
+  outline: none;
+}
+
+.input-group-text .btn-outline-primary {
+  border-color: rgba(59, 130, 246, 0.4) !important;
+  color: #60a5fa !important;
+  transition: all 0.2s ease;
+}
+
+.input-group-text .btn-outline-primary:hover {
+  background: rgba(59, 130, 246, 0.1) !important;
+  color: #93c5fd !important;
+}
+
+/* Keypad Grid & Tactile Buttons */
+.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+  margin-top: 0.35rem !important;
+  margin-bottom: 0.35rem !important;
+}
+
+.col,
+[class*='col-'] {
+  padding-right: 0.35rem !important;
+  padding-left: 0.35rem !important;
+}
+
+.colButtons {
+  padding-right: 0.35rem !important;
+  padding-left: 0.35rem !important;
 }
 
 .keypad {
-    width: 100% !important;
+  width: 100% !important;
+  border-radius: 14px !important;
+  font-weight: 600 !important;
+  font-size: 1.15rem !important;
+  padding: 14px 6px !important;
+  border: 1px solid rgba(255, 255, 255, 0.04) !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25) !important;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  color: #f1f5f9 !important;
 }
 
-
-.no-gutters {
-    margin-right: 0;
-    margin-left: 0;
-    margin-top: 0.25rem !important;
-    margin-bottom: 0.25rem !important;
+/* Numeric Keys Styling */
+.btn-dark.keypad {
+  background: linear-gradient(145deg, #1f2937, #111827) !important;
 }
 
-.col, [class*="col-"] {
-    padding-right: 0.25rem !important;
-    padding-left: 0.25rem !important;
+.btn-dark.keypad:hover {
+  background: linear-gradient(145deg, #374151, #1f2937) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  transform: translateY(-1px);
 }
 
-
-.colButtons {
-    padding-right: 0.25rem !important;
-    padding-left: 0.25rem !important;
+.btn-dark.keypad:active {
+  transform: translateY(1px) !important;
+  box-shadow: none !important;
 }
 
+/* Operators / Functions Keys Styling */
+.btn-danger.keypad {
+  background: linear-gradient(145deg, #dc2626, #991b1b) !important;
+  border-color: rgba(220, 38, 38, 0.15) !important;
+}
+
+.btn-danger.keypad:hover {
+  background: linear-gradient(145deg, #ef4444, #b91c1c) !important;
+  transform: translateY(-1px);
+}
+
+.btn-danger.keypad:active {
+  transform: translateY(1px) !important;
+}
+
+/* Action Keys (Backspace / D) */
+.btn-secondary.keypad {
+  background: linear-gradient(145deg, #4b5563, #374151) !important;
+}
+
+.btn-warning.keypad {
+  background: linear-gradient(145deg, #d97706, #b45309) !important;
+}
+
+/* Custom Cosmic Die Keys overrides */
+#d100,
+#d20,
+#d12,
+#d10,
+#d8,
+#d6,
+#d4,
+#d2 {
+  background: linear-gradient(
+    145deg,
+    rgba(59, 130, 246, 0.15),
+    rgba(59, 130, 246, 0.03)
+  ) !important;
+  border: 1px solid rgba(59, 130, 246, 0.3) !important;
+  color: #93c5fd !important;
+}
+
+#d100:hover,
+#d20:hover,
+#d12:hover,
+#d10:hover,
+#d8:hover,
+#d6:hover,
+#d4:hover,
+#d2:hover {
+  background: linear-gradient(145deg, rgba(59, 130, 246, 0.25), rgba(59, 130, 246, 0.1)) !important;
+  border-color: rgba(59, 130, 246, 0.6) !important;
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.2) !important;
+  transform: translateY(-1px);
+}
+
+#d100:active,
+#d20:active,
+#d12:active,
+#d10:active,
+#d8:active,
+#d6:active,
+#d4:active,
+#d2:active {
+  transform: translateY(1px) !important;
+}
+
+/* Big SUCCESS Button (ROLL) */
+.successButton {
+  width: 100% !important;
+  background: linear-gradient(135deg, #10b981, #047857) !important;
+  border: none !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  border-radius: 16px !important;
+  padding: 16px !important;
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.25) !important;
+  transition: all 0.2s ease !important;
+  margin-top: 0.25rem;
+}
+
+.successButton:hover {
+  background: linear-gradient(135deg, #34d399, #059669) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.35) !important;
+}
+
+.successButton:active {
+  transform: translateY(1px) !important;
+}
+
+/* Premium Modals Glassmorphic Styling */
+.modal-content {
+  background: rgba(17, 24, 39, 0.8) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 24px !important;
+  color: #f1f5f9;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5) !important;
+}
+
+.modal-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding: 1.25rem 1.5rem !important;
+}
+
+.modal-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding: 1.25rem 1.5rem !important;
+}
+
+.btn-close {
+  filter: invert(1) grayscale(1) brightness(2);
+}
+
+.modal .btn {
+  border-radius: 12px;
+  padding: 10px 20px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+/* Tabs inside Modal Options */
+.nav-tabs {
+  border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.nav-link {
+  color: #94a3b8 !important;
+  font-weight: 500;
+  border: none !important;
+  padding: 10px 16px !important;
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #fff !important;
+}
+
+.nav-link.active {
+  background: rgba(59, 130, 246, 0.15) !important;
+  border-radius: 10px;
+  color: #60a5fa !important;
+}
+
+/* Utility details styling */
 .buttonImages {
-  width:40px; 
-  height:40px; 
+  width: 25px;
+  height: 25px;
   border: 0;
+  vertical-align: middle;
+  margin-right: 4px;
 }
 
 .diceImages {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width:100%;
-  height:100%; 
+  width: 32px;
+  height: 32px;
   border: 0;
-  background-size: 100%; /* To fill the dimensions of container (button), or */
+  background-size: 100%;
 }
