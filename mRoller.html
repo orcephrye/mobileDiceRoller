@@ -276,6 +276,18 @@
                     >Die Options</a
                   >
                 </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    id="ThemeOptions-tab"
+                    data-bs-toggle="tab"
+                    href="#ThemeOptions"
+                    role="tab"
+                    aria-controls="ThemeOptions"
+                    aria-selected="false"
+                    >Theme</a
+                  >
+                </li>
               </ul>
               <button
                 type="button"
@@ -725,6 +737,57 @@
                       id="DieO-addAll-text"
                       aria-label="Text input with checkbox"
                     />
+                  </div>
+                </div>
+
+                <div
+                  class="tab-pane fade"
+                  id="ThemeOptions"
+                  role="tabpanel"
+                  aria-labelledby="ThemeOptions-tab"
+                >
+                  <h5 class="text-center mb-3">Theme Settings</h5>
+                  <div class="row g-3 justify-content-center mb-2">
+                    <div class="col-6">
+                      <div
+                        class="card theme-card p-3 text-center border-0"
+                        id="theme-cosmic-dark"
+                        onclick="setTheme('cosmic-dark')"
+                      >
+                        <div class="theme-preview cosmic-dark-preview mb-2"></div>
+                        <span class="fw-semibold">Cosmic Dark</span>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div
+                        class="card theme-card p-3 text-center border-0"
+                        id="theme-cosmic-light"
+                        onclick="setTheme('cosmic-light')"
+                      >
+                        <div class="theme-preview cosmic-light-preview mb-2"></div>
+                        <span class="fw-semibold">Cosmic Light</span>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div
+                        class="card theme-card p-3 text-center border-0"
+                        id="theme-bootstrap-dark"
+                        onclick="setTheme('bootstrap-dark')"
+                      >
+                        <div class="theme-preview bootstrap-dark-preview mb-2"></div>
+                        <span class="fw-semibold">Bootstrap Dark</span>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div
+                        class="card theme-card p-3 text-center border-0"
+                        id="theme-bootstrap-light"
+                        onclick="setTheme('bootstrap-light')"
+                      >
+                        <div class="theme-preview bootstrap-light-preview mb-2"></div>
+                        <span class="fw-semibold">Bootstrap Light</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

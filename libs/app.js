@@ -362,9 +362,51 @@ function preLoadSession() {
   document.getElementById('DiceText').placeholder = 'IE: d20+2d4+1';
   document.getElementById('showRollDetailsBnt').disabled = true;
   document.getElementById('showRollDetailsBnt').setAttribute('aria-disabled', true);
+  applyTheme();
   genHTMLHistory();
   genHTMLFavRolls();
   $('[data-bs-toggle="tooltip"]').tooltip();
+}
+
+/*
+ * < Theme management functions >
+ */
+function setTheme(themeName) {
+  const themes = ['cosmic-dark', 'cosmic-light', 'bootstrap-dark', 'bootstrap-light'];
+  if (!themes.includes(themeName)) {
+    themeName = 'cosmic-dark';
+  }
+
+  const body = document.body;
+  const navbar = document.querySelector('.navbar');
+
+  // Clear all theme classes
+  themes.forEach((t) => body.classList.remove(`theme-${t}`));
+
+  // Add the active theme class
+  body.classList.add(`theme-${themeName}`);
+
+  // Determine dark or light mode based on theme name suffix
+  const isLight = themeName.endsWith('-light');
+  body.setAttribute('data-bs-theme', isLight ? 'light' : 'dark');
+  if (navbar) {
+    navbar.setAttribute('data-bs-theme', isLight ? 'light' : 'dark');
+  }
+
+  // Update card active classes in UI
+  $('.theme-card').removeClass('active');
+  $(`#theme-${themeName}`).addClass('active');
+
+  window.localStorage.setItem('theme', themeName);
+}
+
+function applyTheme() {
+  let savedTheme = window.localStorage.getItem('theme');
+  const themes = ['cosmic-dark', 'cosmic-light', 'bootstrap-dark', 'bootstrap-light'];
+  if (!savedTheme || !themes.includes(savedTheme)) {
+    savedTheme = 'cosmic-dark';
+  }
+  setTheme(savedTheme);
 }
 
 /*
