@@ -239,7 +239,7 @@
         </div>
       </div>
 
-      <!-- Modal For Options -->
+      <!-- Modal For Theme Options -->
       <div
         class="modal fade"
         id="optionsModal"
@@ -251,7 +251,227 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <h5 class="modal-title" id="optionsModalCenterTitle">Theme Options</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+
+            <div class="modal-body">
+              <div id="ThemeOptions">
+                <h6 class="fw-bold mb-2">Core Themes</h6>
+                <div class="row g-2 justify-content-center mb-3">
+                  <div class="col-6 col-sm-4">
+                    <div
+                      class="card theme-card p-2 text-center border-0"
+                      id="theme-cosmic-dark"
+                      onclick="setTheme('cosmic-dark')"
+                    >
+                      <div class="theme-preview cosmic-dark-preview mb-2"></div>
+                      <span class="fw-semibold small">Cosmic Dark</span>
+                    </div>
+                  </div>
+                  <div class="col-6 col-sm-4">
+                    <div
+                      class="card theme-card p-2 text-center border-0"
+                      id="theme-cosmic-light"
+                      onclick="setTheme('cosmic-light')"
+                    >
+                      <div class="theme-preview cosmic-light-preview mb-2"></div>
+                      <span class="fw-semibold small">Cosmic Light</span>
+                    </div>
+                  </div>
+                  <div class="col-6 col-sm-4">
+                    <div
+                      class="card theme-card p-2 text-center border-0"
+                      id="theme-bootstrap-dark"
+                      onclick="setTheme('bootstrap-dark')"
+                    >
+                      <div class="theme-preview bootstrap-dark-preview mb-2"></div>
+                      <span class="fw-semibold small">Bootstrap Dark</span>
+                    </div>
+                  </div>
+                  <div class="col-6 col-sm-4">
+                    <div
+                      class="card theme-card p-2 text-center border-0"
+                      id="theme-bootstrap-light"
+                      onclick="setTheme('bootstrap-light')"
+                    >
+                      <div class="theme-preview bootstrap-light-preview mb-2"></div>
+                      <span class="fw-semibold small">Bootstrap Light</span>
+                    </div>
+                  </div>
+                  <div class="col-6 col-sm-4">
+                    <div
+                      class="card theme-card p-2 text-center border-0"
+                      id="theme-industrial"
+                      onclick="setTheme('industrial')"
+                    >
+                      <div class="theme-preview industrial-preview mb-2"></div>
+                      <span class="fw-semibold small">Industrial</span>
+                    </div>
+                  </div>
+                  <div class="col-6 col-sm-4">
+                    <div
+                      class="card theme-card p-2 text-center border-0"
+                      id="theme-aegis"
+                      onclick="setTheme('aegis')"
+                    >
+                      <div class="theme-preview aegis-preview mb-2"></div>
+                      <span class="fw-semibold small">Aegis</span>
+                    </div>
+                  </div>
+                  <div class="col-6 col-sm-4">
+                    <div
+                      class="card theme-card p-2 text-center border-0"
+                      id="theme-tattoo"
+                      onclick="setTheme('tattoo')"
+                    >
+                      <div class="theme-preview tattoo-preview mb-2"></div>
+                      <span class="fw-semibold small">Tattoo</span>
+                    </div>
+                  </div>
+                  <div class="col-6 col-sm-4">
+                    <div
+                      class="card theme-card p-2 text-center border-0"
+                      id="theme-curvilinea"
+                      onclick="setTheme('curvilinea')"
+                    >
+                      <div class="theme-preview curvilinea-preview mb-2"></div>
+                      <span class="fw-semibold small">Curvilinea</span>
+                    </div>
+                  </div>
+                  <div class="col-6 col-sm-4">
+                    <div
+                      class="card theme-card p-2 text-center border-0"
+                      id="theme-viper"
+                      onclick="setTheme('viper')"
+                    >
+                      <div class="theme-preview viper-preview mb-2"></div>
+                      <span class="fw-semibold small">Viper</span>
+                    </div>
+                  </div>
+                </div>
+
+                <h6 class="fw-bold mb-2">Species Themes</h6>
+                <div class="row g-2 justify-content-center mb-2">
+                  <div class="col-6 col-sm-4">
+                    <div
+                      class="card theme-card p-2 text-center border-0"
+                      id="theme-volar"
+                      onclick="setTheme('volar')"
+                    >
+                      <div class="theme-preview volar-preview mb-2"></div>
+                      <span class="fw-semibold small">Volar</span>
+                    </div>
+                  </div>
+                  <div class="col-6 col-sm-4">
+                    <div
+                      class="card theme-card p-2 text-center border-0"
+                      id="theme-human"
+                      onclick="setTheme('human')"
+                    >
+                      <div class="theme-preview human-preview mb-2"></div>
+                      <span class="fw-semibold small">Human</span>
+                    </div>
+                  </div>
+                  <div class="col-6 col-sm-4">
+                    <div
+                      class="card theme-card p-2 text-center border-0"
+                      id="theme-grayling"
+                      onclick="setTheme('grayling')"
+                    >
+                      <div class="theme-preview grayling-preview mb-2"></div>
+                      <span class="fw-semibold small">Grayling</span>
+                    </div>
+                  </div>
+                  <div class="col-6 col-sm-4">
+                    <div
+                      class="card theme-card p-2 text-center border-0"
+                      id="theme-lepidonain"
+                      onclick="setTheme('lepidonain')"
+                    >
+                      <div class="theme-preview lepidonain-preview mb-2"></div>
+                      <span class="fw-semibold small">Lepidonain</span>
+                    </div>
+                  </div>
+                  <div class="col-6 col-sm-4">
+                    <div
+                      class="card theme-card p-2 text-center border-0"
+                      id="theme-cryous"
+                      onclick="setTheme('cryous')"
+                    >
+                      <div class="theme-preview cryous-preview mb-2"></div>
+                      <span class="fw-semibold small">Cryous</span>
+                    </div>
+                  </div>
+                  <div class="col-6 col-sm-4">
+                    <div
+                      class="card theme-card p-2 text-center border-0"
+                      id="theme-aconian"
+                      onclick="setTheme('aconian')"
+                    >
+                      <div class="theme-preview aconian-preview mb-2"></div>
+                      <span class="fw-semibold small">Aconian</span>
+                    </div>
+                  </div>
+                  <div class="col-6 col-sm-4">
+                    <div
+                      class="card theme-card p-2 text-center border-0"
+                      id="theme-murid"
+                      onclick="setTheme('murid')"
+                    >
+                      <div class="theme-preview murid-preview mb-2"></div>
+                      <span class="fw-semibold small">Murid</span>
+                    </div>
+                  </div>
+                  <div class="col-6 col-sm-4">
+                    <div
+                      class="card theme-card p-2 text-center border-0"
+                      id="theme-avisari"
+                      onclick="setTheme('avisari')"
+                    >
+                      <div class="theme-preview avisari-preview mb-2"></div>
+                      <span class="fw-semibold small">Avisari</span>
+                    </div>
+                  </div>
+                  <div class="col-6 col-sm-4">
+                    <div
+                      class="card theme-card p-2 text-center border-0"
+                      id="theme-khepri"
+                      onclick="setTheme('khepri')"
+                    >
+                      <div class="theme-preview khepri-preview mb-2"></div>
+                      <span class="fw-semibold small">Khepri</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal For Dice & Die Options -->
+      <div
+        class="modal fade"
+        id="favRolls"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="favRollsCenterTitle"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <ul class="nav nav-tabs" id="optionsTab" role="tablist">
                 <li class="nav-item">
                   <a
                     class="nav-link active"
@@ -276,18 +496,6 @@
                     >Die Options</a
                   >
                 </li>
-                <li class="nav-item">
-                  <a
-                    class="nav-link"
-                    id="ThemeOptions-tab"
-                    data-bs-toggle="tab"
-                    href="#ThemeOptions"
-                    role="tab"
-                    aria-controls="ThemeOptions"
-                    aria-selected="false"
-                    >Theme</a
-                  >
-                </li>
               </ul>
               <button
                 type="button"
@@ -299,7 +507,7 @@
             </div>
 
             <div class="modal-body">
-              <div class="tab-content" id="myTabContent">
+              <div class="tab-content" id="optionsTabContent">
                 <div
                   class="tab-pane fade show active"
                   id="DiceOptions"
@@ -739,57 +947,6 @@
                     />
                   </div>
                 </div>
-
-                <div
-                  class="tab-pane fade"
-                  id="ThemeOptions"
-                  role="tabpanel"
-                  aria-labelledby="ThemeOptions-tab"
-                >
-                  <h5 class="text-center mb-3">Theme Settings</h5>
-                  <div class="row g-3 justify-content-center mb-2">
-                    <div class="col-6">
-                      <div
-                        class="card theme-card p-3 text-center border-0"
-                        id="theme-cosmic-dark"
-                        onclick="setTheme('cosmic-dark')"
-                      >
-                        <div class="theme-preview cosmic-dark-preview mb-2"></div>
-                        <span class="fw-semibold">Cosmic Dark</span>
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div
-                        class="card theme-card p-3 text-center border-0"
-                        id="theme-cosmic-light"
-                        onclick="setTheme('cosmic-light')"
-                      >
-                        <div class="theme-preview cosmic-light-preview mb-2"></div>
-                        <span class="fw-semibold">Cosmic Light</span>
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div
-                        class="card theme-card p-3 text-center border-0"
-                        id="theme-bootstrap-dark"
-                        onclick="setTheme('bootstrap-dark')"
-                      >
-                        <div class="theme-preview bootstrap-dark-preview mb-2"></div>
-                        <span class="fw-semibold">Bootstrap Dark</span>
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div
-                        class="card theme-card p-3 text-center border-0"
-                        id="theme-bootstrap-light"
-                        onclick="setTheme('bootstrap-light')"
-                      >
-                        <div class="theme-preview bootstrap-light-preview mb-2"></div>
-                        <span class="fw-semibold">Bootstrap Light</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
 
@@ -816,30 +973,6 @@
               >
                 Save
               </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Modal For Fav. Rolls -->
-      <div class="modal fade" id="favRolls">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Favorite Dice</h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-
-            <div class="modal-body" id="favMain"></div>
-
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" onclick="clearFavRolls()">Clear</button>
-              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
             </div>
           </div>
         </div>
@@ -886,7 +1019,6 @@
               <button
                 type="button"
                 class="btn btn-primary"
-                data-bs-dismiss="modal"
                 onclick="saveHistRollInFavs()"
               >
                 Save
@@ -896,12 +1028,37 @@
         </div>
       </div>
 
-      <!-- Modal For History of Rolls -->
+      <!-- Modal For History & Favorite Rolls -->
       <div class="modal fade" id="historyRolls">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">History of Dice:</h5>
+              <ul class="nav nav-tabs" id="historyTabList" role="tablist">
+                <li class="nav-item">
+                  <a
+                    class="nav-link active"
+                    id="history-tab"
+                    data-bs-toggle="tab"
+                    href="#historyTab"
+                    role="tab"
+                    aria-controls="historyTab"
+                    aria-selected="true"
+                    >History</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    id="fav-tab"
+                    data-bs-toggle="tab"
+                    href="#favTab"
+                    role="tab"
+                    aria-controls="favTab"
+                    aria-selected="false"
+                    >Favorite Dice</a
+                  >
+                </li>
+              </ul>
               <button
                 type="button"
                 class="btn-close"
@@ -910,10 +1067,30 @@
               ></button>
             </div>
 
-            <div class="modal-body" id="historyMain"></div>
+            <div class="modal-body">
+              <div class="tab-content" id="historyFavTabContent">
+                <div
+                  class="tab-pane fade show active"
+                  id="historyTab"
+                  role="tabpanel"
+                  aria-labelledby="history-tab"
+                >
+                  <div id="historyMain"></div>
+                </div>
+
+                <div
+                  class="tab-pane fade"
+                  id="favTab"
+                  role="tabpanel"
+                  aria-labelledby="fav-tab"
+                >
+                  <div id="favMain"></div>
+                </div>
+              </div>
+            </div>
 
             <div class="modal-footer">
-              <button type="button" class="btn btn-danger" onclick="clearHistory()">Clear</button>
+              <button type="button" class="btn btn-danger" onclick="clearHistoryOrFavs()">Clear</button>
               <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
             </div>
           </div>

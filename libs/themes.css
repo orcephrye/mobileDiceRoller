@@ -1,0 +1,1512 @@
+/* ==========================================================================
+   FUTUREPATH & COSMIC DICE ROLLER - THEME DEFINITIONS
+   ========================================================================== */
+
+/* 1. Cosmic Dark (Default) Theme */
+:root,
+body.theme-cosmic-dark,
+[data-theme='cosmic-dark'] {
+  --bg-gradient: radial-gradient(circle at top left, #111827, #030712);
+  --text-color: #f1f5f9;
+  --card-bg: #131b2e;
+  --card-border: #1f2d4d;
+  --accent-cyan: #00f0ff;
+  --accent-blue: #3b82f6;
+  --input-bg: rgb(31 41 55 / 45%);
+  --input-border: rgb(255 255 255 / 8%);
+  --input-text: #fff;
+  --input-placeholder: #64748b;
+  --input-focus-bg: rgb(31 41 55 / 60%);
+  --header-bg: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+  --header-border: #00f0ff;
+  --navbar-bg: rgb(17 24 39 / 70%);
+  --navbar-border: rgb(255 255 255 / 5%);
+  --keypad-numeric-bg: linear-gradient(145deg, #1f2937, #111827);
+  --keypad-numeric-hover-bg: linear-gradient(145deg, #374151, #1f2937);
+  --keypad-numeric-border: rgb(255 255 255 / 4%);
+  --keypad-numeric-hover-border: rgb(255 255 255 / 10%);
+  --keypad-numeric-text: #f1f5f9;
+  --keypad-secondary-bg: linear-gradient(145deg, #4b5563, #374151);
+  --keypad-secondary-hover-bg: linear-gradient(145deg, #6b7280, #4b5563);
+  --keypad-secondary-text: #f1f5f9;
+  --keypad-danger-bg: linear-gradient(145deg, #dc2626, #991b1b);
+  --keypad-danger-hover-bg: linear-gradient(145deg, #ef4444, #b91c1c);
+  --keypad-danger-text: #fff;
+  --keypad-warning-bg: linear-gradient(145deg, #d97706, #b45309);
+  --keypad-warning-hover-bg: linear-gradient(145deg, #f59e0b, #d97706);
+  --keypad-warning-text: #fff;
+  --modal-bg: rgb(17 24 39 / 85%);
+  --modal-border: rgb(255 255 255 / 8%);
+  --modal-text: #f1f5f9;
+  --modal-close-filter: invert(1) grayscale(1) brightness(2);
+  --nav-link-color: #94a3b8;
+  --nav-link-hover-color: #fff;
+  --nav-link-active-bg: rgb(59 130 246 / 15%);
+  --nav-link-active-color: #60a5fa;
+  --theme-card-bg: rgb(31 41 55 / 40%);
+  --theme-card-border: rgb(255 255 255 / 8%);
+  --theme-card-selected-border: #3b82f6;
+  --theme-card-text: #f1f5f9;
+
+  /* Die-specific color variables for Cosmic Dark */
+  --die-d100-bg: linear-gradient(145deg, rgb(108 117 125 / 20%), rgb(108 117 125 / 5%));
+  --die-d100-border: rgb(108 117 125 / 30%);
+  --die-d100-text: #ced4da;
+  --die-d100-hover-bg: linear-gradient(145deg, rgb(108 117 125 / 30%), rgb(108 117 125 / 10%));
+  --die-d100-glow: rgb(108 117 125 / 15%);
+  --die-d20-bg: linear-gradient(145deg, rgb(13 110 253 / 25%), rgb(13 110 253 / 5%));
+  --die-d20-border: rgb(13 110 253 / 40%);
+  --die-d20-text: #9ec5fe;
+  --die-d20-hover-bg: linear-gradient(145deg, rgb(13 110 253 / 35%), rgb(13 110 253 / 10%));
+  --die-d20-glow: rgb(13 110 253 / 20%);
+  --die-d12-bg: linear-gradient(145deg, rgb(173 181 189 / 20%), rgb(173 181 189 / 5%));
+  --die-d12-border: rgb(173 181 189 / 30%);
+  --die-d12-text: #e9ecef;
+  --die-d12-hover-bg: linear-gradient(145deg, rgb(173 181 189 / 30%), rgb(173 181 189 / 10%));
+  --die-d12-glow: rgb(173 181 189 / 15%);
+  --die-d10-bg: linear-gradient(145deg, rgb(13 202 240 / 20%), rgb(13 202 240 / 5%));
+  --die-d10-border: rgb(13 202 240 / 35%);
+  --die-d10-text: #9eeaf9;
+  --die-d10-hover-bg: linear-gradient(145deg, rgb(13 202 240 / 30%), rgb(13 202 240 / 10%));
+  --die-d10-glow: rgb(13 202 240 / 20%);
+  --die-d8-bg: linear-gradient(145deg, rgb(255 193 7 / 20%), rgb(255 193 7 / 5%));
+  --die-d8-border: rgb(255 193 7 / 35%);
+  --die-d8-text: #ffe69c;
+  --die-d8-hover-bg: linear-gradient(145deg, rgb(255 193 7 / 30%), rgb(255 193 7 / 10%));
+  --die-d8-glow: rgb(255 193 7 / 20%);
+  --die-d6-bg: linear-gradient(145deg, rgb(220 53 69 / 22%), rgb(220 53 69 / 5%));
+  --die-d6-border: rgb(220 53 69 / 40%);
+  --die-d6-text: #f8a29a;
+  --die-d6-hover-bg: linear-gradient(145deg, rgb(220 53 69 / 32%), rgb(220 53 69 / 10%));
+  --die-d6-glow: rgb(220 53 69 / 20%);
+  --die-d4-bg: linear-gradient(145deg, rgb(33 37 41 / 50%), rgb(33 37 41 / 20%));
+  --die-d4-border: rgb(255 255 255 / 8%);
+  --die-d4-text: #dee2e6;
+  --die-d4-hover-bg: linear-gradient(145deg, rgb(33 37 41 / 70%), rgb(33 37 41 / 40%));
+  --die-d4-glow: rgb(33 37 41 / 15%);
+  --die-d2-bg: linear-gradient(145deg, rgb(248 249 250 / 15%), rgb(248 249 250 / 3%));
+  --die-d2-border: rgb(248 249 250 / 20%);
+  --die-d2-text: #f8f9fa;
+  --die-d2-hover-bg: linear-gradient(145deg, rgb(248 249 250 / 25%), rgb(248 249 250 / 8%));
+  --die-d2-glow: rgb(248 249 250 / 15%);
+}
+
+/* 2. Cosmic Light Theme */
+body.theme-cosmic-light,
+[data-theme='cosmic-light'] {
+  --bg-gradient: radial-gradient(circle at top left, #f5f3ff, #e0e7ff, #e8eaf6);
+  --text-color: #1e293b;
+  --card-bg: rgb(255 255 255 / 90%);
+  --card-border: rgb(59 130 246 / 20%);
+  --accent-cyan: #0284c7;
+  --accent-blue: #1d4ed8;
+  --input-bg: rgb(241 245 249 / 85%);
+  --input-border: rgb(59 130 246 / 15%);
+  --input-text: #0f172a;
+  --input-placeholder: #94a3b8;
+  --input-focus-bg: rgb(255 255 255 / 95%);
+  --header-bg: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+  --header-border: #3b82f6;
+  --navbar-bg: rgb(255 255 255 / 70%);
+  --navbar-border: rgb(59 130 246 / 10%);
+  --keypad-numeric-bg: linear-gradient(145deg, #fff, #f1f5f9);
+  --keypad-numeric-hover-bg: linear-gradient(145deg, #f8fafc, #e2e8f0);
+  --keypad-numeric-border: rgb(59 130 246 / 10%);
+  --keypad-numeric-hover-border: rgb(59 130 246 / 20%);
+  --keypad-numeric-text: #334155;
+  --keypad-secondary-bg: linear-gradient(145deg, #e2e8f0, #cbd5e1);
+  --keypad-secondary-hover-bg: linear-gradient(145deg, #cbd5e1, #94a3b8);
+  --keypad-secondary-text: #334155;
+  --keypad-danger-bg: linear-gradient(145deg, #fee2e2, #fca5a5);
+  --keypad-danger-hover-bg: linear-gradient(145deg, #fca5a5, #f87171);
+  --keypad-danger-text: #991b1b;
+  --keypad-warning-bg: linear-gradient(145deg, #ffedd5, #fed7aa);
+  --keypad-warning-hover-bg: linear-gradient(145deg, #fed7aa, #fdba74);
+  --keypad-warning-text: #c2410c;
+  --modal-bg: rgb(255 255 255 / 95%);
+  --modal-border: rgb(0 0 0 / 8%);
+  --modal-text: #0f172a;
+  --modal-close-filter: none;
+  --nav-link-color: #64748b;
+  --nav-link-hover-color: #0f172a;
+  --nav-link-active-bg: rgb(59 130 246 / 10%);
+  --nav-link-active-color: #1d4ed8;
+  --theme-card-bg: rgb(241 245 249 / 80%);
+  --theme-card-border: rgb(0 0 0 / 6%);
+  --theme-card-selected-border: #1d4ed8;
+  --theme-card-text: #334155;
+
+  /* Die-specific color variables for Cosmic Light (pastel themes) */
+  --die-d100-bg: linear-gradient(145deg, rgb(108 117 125 / 12%), rgb(108 117 125 / 3%));
+  --die-d100-border: rgb(108 117 125 / 25%);
+  --die-d100-text: #495057;
+  --die-d100-hover-bg: linear-gradient(
+    145deg,
+    rgb(108 117 125 / 22%),
+    rgb(108 117 125 / 8%)
+  );
+  --die-d100-glow: rgb(108 117 125 / 10%);
+  --die-d20-bg: linear-gradient(145deg, rgb(13 110 253 / 15%), rgb(13 110 253 / 3%));
+  --die-d20-border: rgb(13 110 253 / 30%);
+  --die-d20-text: #0b5ed7;
+  --die-d20-hover-bg: linear-gradient(145deg, rgb(13 110 253 / 25%), rgb(13 110 253 / 8%));
+  --die-d20-glow: rgb(13 110 253 / 15%);
+  --die-d12-bg: linear-gradient(145deg, rgb(108 117 125 / 12%), rgb(108 117 125 / 3%));
+  --die-d12-border: rgb(108 117 125 / 25%);
+  --die-d12-text: #495057;
+  --die-d12-hover-bg: linear-gradient(145deg, rgb(108 117 125 / 22%), rgb(108 117 125 / 8%));
+  --die-d12-glow: rgb(108 117 125 / 10%);
+  --die-d10-bg: linear-gradient(145deg, rgb(13 202 240 / 15%), rgb(13 202 240 / 3%));
+  --die-d10-border: rgb(13 202 240 / 30%);
+  --die-d10-text: #087990;
+  --die-d10-hover-bg: linear-gradient(145deg, rgb(13 202 240 / 25%), rgb(13 202 240 / 8%));
+  --die-d10-glow: rgb(13 202 240 / 15%);
+  --die-d8-bg: linear-gradient(145deg, rgb(217 119 6 / 12%), rgb(217 119 6 / 3%));
+  --die-d8-border: rgb(217 119 6 / 30%);
+  --die-d8-text: #b45309;
+  --die-d8-hover-bg: linear-gradient(145deg, rgb(217 119 6 / 22%), rgb(217 119 6 / 8%));
+  --die-d8-glow: rgb(217 119 6 / 10%);
+  --die-d6-bg: linear-gradient(145deg, rgb(220 53 69 / 15%), rgb(220 53 69 / 3%));
+  --die-d6-border: rgb(220 53 69 / 30%);
+  --die-d6-text: #b91c1c;
+  --die-d6-hover-bg: linear-gradient(145deg, rgb(220 53 69 / 25%), rgb(220 53 69 / 8%));
+  --die-d6-glow: rgb(220 53 69 / 15%);
+  --die-d4-bg: linear-gradient(145deg, rgb(15 23 42 / 8%), rgb(15 23 42 / 2%));
+  --die-d4-border: rgb(15 23 42 / 15%);
+  --die-d4-text: #0f172a;
+  --die-d4-hover-bg: linear-gradient(145deg, rgb(15 23 42 / 18%), rgb(15 23 42 / 5%));
+  --die-d4-glow: rgb(15 23 42 / 10%);
+  --die-d2-bg: linear-gradient(145deg, rgb(255 255 255 / 80%), rgb(255 255 255 / 40%));
+  --die-d2-border: rgb(59 130 246 / 15%);
+  --die-d2-text: #334155;
+  --die-d2-hover-bg: linear-gradient(145deg, rgb(255 255 255 / 95%), rgb(255 255 255 / 60%));
+  --die-d2-glow: rgb(59 130 246 / 10%);
+}
+
+/* 3. Bootstrap Dark Theme */
+body.theme-bootstrap-dark,
+[data-theme='bootstrap-dark'] {
+  --bg-gradient: #212529;
+  --text-color: #dee2e6;
+  --card-bg: #2c3034;
+  --card-border: #495057;
+  --accent-cyan: #0dcaf0;
+  --accent-blue: #0d6efd;
+  --input-bg: #212529;
+  --input-border: #495057;
+  --input-text: #dee2e6;
+  --input-placeholder: #6c757d;
+  --input-focus-bg: #212529;
+  --header-bg: #2c3034;
+  --header-border: #0d6efd;
+  --navbar-bg: #2c3034;
+  --navbar-border: rgb(255 255 255 / 15%);
+  --keypad-numeric-bg: #343a40;
+  --keypad-numeric-hover-bg: #424951;
+  --keypad-numeric-border: #495057;
+  --keypad-numeric-hover-border: #6c757d;
+  --keypad-numeric-text: #fff;
+  --keypad-secondary-bg: #6c757d;
+  --keypad-secondary-hover-bg: #5c636a;
+  --keypad-secondary-text: #fff;
+  --keypad-danger-bg: #dc3545;
+  --keypad-danger-hover-bg: #bb2d3b;
+  --keypad-danger-text: #fff;
+  --keypad-warning-bg: #ffc107;
+  --keypad-warning-hover-bg: #ffca2c;
+  --keypad-warning-text: #000;
+  --modal-bg: #212529;
+  --modal-border: #495057;
+  --modal-text: #dee2e6;
+  --modal-close-filter: invert(1) grayscale(1) brightness(2);
+  --nav-link-color: #6c757d;
+  --nav-link-hover-color: #dee2e6;
+  --nav-link-active-bg: #0d6efd;
+  --nav-link-active-color: #fff;
+  --theme-card-bg: #2c3034;
+  --theme-card-border: #495057;
+  --theme-card-selected-border: #0d6efd;
+  --theme-card-text: #dee2e6;
+
+  /* Die-specific color variables for Bootstrap Dark (Standard Bootstrap styles) */
+  --die-d100-bg: #212529;
+  --die-d100-border: #495057;
+  --die-d100-text: #dee2e6;
+  --die-d100-hover-bg: #1c1f23;
+  --die-d100-glow: rgb(73 80 87 / 20%);
+  --die-d20-bg: #0d6efd;
+  --die-d20-border: #0d6efd;
+  --die-d20-text: #fff;
+  --die-d20-hover-bg: #0b5ed7;
+  --die-d20-glow: rgb(13 110 253 / 25%);
+  --die-d12-bg: #6c757d;
+  --die-d12-border: #6c757d;
+  --die-d12-text: #fff;
+  --die-d12-hover-bg: #5c636a;
+  --die-d12-glow: rgb(108 117 125 / 25%);
+  --die-d10-bg: #0dcaf0;
+  --die-d10-border: #0dcaf0;
+  --die-d10-text: #000;
+  --die-d10-hover-bg: #31d2f2;
+  --die-d10-glow: rgb(13 202 240 / 25%);
+  --die-d8-bg: #ffc107;
+  --die-d8-border: #ffc107;
+  --die-d8-text: #000;
+  --die-d8-hover-bg: #ffca2c;
+  --die-d8-glow: rgb(255 193 7 / 25%);
+  --die-d6-bg: #dc3545;
+  --die-d6-border: #dc3545;
+  --die-d6-text: #fff;
+  --die-d6-hover-bg: #bb2d3b;
+  --die-d6-glow: rgb(220 53 69 / 25%);
+  --die-d4-bg: #212529;
+  --die-d4-border: #373b3e;
+  --die-d4-text: #fff;
+  --die-d4-hover-bg: #1c1f23;
+  --die-d4-glow: rgb(33 37 41 / 25%);
+  --die-d2-bg: #f8f9fa;
+  --die-d2-border: #f8f9fa;
+  --die-d2-text: #000;
+  --die-d2-hover-bg: #f9fafb;
+  --die-d2-glow: rgb(248 249 250 / 20%);
+}
+
+/* 4. Bootstrap Light Theme */
+body.theme-bootstrap-light,
+[data-theme='bootstrap-light'] {
+  --bg-gradient: #fff;
+  --text-color: #212529;
+  --card-bg: #f8f9fa;
+  --card-border: #dee2e6;
+  --accent-cyan: #0dcaf0;
+  --accent-blue: #0d6efd;
+  --input-bg: #fff;
+  --input-border: #ced4da;
+  --input-text: #212529;
+  --input-placeholder: #6c757d;
+  --input-focus-bg: #fff;
+  --header-bg: #f8f9fa;
+  --header-border: #0d6efd;
+  --navbar-bg: #f8f9fa;
+  --navbar-border: rgb(0 0 0 / 15%);
+  --keypad-numeric-bg: #f8f9fa;
+  --keypad-numeric-hover-bg: #e2e3e5;
+  --keypad-numeric-border: #dee2e6;
+  --keypad-numeric-hover-border: #cbd5e1;
+  --keypad-numeric-text: #212529;
+  --keypad-secondary-bg: #6c757d;
+  --keypad-secondary-hover-bg: #5c636a;
+  --keypad-secondary-text: #fff;
+  --keypad-danger-bg: #dc3545;
+  --keypad-danger-hover-bg: #bb2d3b;
+  --keypad-danger-text: #fff;
+  --keypad-warning-bg: #ffc107;
+  --keypad-warning-hover-bg: #ffca2c;
+  --keypad-warning-text: #000;
+  --modal-bg: #fff;
+  --modal-border: #dee2e6;
+  --modal-text: #212529;
+  --modal-close-filter: none;
+  --nav-link-color: #6c757d;
+  --nav-link-hover-color: #212529;
+  --nav-link-active-bg: #0d6efd;
+  --nav-link-active-color: #fff;
+  --theme-card-bg: #f8f9fa;
+  --theme-card-border: #dee2e6;
+  --theme-card-selected-border: #0d6efd;
+  --theme-card-text: #212529;
+
+  /* Die-specific color variables for Bootstrap Light (Original colors) */
+  --die-d100-bg: #f8f9fa;
+  --die-d100-border: #ced4da;
+  --die-d100-text: #212529;
+  --die-d100-hover-bg: #e2e3e5;
+  --die-d100-glow: rgb(206 212 218 / 30%);
+  --die-d20-bg: #0d6efd;
+  --die-d20-border: #0d6efd;
+  --die-d20-text: #fff;
+  --die-d20-hover-bg: #0b5ed7;
+  --die-d20-glow: rgb(13 110 253 / 25%);
+  --die-d12-bg: #6c757d;
+  --die-d12-border: #6c757d;
+  --die-d12-text: #fff;
+  --die-d12-hover-bg: #5c636a;
+  --die-d12-glow: rgb(108 117 125 / 25%);
+  --die-d10-bg: #0dcaf0;
+  --die-d10-border: #0dcaf0;
+  --die-d10-text: #000;
+  --die-d10-hover-bg: #31d2f2;
+  --die-d10-glow: rgb(13 202 240 / 25%);
+  --die-d8-bg: #ffc107;
+  --die-d8-border: #ffc107;
+  --die-d8-text: #000;
+  --die-d8-hover-bg: #ffca2c;
+  --die-d8-glow: rgb(255 193 7 / 25%);
+  --die-d6-bg: #dc3545;
+  --die-d6-border: #dc3545;
+  --die-d6-text: #fff;
+  --die-d6-hover-bg: #bb2d3b;
+  --die-d6-glow: rgb(220 53 69 / 25%);
+  --die-d4-bg: #212529;
+  --die-d4-border: #212529;
+  --die-d4-text: #fff;
+  --die-d4-hover-bg: #1c1f23;
+  --die-d4-glow: rgb(33 37 41 / 25%);
+  --die-d2-bg: #f8f9fa;
+  --die-d2-border: #dee2e6;
+  --die-d2-text: #000;
+  --die-d2-hover-bg: #e2e3e5;
+  --die-d2-glow: rgb(222 226 230 / 30%);
+}
+
+/* 5. Industrial Theme (Megacity Cyberpunk & Hazard Flare) */
+body.theme-industrial,
+[data-theme='industrial'] {
+  --bg-gradient: radial-gradient(circle at top left, #121215, #09090b);
+  --text-color: #fafafa;
+  --card-bg: #1a1a22;
+  --card-border: rgb(255 107 0 / 40%);
+  --accent-cyan: #ff9100;
+  --accent-blue: #ff6b00;
+  --input-bg: #111117;
+  --input-border: #33261f;
+  --input-text: #fafafa;
+  --input-placeholder: #ffb74d;
+  --input-focus-bg: #111117;
+  --header-bg: linear-gradient(135deg, #09090b 0%, #261b17 100%);
+  --header-border: #ff9100;
+  --navbar-bg: rgb(9 9 11 / 90%);
+  --navbar-border: rgb(255 145 0 / 25%);
+  --keypad-numeric-bg: #1a1a22;
+  --keypad-numeric-hover-bg: #242430;
+  --keypad-numeric-border: rgb(255 107 0 / 30%);
+  --keypad-numeric-hover-border: #ff9100;
+  --keypad-numeric-text: #fafafa;
+  --keypad-secondary-bg: #33261f;
+  --keypad-secondary-hover-bg: #47352b;
+  --keypad-secondary-text: #fafafa;
+  --keypad-danger-bg: #dc3545;
+  --keypad-danger-hover-bg: #bb2d3b;
+  --keypad-danger-text: #fff;
+  --keypad-warning-bg: #ff9100;
+  --keypad-warning-hover-bg: #ff6b00;
+  --keypad-warning-text: #000;
+  --modal-bg: rgb(9 9 11 / 95%);
+  --modal-border: rgb(255 145 0 / 25%);
+  --modal-text: #fafafa;
+  --modal-close-filter: invert(1) grayscale(1) brightness(2);
+  --nav-link-color: #ffb74d;
+  --nav-link-hover-color: #fafafa;
+  --nav-link-active-bg: rgb(255 145 0 / 20%);
+  --nav-link-active-color: #ff9100;
+  --theme-card-bg: rgb(26 26 34 / 60%);
+  --theme-card-border: rgb(255 107 0 / 30%);
+  --theme-card-selected-border: #ff9100;
+  --theme-card-text: #fafafa;
+}
+
+/* 6. Aegis Theme (Warship Fleet & Deep Cobalt Command) */
+body.theme-aegis,
+[data-theme='aegis'] {
+  --bg-gradient: radial-gradient(circle at top left, #070d1e, #02050e);
+  --text-color: #f8fafc;
+  --card-bg: #0c1630;
+  --card-border: rgb(99 102 241 / 40%);
+  --accent-cyan: #818cf8;
+  --accent-blue: #6366f1;
+  --input-bg: #070f24;
+  --input-border: #1a2554;
+  --input-text: #f8fafc;
+  --input-placeholder: #a5b4fc;
+  --input-focus-bg: #070f24;
+  --header-bg: linear-gradient(135deg, #02050e 0%, #121c42 100%);
+  --header-border: #818cf8;
+  --navbar-bg: rgb(2 5 14 / 90%);
+  --navbar-border: rgb(129 140 248 / 25%);
+  --keypad-numeric-bg: #0c1630;
+  --keypad-numeric-hover-bg: #142248;
+  --keypad-numeric-border: rgb(99 102 241 / 30%);
+  --keypad-numeric-hover-border: #818cf8;
+  --keypad-numeric-text: #f8fafc;
+  --keypad-secondary-bg: #1a2554;
+  --keypad-secondary-hover-bg: #263678;
+  --keypad-secondary-text: #f8fafc;
+  --keypad-danger-bg: #dc3545;
+  --keypad-danger-hover-bg: #bb2d3b;
+  --keypad-danger-text: #fff;
+  --keypad-warning-bg: #818cf8;
+  --keypad-warning-hover-bg: #6366f1;
+  --keypad-warning-text: #fff;
+  --modal-bg: rgb(2 5 14 / 95%);
+  --modal-border: rgb(129 140 248 / 25%);
+  --modal-text: #f8fafc;
+  --modal-close-filter: invert(1) grayscale(1) brightness(2);
+  --nav-link-color: #a5b4fc;
+  --nav-link-hover-color: #f8fafc;
+  --nav-link-active-bg: rgb(129 140 248 / 20%);
+  --nav-link-active-color: #818cf8;
+  --theme-card-bg: rgb(12 22 48 / 60%);
+  --theme-card-border: rgb(99 102 241 / 30%);
+  --theme-card-selected-border: #818cf8;
+  --theme-card-text: #f8fafc;
+}
+
+/* 7. Tattoo Theme (Dark Slate, Neon Rose & Solar Amber Ink) */
+body.theme-tattoo,
+[data-theme='tattoo'] {
+  --bg-gradient: radial-gradient(circle at top left, #151214, #0b090a);
+  --text-color: #fff1f2;
+  --card-bg: #221c20;
+  --card-border: rgb(244 63 94 / 40%);
+  --accent-cyan: #f43f5e;
+  --accent-blue: #f59e0b;
+  --input-bg: #120e10;
+  --input-border: #3b202c;
+  --input-text: #fff1f2;
+  --input-placeholder: #fb7185;
+  --input-focus-bg: #120e10;
+  --header-bg: linear-gradient(135deg, #0b090a 0%, #361c28 100%);
+  --header-border: #f43f5e;
+  --navbar-bg: rgb(11 9 10 / 90%);
+  --navbar-border: rgb(244 63 94 / 25%);
+  --keypad-numeric-bg: #221c20;
+  --keypad-numeric-hover-bg: #32292f;
+  --keypad-numeric-border: rgb(244 63 94 / 30%);
+  --keypad-numeric-hover-border: #f43f5e;
+  --keypad-numeric-text: #fff1f2;
+  --keypad-secondary-bg: #3b202c;
+  --keypad-secondary-hover-bg: #522d3e;
+  --keypad-secondary-text: #fff1f2;
+  --keypad-danger-bg: #dc3545;
+  --keypad-danger-hover-bg: #bb2d3b;
+  --keypad-danger-text: #fff;
+  --keypad-warning-bg: #f59e0b;
+  --keypad-warning-hover-bg: #d97706;
+  --keypad-warning-text: #fff;
+  --modal-bg: rgb(11 9 10 / 95%);
+  --modal-border: rgb(244 63 94 / 25%);
+  --modal-text: #fff1f2;
+  --modal-close-filter: invert(1) grayscale(1) brightness(2);
+  --nav-link-color: #fb7185;
+  --nav-link-hover-color: #fff1f2;
+  --nav-link-active-bg: rgb(244 63 94 / 20%);
+  --nav-link-active-color: #f43f5e;
+  --theme-card-bg: rgb(34 28 32 / 60%);
+  --theme-card-border: rgb(244 63 94 / 30%);
+  --theme-card-selected-border: #f43f5e;
+  --theme-card-text: #fff1f2;
+}
+
+/* 8. Curvilinea Theme (Red Dwarf Sun & Arid Terra) */
+body.theme-curvilinea,
+[data-theme='curvilinea'] {
+  --bg-gradient: radial-gradient(circle at top left, #200e11, #120a0b);
+  --text-color: #fff1f2;
+  --card-bg: #281418;
+  --card-border: rgb(239 68 68 / 40%);
+  --accent-cyan: #f97316;
+  --accent-blue: #ef4444;
+  --input-bg: #170b0d;
+  --input-border: #421e22;
+  --input-text: #fff1f2;
+  --input-placeholder: #fca5a5;
+  --input-focus-bg: #170b0d;
+  --header-bg: linear-gradient(135deg, #120a0b 0%, #3d161a 100%);
+  --header-border: #f97316;
+  --navbar-bg: rgb(18 10 11 / 90%);
+  --navbar-border: rgb(249 115 22 / 25%);
+  --keypad-numeric-bg: #281418;
+  --keypad-numeric-hover-bg: #3a1e23;
+  --keypad-numeric-border: rgb(239 68 68 / 30%);
+  --keypad-numeric-hover-border: #f97316;
+  --keypad-numeric-text: #fff1f2;
+  --keypad-secondary-bg: #421e22;
+  --keypad-secondary-hover-bg: #5c2b31;
+  --keypad-secondary-text: #fff1f2;
+  --keypad-danger-bg: #dc3545;
+  --keypad-danger-hover-bg: #bb2d3b;
+  --keypad-danger-text: #fff;
+  --keypad-warning-bg: #f97316;
+  --keypad-warning-hover-bg: #ea580c;
+  --keypad-warning-text: #fff;
+  --modal-bg: rgb(18 10 11 / 95%);
+  --modal-border: rgb(249 115 22 / 25%);
+  --modal-text: #fff1f2;
+  --modal-close-filter: invert(1) grayscale(1) brightness(2);
+  --nav-link-color: #fca5a5;
+  --nav-link-hover-color: #fff1f2;
+  --nav-link-active-bg: rgb(249 115 22 / 20%);
+  --nav-link-active-color: #f97316;
+  --theme-card-bg: rgb(40 20 24 / 60%);
+  --theme-card-border: rgb(239 68 68 / 30%);
+  --theme-card-selected-border: #f97316;
+  --theme-card-text: #fff1f2;
+}
+
+/* 10. Viper Theme (Olive Scales & Solar Amber Glow) */
+body.theme-viper,
+[data-theme='viper'] {
+  --bg-gradient: radial-gradient(circle at top left, #141a16, #0a0e0c);
+  --text-color: #f0fdf4;
+  --card-bg: #1b241e;
+  --card-border: rgb(245 158 11 / 40%);
+  --accent-cyan: #f59e0b;
+  --accent-blue: #10b981;
+  --input-bg: #0f1611;
+  --input-border: #233629;
+  --input-text: #f0fdf4;
+  --input-placeholder: #fbbf24;
+  --input-focus-bg: #0f1611;
+  --header-bg: linear-gradient(135deg, #0a0e0c 0%, #1f2e24 100%);
+  --header-border: #f59e0b;
+  --navbar-bg: rgb(10 14 12 / 90%);
+  --navbar-border: rgb(245 158 11 / 25%);
+  --keypad-numeric-bg: #1b241e;
+  --keypad-numeric-hover-bg: #27342b;
+  --keypad-numeric-border: rgb(245 158 11 / 30%);
+  --keypad-numeric-hover-border: #f59e0b;
+  --keypad-numeric-text: #f0fdf4;
+  --keypad-secondary-bg: #233629;
+  --keypad-secondary-hover-bg: #324c3a;
+  --keypad-secondary-text: #f0fdf4;
+  --keypad-danger-bg: #dc3545;
+  --keypad-danger-hover-bg: #bb2d3b;
+  --keypad-danger-text: #fff;
+  --keypad-warning-bg: #f59e0b;
+  --keypad-warning-hover-bg: #d97706;
+  --keypad-warning-text: #000;
+  --modal-bg: rgb(10 14 12 / 95%);
+  --modal-border: rgb(245 158 11 / 25%);
+  --modal-text: #f0fdf4;
+  --modal-close-filter: invert(1) grayscale(1) brightness(2);
+  --nav-link-color: #fbbf24;
+  --nav-link-hover-color: #f0fdf4;
+  --nav-link-active-bg: rgb(245 158 11 / 20%);
+  --nav-link-active-color: #f59e0b;
+  --theme-card-bg: rgb(27 36 30 / 60%);
+  --theme-card-border: rgb(245 158 11 / 30%);
+  --theme-card-selected-border: #f59e0b;
+  --theme-card-text: #f0fdf4;
+}
+
+/* ==========================================================================
+   SPECIES THEMES
+   ========================================================================== */
+
+/* Volar (Emerald Primary & Solar Amber Accent) */
+body.theme-volar,
+[data-theme='volar'] {
+  --bg-gradient: radial-gradient(circle at top left, #141a16, #0a0e0c);
+  --text-color: #f0fdf4;
+  --card-bg: #1b241e;
+  --card-border: rgb(16 185 129 / 40%);
+  --accent-cyan: #10b981;
+  --accent-blue: #f59e0b;
+  --input-bg: #0f1611;
+  --input-border: #233629;
+  --input-text: #f0fdf4;
+  --input-placeholder: #34d399;
+  --input-focus-bg: #0f1611;
+  --header-bg: linear-gradient(135deg, #0a0e0c 0%, #1f2e24 100%);
+  --header-border: #10b981;
+  --navbar-bg: rgb(10 14 12 / 90%);
+  --navbar-border: rgb(16 185 129 / 25%);
+  --keypad-numeric-bg: #1b241e;
+  --keypad-numeric-hover-bg: #27342b;
+  --keypad-numeric-border: rgb(16 185 129 / 30%);
+  --keypad-numeric-hover-border: #10b981;
+  --keypad-numeric-text: #f0fdf4;
+  --keypad-secondary-bg: #233629;
+  --keypad-secondary-hover-bg: #324c3a;
+  --keypad-secondary-text: #f0fdf4;
+  --keypad-danger-bg: #dc3545;
+  --keypad-danger-hover-bg: #bb2d3b;
+  --keypad-danger-text: #fff;
+  --keypad-warning-bg: #10b981;
+  --keypad-warning-hover-bg: #059669;
+  --keypad-warning-text: #fff;
+  --modal-bg: rgb(10 14 12 / 95%);
+  --modal-border: rgb(16 185 129 / 25%);
+  --modal-text: #f0fdf4;
+  --modal-close-filter: invert(1) grayscale(1) brightness(2);
+  --nav-link-color: #34d399;
+  --nav-link-hover-color: #f0fdf4;
+  --nav-link-active-bg: rgb(16 185 129 / 20%);
+  --nav-link-active-color: #10b981;
+  --theme-card-bg: rgb(27 36 30 / 60%);
+  --theme-card-border: rgb(16 185 129 / 30%);
+  --theme-card-selected-border: #10b981;
+  --theme-card-text: #f0fdf4;
+}
+
+/* Human (Icy Ocean Slate & Frost Cyan) */
+body.theme-human,
+[data-theme='human'] {
+  --bg-gradient: radial-gradient(circle at top left, #0f172a, #080d1a);
+  --text-color: #f0f9ff;
+  --card-bg: #1e293b;
+  --card-border: rgb(125 211 252 / 40%);
+  --accent-cyan: #7dd3fc;
+  --accent-blue: #0284c7;
+  --input-bg: #0c1322;
+  --input-border: #263852;
+  --input-text: #f0f9ff;
+  --input-placeholder: #bae6fd;
+  --input-focus-bg: #0c1322;
+  --header-bg: linear-gradient(135deg, #080d1a 0%, #173354 100%);
+  --header-border: #7dd3fc;
+  --navbar-bg: rgb(8 13 26 / 90%);
+  --navbar-border: rgb(125 211 252 / 25%);
+  --keypad-numeric-bg: #1e293b;
+  --keypad-numeric-hover-bg: #2c3b54;
+  --keypad-numeric-border: rgb(125 211 252 / 30%);
+  --keypad-numeric-hover-border: #7dd3fc;
+  --keypad-numeric-text: #f0f9ff;
+  --keypad-secondary-bg: #263852;
+  --keypad-secondary-hover-bg: #364e72;
+  --keypad-secondary-text: #f0f9ff;
+  --keypad-danger-bg: #dc3545;
+  --keypad-danger-hover-bg: #bb2d3b;
+  --keypad-danger-text: #fff;
+  --keypad-warning-bg: #7dd3fc;
+  --keypad-warning-hover-bg: #38bdf8;
+  --keypad-warning-text: #0f172a;
+  --modal-bg: rgb(8 13 26 / 95%);
+  --modal-border: rgb(125 211 252 / 25%);
+  --modal-text: #f0f9ff;
+  --modal-close-filter: invert(1) grayscale(1) brightness(2);
+  --nav-link-color: #bae6fd;
+  --nav-link-hover-color: #f0f9ff;
+  --nav-link-active-bg: rgb(125 211 252 / 20%);
+  --nav-link-active-color: #7dd3fc;
+  --theme-card-bg: rgb(30 41 59 / 60%);
+  --theme-card-border: rgb(125 211 252 / 30%);
+  --theme-card-selected-border: #7dd3fc;
+  --theme-card-text: #f0f9ff;
+}
+
+/* Grayling (Sleek Slate & Psionic Violet) */
+body.theme-grayling,
+[data-theme='grayling'] {
+  --bg-gradient: radial-gradient(circle at top left, #121620, #0b0d12);
+  --text-color: #f8fafc;
+  --card-bg: #181e2b;
+  --card-border: rgb(168 85 247 / 40%);
+  --accent-cyan: #c084fc;
+  --accent-blue: #a855f7;
+  --input-bg: #10141e;
+  --input-border: #292440;
+  --input-text: #f8fafc;
+  --input-placeholder: #e9d5ff;
+  --input-focus-bg: #10141e;
+  --header-bg: linear-gradient(135deg, #0b0d12 0%, #241638 100%);
+  --header-border: #c084fc;
+  --navbar-bg: rgb(11 13 18 / 90%);
+  --navbar-border: rgb(192 132 252 / 25%);
+  --keypad-numeric-bg: #181e2b;
+  --keypad-numeric-hover-bg: #232b3e;
+  --keypad-numeric-border: rgb(168 85 247 / 30%);
+  --keypad-numeric-hover-border: #c084fc;
+  --keypad-numeric-text: #f8fafc;
+  --keypad-secondary-bg: #292440;
+  --keypad-secondary-hover-bg: #3b345c;
+  --keypad-secondary-text: #f8fafc;
+  --keypad-danger-bg: #dc3545;
+  --keypad-danger-hover-bg: #bb2d3b;
+  --keypad-danger-text: #fff;
+  --keypad-warning-bg: #c084fc;
+  --keypad-warning-hover-bg: #a855f7;
+  --keypad-warning-text: #fff;
+  --modal-bg: rgb(11 13 18 / 95%);
+  --modal-border: rgb(192 132 252 / 25%);
+  --modal-text: #f8fafc;
+  --modal-close-filter: invert(1) grayscale(1) brightness(2);
+  --nav-link-color: #e9d5ff;
+  --nav-link-hover-color: #f8fafc;
+  --nav-link-active-bg: rgb(192 132 252 / 20%);
+  --nav-link-active-color: #c084fc;
+  --theme-card-bg: rgb(24 30 43 / 60%);
+  --theme-card-border: rgb(168 85 247 / 30%);
+  --theme-card-selected-border: #c084fc;
+  --theme-card-text: #f8fafc;
+}
+
+/* Lepidonain (Regal Bronze & Antique Amber) */
+body.theme-lepidonain,
+[data-theme='lepidonain'] {
+  --bg-gradient: radial-gradient(circle at top left, #1c1512, #0f0b09);
+  --text-color: #fff7ed;
+  --card-bg: #291f1a;
+  --card-border: rgb(249 115 22 / 40%);
+  --accent-cyan: #f97316;
+  --accent-blue: #fef08a;
+  --input-bg: #140e0b;
+  --input-border: #422d20;
+  --input-text: #fff7ed;
+  --input-placeholder: #ffedd5;
+  --input-focus-bg: #140e0b;
+  --header-bg: linear-gradient(135deg, #0f0b09 0%, #3d2618 100%);
+  --header-border: #f97316;
+  --navbar-bg: rgb(15 11 9 / 90%);
+  --navbar-border: rgb(249 115 22 / 25%);
+  --keypad-numeric-bg: #291f1a;
+  --keypad-numeric-hover-bg: #3a2c25;
+  --keypad-numeric-border: rgb(249 115 22 / 30%);
+  --keypad-numeric-hover-border: #f97316;
+  --keypad-numeric-text: #fff7ed;
+  --keypad-secondary-bg: #422d20;
+  --keypad-secondary-hover-bg: #5c3e2c;
+  --keypad-secondary-text: #fff7ed;
+  --keypad-danger-bg: #dc3545;
+  --keypad-danger-hover-bg: #bb2d3b;
+  --keypad-danger-text: #fff;
+  --keypad-warning-bg: #f97316;
+  --keypad-warning-hover-bg: #ea580c;
+  --keypad-warning-text: #fff;
+  --modal-bg: rgb(15 11 9 / 95%);
+  --modal-border: rgb(249 115 22 / 25%);
+  --modal-text: #fff7ed;
+  --modal-close-filter: invert(1) grayscale(1) brightness(2);
+  --nav-link-color: #ffedd5;
+  --nav-link-hover-color: #fff7ed;
+  --nav-link-active-bg: rgb(249 115 22 / 20%);
+  --nav-link-active-color: #f97316;
+  --theme-card-bg: rgb(41 31 26 / 60%);
+  --theme-card-border: rgb(249 115 22 / 30%);
+  --theme-card-selected-border: #f97316;
+  --theme-card-text: #fff7ed;
+}
+
+/* Cryous (Deep Navy & Bio-Electric Cyan) */
+body.theme-cryous,
+[data-theme='cryous'] {
+  --bg-gradient: radial-gradient(circle at top left, #071324, #030914);
+  --text-color: #f0f9ff;
+  --card-bg: #0b1d36;
+  --card-border: rgb(0 240 255 / 40%);
+  --accent-cyan: #00f0ff;
+  --accent-blue: #0284c7;
+  --input-bg: #061121;
+  --input-border: #132f57;
+  --input-text: #f0f9ff;
+  --input-placeholder: #38bdf8;
+  --input-focus-bg: #061121;
+  --header-bg: linear-gradient(135deg, #030914 0%, #0d2847 100%);
+  --header-border: #00f0ff;
+  --navbar-bg: rgb(3 9 20 / 90%);
+  --navbar-border: rgb(0 240 255 / 25%);
+  --keypad-numeric-bg: #0b1d36;
+  --keypad-numeric-hover-bg: #112a4e;
+  --keypad-numeric-border: rgb(0 240 255 / 30%);
+  --keypad-numeric-hover-border: #00f0ff;
+  --keypad-numeric-text: #f0f9ff;
+  --keypad-secondary-bg: #132f57;
+  --keypad-secondary-hover-bg: #1b427a;
+  --keypad-secondary-text: #f0f9ff;
+  --keypad-danger-bg: #dc3545;
+  --keypad-danger-hover-bg: #bb2d3b;
+  --keypad-danger-text: #fff;
+  --keypad-warning-bg: #00f0ff;
+  --keypad-warning-hover-bg: #00c8d6;
+  --keypad-warning-text: #030914;
+  --modal-bg: rgb(3 9 20 / 95%);
+  --modal-border: rgb(0 240 255 / 25%);
+  --modal-text: #f0f9ff;
+  --modal-close-filter: invert(1) grayscale(1) brightness(2);
+  --nav-link-color: #38bdf8;
+  --nav-link-hover-color: #f0f9ff;
+  --nav-link-active-bg: rgb(0 240 255 / 20%);
+  --nav-link-active-color: #00f0ff;
+  --theme-card-bg: rgb(11 29 54 / 60%);
+  --theme-card-border: rgb(0 240 255 / 30%);
+  --theme-card-selected-border: #00f0ff;
+  --theme-card-text: #f0f9ff;
+}
+
+/* Aconian (Galactic Silver & Trade Gold) */
+body.theme-aconian,
+[data-theme='aconian'] {
+  --bg-gradient: radial-gradient(circle at top left, #12151c, #0a0b0f);
+  --text-color: #f8fafc;
+  --card-bg: #1c212c;
+  --card-border: rgb(148 163 184 / 40%);
+  --accent-cyan: #e2e8f0;
+  --accent-blue: #facc15;
+  --input-bg: #0e1017;
+  --input-border: #2d3547;
+  --input-text: #f8fafc;
+  --input-placeholder: #cbd5e1;
+  --input-focus-bg: #0e1017;
+  --header-bg: linear-gradient(135deg, #0a0b0f 0%, #2b3242 100%);
+  --header-border: #e2e8f0;
+  --navbar-bg: rgb(10 11 15 / 90%);
+  --navbar-border: rgb(148 163 184 / 25%);
+  --keypad-numeric-bg: #1c212c;
+  --keypad-numeric-hover-bg: #293040;
+  --keypad-numeric-border: rgb(148 163 184 / 30%);
+  --keypad-numeric-hover-border: #e2e8f0;
+  --keypad-numeric-text: #f8fafc;
+  --keypad-secondary-bg: #2d3547;
+  --keypad-secondary-hover-bg: #3f4a63;
+  --keypad-secondary-text: #f8fafc;
+  --keypad-danger-bg: #dc3545;
+  --keypad-danger-hover-bg: #bb2d3b;
+  --keypad-danger-text: #fff;
+  --keypad-warning-bg: #facc15;
+  --keypad-warning-hover-bg: #eab308;
+  --keypad-warning-text: #0a0b0f;
+  --modal-bg: rgb(10 11 15 / 95%);
+  --modal-border: rgb(148 163 184 / 25%);
+  --modal-text: #f8fafc;
+  --modal-close-filter: invert(1) grayscale(1) brightness(2);
+  --nav-link-color: #cbd5e1;
+  --nav-link-hover-color: #f8fafc;
+  --nav-link-active-bg: rgb(226 232 240 / 20%);
+  --nav-link-active-color: #e2e8f0;
+  --theme-card-bg: rgb(28 33 44 / 60%);
+  --theme-card-border: rgb(148 163 184 / 30%);
+  --theme-card-selected-border: #e2e8f0;
+  --theme-card-text: #f8fafc;
+}
+
+/* Murid (Electric Cobalt & Magenta Dye) */
+body.theme-murid,
+[data-theme='murid'] {
+  --bg-gradient: radial-gradient(circle at top left, #12101d, #090810);
+  --text-color: #fdf2f8;
+  --card-bg: #1a172a;
+  --card-border: rgb(236 72 153 / 40%);
+  --accent-cyan: #ec4899;
+  --accent-blue: #3b82f6;
+  --input-bg: #0d0c17;
+  --input-border: #34203e;
+  --input-text: #fdf2f8;
+  --input-placeholder: #f472b6;
+  --input-focus-bg: #0d0c17;
+  --header-bg: linear-gradient(135deg, #090810 0%, #2d173b 100%);
+  --header-border: #ec4899;
+  --navbar-bg: rgb(9 8 16 / 90%);
+  --navbar-border: rgb(236 72 153 / 25%);
+  --keypad-numeric-bg: #1a172a;
+  --keypad-numeric-hover-bg: #27223e;
+  --keypad-numeric-border: rgb(236 72 153 / 30%);
+  --keypad-numeric-hover-border: #ec4899;
+  --keypad-numeric-text: #fdf2f8;
+  --keypad-secondary-bg: #34203e;
+  --keypad-secondary-hover-bg: #4a2e58;
+  --keypad-secondary-text: #fdf2f8;
+  --keypad-danger-bg: #dc3545;
+  --keypad-danger-hover-bg: #bb2d3b;
+  --keypad-danger-text: #fff;
+  --keypad-warning-bg: #ec4899;
+  --keypad-warning-hover-bg: #db2777;
+  --keypad-warning-text: #fff;
+  --modal-bg: rgb(9 8 16 / 95%);
+  --modal-border: rgb(236 72 153 / 25%);
+  --modal-text: #fdf2f8;
+  --modal-close-filter: invert(1) grayscale(1) brightness(2);
+  --nav-link-color: #f472b6;
+  --nav-link-hover-color: #fdf2f8;
+  --nav-link-active-bg: rgb(236 72 153 / 20%);
+  --nav-link-active-color: #ec4899;
+  --theme-card-bg: rgb(26 23 42 / 60%);
+  --theme-card-border: rgb(236 72 153 / 30%);
+  --theme-card-selected-border: #ec4899;
+  --theme-card-text: #fdf2f8;
+}
+
+/* Avisari (Nebula Violet & Shimmering Gold) */
+body.theme-avisari,
+[data-theme='avisari'] {
+  --bg-gradient: radial-gradient(circle at top left, #100d24, #080614);
+  --text-color: #fefce8;
+  --card-bg: #181436;
+  --card-border: rgb(251 191 36 / 40%);
+  --accent-cyan: #fbbf24;
+  --accent-blue: #818cf8;
+  --input-bg: #0c091f;
+  --input-border: #2e2354;
+  --input-text: #fefce8;
+  --input-placeholder: #fde047;
+  --input-focus-bg: #0c091f;
+  --header-bg: linear-gradient(135deg, #080614 0%, #291a4d 100%);
+  --header-border: #fbbf24;
+  --navbar-bg: rgb(8 6 20 / 90%);
+  --navbar-border: rgb(251 191 36 / 25%);
+  --keypad-numeric-bg: #181436;
+  --keypad-numeric-hover-bg: #241e4f;
+  --keypad-numeric-border: rgb(251 191 36 / 30%);
+  --keypad-numeric-hover-border: #fbbf24;
+  --keypad-numeric-text: #fefce8;
+  --keypad-secondary-bg: #2e2354;
+  --keypad-secondary-hover-bg: #413277;
+  --keypad-secondary-text: #fefce8;
+  --keypad-danger-bg: #dc3545;
+  --keypad-danger-hover-bg: #bb2d3b;
+  --keypad-danger-text: #fff;
+  --keypad-warning-bg: #fbbf24;
+  --keypad-warning-hover-bg: #f59e0b;
+  --keypad-warning-text: #080614;
+  --modal-bg: rgb(8 6 20 / 95%);
+  --modal-border: rgb(251 191 36 / 25%);
+  --modal-text: #fefce8;
+  --modal-close-filter: invert(1) grayscale(1) brightness(2);
+  --nav-link-color: #fde047;
+  --nav-link-hover-color: #fefce8;
+  --nav-link-active-bg: rgb(251 191 36 / 20%);
+  --nav-link-active-color: #fbbf24;
+  --theme-card-bg: rgb(24 20 54 / 60%);
+  --theme-card-border: rgb(251 191 36 / 30%);
+  --theme-card-selected-border: #fbbf24;
+  --theme-card-text: #fefce8;
+}
+
+/* Khepri (Dark Chitin Slate & Bio Toxic Lime) */
+body.theme-khepri,
+[data-theme='khepri'] {
+  --bg-gradient: radial-gradient(circle at top left, #131718, #0b0e0f);
+  --text-color: #f7fee7;
+  --card-bg: #1b2123;
+  --card-border: rgb(163 230 53 / 40%);
+  --accent-cyan: #a3e635;
+  --accent-blue: #f59e0b;
+  --input-bg: #0e1213;
+  --input-border: #26332a;
+  --input-text: #f7fee7;
+  --input-placeholder: #bef264;
+  --input-focus-bg: #0e1213;
+  --header-bg: linear-gradient(135deg, #0b0e0f 0%, #1f2b23 100%);
+  --header-border: #a3e635;
+  --navbar-bg: rgb(11 14 15 / 90%);
+  --navbar-border: rgb(163 230 53 / 25%);
+  --keypad-numeric-bg: #1b2123;
+  --keypad-numeric-hover-bg: #273033;
+  --keypad-numeric-border: rgb(163 230 53 / 30%);
+  --keypad-numeric-hover-border: #a3e635;
+  --keypad-numeric-text: #f7fee7;
+  --keypad-secondary-bg: #26332a;
+  --keypad-secondary-hover-bg: #35473b;
+  --keypad-secondary-text: #f7fee7;
+  --keypad-danger-bg: #dc3545;
+  --keypad-danger-hover-bg: #bb2d3b;
+  --keypad-danger-text: #fff;
+  --keypad-warning-bg: #a3e635;
+  --keypad-warning-hover-bg: #65a30d;
+  --keypad-warning-text: #0b0e0f;
+  --modal-bg: rgb(11 14 15 / 95%);
+  --modal-border: rgb(163 230 53 / 25%);
+  --modal-text: #f7fee7;
+  --modal-close-filter: invert(1) grayscale(1) brightness(2);
+  --nav-link-color: #bef264;
+  --nav-link-hover-color: #f7fee7;
+  --nav-link-active-bg: rgb(163 230 53 / 20%);
+  --nav-link-active-color: #a3e635;
+  --theme-card-bg: rgb(27 33 35 / 60%);
+  --theme-card-border: rgb(163 230 53 / 30%);
+  --theme-card-selected-border: #a3e635;
+  --theme-card-text: #f7fee7;
+}
+
+/* ==========================================================================
+   THEME PREVIEW THUMBNAILS
+   ========================================================================== */
+
+.theme-preview {
+  height: 60px;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 10%);
+}
+
+.cosmic-dark-preview {
+  background: radial-gradient(circle at top left, #111827, #030712);
+}
+
+.cosmic-dark-preview::before {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 24px;
+  height: 12px;
+  border-radius: 4px;
+  background: linear-gradient(145deg, #1f2937, #111827);
+  border: 1px solid rgb(255 255 255 / 4%);
+}
+
+.cosmic-dark-preview::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: linear-gradient(145deg, rgb(59 130 246 / 15%), rgb(59 130 246 / 3%));
+  border: 1px solid rgb(59 130 246 / 30%);
+}
+
+.cosmic-light-preview {
+  background: radial-gradient(circle at top left, #f5f3ff, #e0e7ff, #e8eaf6);
+  border: 1px solid rgb(0 0 0 / 5%);
+}
+
+.cosmic-light-preview::before {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 24px;
+  height: 12px;
+  border-radius: 4px;
+  background: linear-gradient(145deg, #fff, #f1f5f9);
+  border: 1px solid rgb(59 130 246 / 10%);
+}
+
+.cosmic-light-preview::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: linear-gradient(145deg, rgb(59 130 246 / 8%), rgb(59 130 246 / 2%));
+  border: 1px solid rgb(59 130 246 / 25%);
+}
+
+.bootstrap-dark-preview {
+  background: #212529;
+}
+
+.bootstrap-dark-preview::before {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 24px;
+  height: 12px;
+  border-radius: 4px;
+  background: #343a40;
+  border: 1px solid #495057;
+}
+
+.bootstrap-dark-preview::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: #0d6efd;
+  border: 1px solid #0d6efd;
+}
+
+.bootstrap-light-preview {
+  background: #fff;
+  border: 1px solid rgb(0 0 0 / 5%);
+}
+
+.bootstrap-light-preview::before {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 24px;
+  height: 12px;
+  border-radius: 4px;
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+}
+
+.bootstrap-light-preview::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: #0d6efd;
+  border: 1px solid #0d6efd;
+}
+
+.industrial-preview {
+  background: radial-gradient(circle at top left, #121215, #09090b);
+}
+
+.industrial-preview::before {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 24px;
+  height: 12px;
+  border-radius: 4px;
+  background: #1a1a22;
+  border: 1px solid rgb(255 107 0 / 40%);
+}
+
+.industrial-preview::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: #ff9100;
+}
+
+.aegis-preview {
+  background: radial-gradient(circle at top left, #070d1e, #02050e);
+}
+
+.aegis-preview::before {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 24px;
+  height: 12px;
+  border-radius: 4px;
+  background: #0c1630;
+  border: 1px solid rgb(99 102 241 / 40%);
+}
+
+.aegis-preview::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: #818cf8;
+}
+
+.tattoo-preview {
+  background: radial-gradient(circle at top left, #151214, #0b090a);
+}
+
+.tattoo-preview::before {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 24px;
+  height: 12px;
+  border-radius: 4px;
+  background: #221c20;
+  border: 1px solid rgb(244 63 94 / 40%);
+}
+
+.tattoo-preview::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: #f43f5e;
+}
+
+.curvilinea-preview {
+  background: radial-gradient(circle at top left, #200e11, #120a0b);
+}
+
+.curvilinea-preview::before {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 24px;
+  height: 12px;
+  border-radius: 4px;
+  background: #281418;
+  border: 1px solid rgb(239 68 68 / 40%);
+}
+
+.curvilinea-preview::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: #f97316;
+}
+
+.viper-preview {
+  background: radial-gradient(circle at top left, #141a16, #0a0e0c);
+}
+
+.viper-preview::before {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 24px;
+  height: 12px;
+  border-radius: 4px;
+  background: #1b241e;
+  border: 1px solid rgb(245 158 11 / 40%);
+}
+
+.viper-preview::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: #f59e0b;
+}
+
+.volar-preview {
+  background: radial-gradient(circle at top left, #141a16, #0a0e0c);
+}
+
+.volar-preview::before {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 24px;
+  height: 12px;
+  border-radius: 4px;
+  background: #1b241e;
+  border: 1px solid rgb(16 185 129 / 40%);
+}
+
+.volar-preview::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: #10b981;
+}
+
+.human-preview {
+  background: radial-gradient(circle at top left, #0f172a, #080d1a);
+}
+
+.human-preview::before {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 24px;
+  height: 12px;
+  border-radius: 4px;
+  background: #1e293b;
+  border: 1px solid rgb(125 211 252 / 40%);
+}
+
+.human-preview::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: #7dd3fc;
+}
+
+.grayling-preview {
+  background: radial-gradient(circle at top left, #121620, #0b0d12);
+}
+
+.grayling-preview::before {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 24px;
+  height: 12px;
+  border-radius: 4px;
+  background: #181e2b;
+  border: 1px solid rgb(168 85 247 / 40%);
+}
+
+.grayling-preview::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: #c084fc;
+}
+
+.lepidonain-preview {
+  background: radial-gradient(circle at top left, #1c1512, #0f0b09);
+}
+
+.lepidonain-preview::before {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 24px;
+  height: 12px;
+  border-radius: 4px;
+  background: #291f1a;
+  border: 1px solid rgb(249 115 22 / 40%);
+}
+
+.lepidonain-preview::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: #f97316;
+}
+
+.cryous-preview {
+  background: radial-gradient(circle at top left, #071324, #030914);
+}
+
+.cryous-preview::before {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 24px;
+  height: 12px;
+  border-radius: 4px;
+  background: #0b1d36;
+  border: 1px solid rgb(0 240 255 / 40%);
+}
+
+.cryous-preview::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: #00f0ff;
+}
+
+.aconian-preview {
+  background: radial-gradient(circle at top left, #12151c, #0a0b0f);
+}
+
+.aconian-preview::before {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 24px;
+  height: 12px;
+  border-radius: 4px;
+  background: #1c212c;
+  border: 1px solid rgb(148 163 184 / 40%);
+}
+
+.aconian-preview::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: #e2e8f0;
+}
+
+.murid-preview {
+  background: radial-gradient(circle at top left, #12101d, #090810);
+}
+
+.murid-preview::before {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 24px;
+  height: 12px;
+  border-radius: 4px;
+  background: #1a172a;
+  border: 1px solid rgb(236 72 153 / 40%);
+}
+
+.murid-preview::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: #ec4899;
+}
+
+.avisari-preview {
+  background: radial-gradient(circle at top left, #100d24, #080614);
+}
+
+.avisari-preview::before {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 24px;
+  height: 12px;
+  border-radius: 4px;
+  background: #181436;
+  border: 1px solid rgb(251 191 36 / 40%);
+}
+
+.avisari-preview::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: #fbbf24;
+}
+
+.khepri-preview {
+  background: radial-gradient(circle at top left, #131718, #0b0e0f);
+}
+
+.khepri-preview::before {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 24px;
+  height: 12px;
+  border-radius: 4px;
+  background: #1b2123;
+  border: 1px solid rgb(163 230 53 / 40%);
+}
+
+.khepri-preview::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: #a3e635;
+}

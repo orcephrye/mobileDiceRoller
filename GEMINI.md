@@ -12,6 +12,9 @@ The frontend is meant to look like a calculator and behavior similar to one.
 
 ## Testing/Self hosting
 There is a file called SimpleHTTPServer.py that uses Python to host the mobile app locally for manual testing.
+* When editing HTML use: > npx htmlhint filename.html
+* When editing CSS use: > npx stylelint --fix filename.css
+* When editing JavaScript use: > node jslint.mjs filename.js
 
 ## Project Structure
 * All the HTML is located in mRoller.html
@@ -19,7 +22,6 @@ There is a file called SimpleHTTPServer.py that uses Python to host the mobile a
 * All the Javascript is located in libs/app.js
 
 # Active Tasks
-This app is extremely ad-hoc and doesn't have any style/linting or unit testing. It also hasn't been updated in a while.
-We need to first look at making sure it is using the latest versions the different libs like Boostrap, fontawsome, jquery.
-We should look at areas of improvment, make sure there is nothing that could make this code vulnerable when run in a deployed setting.
-We should then add some amount of style/linting and testing. 
+* We need to look into fixing issues with styling/linting. 
+* I would like to move some of the layout around.
+* Support more themes imported from the FuturePathAPI project

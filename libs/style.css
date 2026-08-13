@@ -1,400 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
-
-:root {
-  /* Cosmic Dark (Default) Theme Variables */
-  --bg-gradient: radial-gradient(circle at top left, #111827, #030712);
-  --text-color: #f1f5f9;
-
-  --navbar-bg: rgba(17, 24, 39, 0.7);
-  --navbar-border: rgba(255, 255, 255, 0.05);
-
-  --input-bg: rgba(31, 41, 55, 0.45);
-  --input-border: rgba(255, 255, 255, 0.08);
-  --input-text: #fff;
-  --input-placeholder: #64748b;
-  --input-focus-bg: rgba(31, 41, 55, 0.6);
-
-  --keypad-numeric-bg: linear-gradient(145deg, #1f2937, #111827);
-  --keypad-numeric-hover-bg: linear-gradient(145deg, #374151, #1f2937);
-  --keypad-numeric-border: rgba(255, 255, 255, 0.04);
-  --keypad-numeric-hover-border: rgba(255, 255, 255, 0.1);
-  --keypad-numeric-text: #f1f5f9;
-
-  --keypad-secondary-bg: linear-gradient(145deg, #4b5563, #374151);
-  --keypad-secondary-hover-bg: linear-gradient(145deg, #6b7280, #4b5563);
-  --keypad-secondary-text: #f1f5f9;
-
-  --keypad-danger-bg: linear-gradient(145deg, #dc2626, #991b1b);
-  --keypad-danger-hover-bg: linear-gradient(145deg, #ef4444, #b91c1c);
-  --keypad-danger-text: #fff;
-
-  --keypad-warning-bg: linear-gradient(145deg, #d97706, #b45309);
-  --keypad-warning-hover-bg: linear-gradient(145deg, #f59e0b, #d97706);
-  --keypad-warning-text: #fff;
-
-  --modal-bg: rgba(17, 24, 39, 0.85);
-  --modal-border: rgba(255, 255, 255, 0.08);
-  --modal-text: #f1f5f9;
-  --modal-close-filter: invert(1) grayscale(1) brightness(2);
-
-  --nav-link-color: #94a3b8;
-  --nav-link-hover-color: #fff;
-  --nav-link-active-bg: rgba(59, 130, 246, 0.15);
-  --nav-link-active-color: #60a5fa;
-
-  --theme-card-bg: rgba(31, 41, 55, 0.4);
-  --theme-card-border: rgba(255, 255, 255, 0.08);
-  --theme-card-selected-border: #3b82f6;
-  --theme-card-text: #f1f5f9;
-
-  /* Die-specific color variables for Cosmic Dark */
-  --die-d100-bg: linear-gradient(145deg, rgba(108, 117, 125, 0.2), rgba(108, 117, 125, 0.05));
-  --die-d100-border: rgba(108, 117, 125, 0.3);
-  --die-d100-text: #ced4da;
-  --die-d100-hover-bg: linear-gradient(145deg, rgba(108, 117, 125, 0.3), rgba(108, 117, 125, 0.1));
-  --die-d100-glow: rgba(108, 117, 125, 0.15);
-
-  --die-d20-bg: linear-gradient(145deg, rgba(13, 110, 253, 0.25), rgba(13, 110, 253, 0.05));
-  --die-d20-border: rgba(13, 110, 253, 0.4);
-  --die-d20-text: #9ec5fe;
-  --die-d20-hover-bg: linear-gradient(145deg, rgba(13, 110, 253, 0.35), rgba(13, 110, 253, 0.1));
-  --die-d20-glow: rgba(13, 110, 253, 0.2);
-
-  --die-d12-bg: linear-gradient(145deg, rgba(173, 181, 189, 0.2), rgba(173, 181, 189, 0.05));
-  --die-d12-border: rgba(173, 181, 189, 0.3);
-  --die-d12-text: #e9ecef;
-  --die-d12-hover-bg: linear-gradient(145deg, rgba(173, 181, 189, 0.3), rgba(173, 181, 189, 0.1));
-  --die-d12-glow: rgba(173, 181, 189, 0.15);
-
-  --die-d10-bg: linear-gradient(145deg, rgba(13, 202, 240, 0.2), rgba(13, 202, 240, 0.05));
-  --die-d10-border: rgba(13, 202, 240, 0.35);
-  --die-d10-text: #9eeaf9;
-  --die-d10-hover-bg: linear-gradient(145deg, rgba(13, 202, 240, 0.3), rgba(13, 202, 240, 0.1));
-  --die-d10-glow: rgba(13, 202, 240, 0.2);
-
-  --die-d8-bg: linear-gradient(145deg, rgba(255, 193, 7, 0.2), rgba(255, 193, 7, 0.05));
-  --die-d8-border: rgba(255, 193, 7, 0.35);
-  --die-d8-text: #ffe69c;
-  --die-d8-hover-bg: linear-gradient(145deg, rgba(255, 193, 7, 0.3), rgba(255, 193, 7, 0.1));
-  --die-d8-glow: rgba(255, 193, 7, 0.2);
-
-  --die-d6-bg: linear-gradient(145deg, rgba(220, 53, 69, 0.22), rgba(220, 53, 69, 0.05));
-  --die-d6-border: rgba(220, 53, 69, 0.4);
-  --die-d6-text: #f8a29a;
-  --die-d6-hover-bg: linear-gradient(145deg, rgba(220, 53, 69, 0.32), rgba(220, 53, 69, 0.1));
-  --die-d6-glow: rgba(220, 53, 69, 0.2);
-
-  --die-d4-bg: linear-gradient(145deg, rgba(33, 37, 41, 0.5), rgba(33, 37, 41, 0.2));
-  --die-d4-border: rgba(255, 255, 255, 0.08);
-  --die-d4-text: #dee2e6;
-  --die-d4-hover-bg: linear-gradient(145deg, rgba(33, 37, 41, 0.7), rgba(33, 37, 41, 0.4));
-  --die-d4-glow: rgba(33, 37, 41, 0.15);
-
-  --die-d2-bg: linear-gradient(145deg, rgba(248, 249, 250, 0.15), rgba(248, 249, 250, 0.03));
-  --die-d2-border: rgba(248, 249, 250, 0.2);
-  --die-d2-text: #f8f9fa;
-  --die-d2-hover-bg: linear-gradient(145deg, rgba(248, 249, 250, 0.25), rgba(248, 249, 250, 0.08));
-  --die-d2-glow: rgba(248, 249, 250, 0.15);
-}
-
-body.theme-cosmic-light {
-  /* Cosmic Light Theme Variables */
-  --bg-gradient: radial-gradient(circle at top left, #f5f3ff, #e0e7ff, #e8eaf6);
-  --text-color: #1e293b;
-
-  --navbar-bg: rgba(255, 255, 255, 0.7);
-  --navbar-border: rgba(59, 130, 246, 0.1);
-
-  --input-bg: rgba(241, 245, 249, 0.85);
-  --input-border: rgba(59, 130, 246, 0.15);
-  --input-text: #0f172a;
-  --input-placeholder: #94a3b8;
-  --input-focus-bg: rgba(255, 255, 255, 0.95);
-
-  --keypad-numeric-bg: linear-gradient(145deg, #ffffff, #f1f5f9);
-  --keypad-numeric-hover-bg: linear-gradient(145deg, #f8fafc, #e2e8f0);
-  --keypad-numeric-border: rgba(59, 130, 246, 0.1);
-  --keypad-numeric-hover-border: rgba(59, 130, 246, 0.2);
-  --keypad-numeric-text: #334155;
-
-  --keypad-secondary-bg: linear-gradient(145deg, #e2e8f0, #cbd5e1);
-  --keypad-secondary-hover-bg: linear-gradient(145deg, #cbd5e1, #94a3b8);
-  --keypad-secondary-text: #334155;
-
-  --keypad-danger-bg: linear-gradient(145deg, #fee2e2, #fca5a5);
-  --keypad-danger-hover-bg: linear-gradient(145deg, #fca5a5, #f87171);
-  --keypad-danger-text: #991b1b;
-
-  --keypad-warning-bg: linear-gradient(145deg, #ffedd5, #fed7aa);
-  --keypad-warning-hover-bg: linear-gradient(145deg, #fed7aa, #fdba74);
-  --keypad-warning-text: #c2410c;
-
-  --modal-bg: rgba(255, 255, 255, 0.95);
-  --modal-border: rgba(0, 0, 0, 0.08);
-  --modal-text: #0f172a;
-  --modal-close-filter: none;
-
-  --nav-link-color: #64748b;
-  --nav-link-hover-color: #0f172a;
-  --nav-link-active-bg: rgba(59, 130, 246, 0.1);
-  --nav-link-active-color: #1d4ed8;
-
-  --theme-card-bg: rgba(241, 245, 249, 0.8);
-  --theme-card-border: rgba(0, 0, 0, 0.06);
-  --theme-card-selected-border: #1d4ed8;
-  --theme-card-text: #334155;
-
-  /* Die-specific color variables for Cosmic Light (pastel themes) */
-  --die-d100-bg: linear-gradient(145deg, rgba(108, 117, 125, 0.12), rgba(108, 117, 125, 0.03));
-  --die-d100-border: rgba(108, 117, 125, 0.25);
-  --die-d100-text: #495057;
-  --die-d100-hover-bg: linear-gradient(
-    145deg,
-    rgba(108, 117, 125, 0.22),
-    rgba(108, 117, 125, 0.08)
-  );
-  --die-d100-glow: rgba(108, 117, 125, 0.1);
-
-  --die-d20-bg: linear-gradient(145deg, rgba(13, 110, 253, 0.15), rgba(13, 110, 253, 0.03));
-  --die-d20-border: rgba(13, 110, 253, 0.3);
-  --die-d20-text: #0b5ed7;
-  --die-d20-hover-bg: linear-gradient(145deg, rgba(13, 110, 253, 0.25), rgba(13, 110, 253, 0.08));
-  --die-d20-glow: rgba(13, 110, 253, 0.15);
-
-  --die-d12-bg: linear-gradient(145deg, rgba(108, 117, 125, 0.12), rgba(108, 117, 125, 0.03));
-  --die-d12-border: rgba(108, 117, 125, 0.25);
-  --die-d12-text: #495057;
-  --die-d12-hover-bg: linear-gradient(145deg, rgba(108, 117, 125, 0.22), rgba(108, 117, 125, 0.08));
-  --die-d12-glow: rgba(108, 117, 125, 0.1);
-
-  --die-d10-bg: linear-gradient(145deg, rgba(13, 202, 240, 0.15), rgba(13, 202, 240, 0.03));
-  --die-d10-border: rgba(13, 202, 240, 0.3);
-  --die-d10-text: #087990;
-  --die-d10-hover-bg: linear-gradient(145deg, rgba(13, 202, 240, 0.25), rgba(13, 202, 240, 0.08));
-  --die-d10-glow: rgba(13, 202, 240, 0.15);
-
-  --die-d8-bg: linear-gradient(145deg, rgba(217, 119, 6, 0.12), rgba(217, 119, 6, 0.03));
-  --die-d8-border: rgba(217, 119, 6, 0.3);
-  --die-d8-text: #b45309;
-  --die-d8-hover-bg: linear-gradient(145deg, rgba(217, 119, 6, 0.22), rgba(217, 119, 6, 0.08));
-  --die-d8-glow: rgba(217, 119, 6, 0.1);
-
-  --die-d6-bg: linear-gradient(145deg, rgba(220, 53, 69, 0.15), rgba(220, 53, 69, 0.03));
-  --die-d6-border: rgba(220, 53, 69, 0.3);
-  --die-d6-text: #b91c1c;
-  --die-d6-hover-bg: linear-gradient(145deg, rgba(220, 53, 69, 0.25), rgba(220, 53, 69, 0.08));
-  --die-d6-glow: rgba(220, 53, 69, 0.15);
-
-  --die-d4-bg: linear-gradient(145deg, rgba(15, 23, 42, 0.08), rgba(15, 23, 42, 0.02));
-  --die-d4-border: rgba(15, 23, 42, 0.15);
-  --die-d4-text: #0f172a;
-  --die-d4-hover-bg: linear-gradient(145deg, rgba(15, 23, 42, 0.18), rgba(15, 23, 42, 0.05));
-  --die-d4-glow: rgba(15, 23, 42, 0.1);
-
-  --die-d2-bg: linear-gradient(145deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.4));
-  --die-d2-border: rgba(59, 130, 246, 0.15);
-  --die-d2-text: #334155;
-  --die-d2-hover-bg: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.6));
-  --die-d2-glow: rgba(59, 130, 246, 0.1);
-}
-
-body.theme-bootstrap-dark {
-  /* Default Bootstrap Dark Theme Variables */
-  --bg-gradient: #212529;
-  --text-color: #dee2e6;
-
-  --navbar-bg: #2c3034;
-  --navbar-border: rgba(255, 255, 255, 0.15);
-
-  --input-bg: #212529;
-  --input-border: #495057;
-  --input-text: #dee2e6;
-  --input-placeholder: #6c757d;
-  --input-focus-bg: #212529;
-
-  --keypad-numeric-bg: #343a40;
-  --keypad-numeric-hover-bg: #424951;
-  --keypad-numeric-border: #495057;
-  --keypad-numeric-hover-border: #6c757d;
-  --keypad-numeric-text: #fff;
-
-  --keypad-secondary-bg: #6c757d;
-  --keypad-secondary-hover-bg: #5c636a;
-  --keypad-secondary-text: #fff;
-
-  --keypad-danger-bg: #dc3545;
-  --keypad-danger-hover-bg: #bb2d3b;
-  --keypad-danger-text: #fff;
-
-  --keypad-warning-bg: #ffc107;
-  --keypad-warning-hover-bg: #ffca2c;
-  --keypad-warning-text: #000;
-
-  --modal-bg: #212529;
-  --modal-border: #495057;
-  --modal-text: #dee2e6;
-  --modal-close-filter: invert(1) grayscale(1) brightness(2);
-
-  --nav-link-color: #6c757d;
-  --nav-link-hover-color: #dee2e6;
-  --nav-link-active-bg: #0d6efd;
-  --nav-link-active-color: #fff;
-
-  --theme-card-bg: #2c3034;
-  --theme-card-border: #495057;
-  --theme-card-selected-border: #0d6efd;
-  --theme-card-text: #dee2e6;
-
-  /* Die-specific color variables for Bootstrap Dark (Standard Bootstrap styles) */
-  --die-d100-bg: #212529;
-  --die-d100-border: #495057;
-  --die-d100-text: #dee2e6;
-  --die-d100-hover-bg: #1c1f23;
-  --die-d100-glow: rgba(73, 80, 87, 0.2);
-
-  --die-d20-bg: #0d6efd;
-  --die-d20-border: #0d6efd;
-  --die-d20-text: #fff;
-  --die-d20-hover-bg: #0b5ed7;
-  --die-d20-glow: rgba(13, 110, 253, 0.25);
-
-  --die-d12-bg: #6c757d;
-  --die-d12-border: #6c757d;
-  --die-d12-text: #fff;
-  --die-d12-hover-bg: #5c636a;
-  --die-d12-glow: rgba(108, 117, 125, 0.25);
-
-  --die-d10-bg: #0dcaf0;
-  --die-d10-border: #0dcaf0;
-  --die-d10-text: #000;
-  --die-d10-hover-bg: #31d2f2;
-  --die-d10-glow: rgba(13, 202, 240, 0.25);
-
-  --die-d8-bg: #ffc107;
-  --die-d8-border: #ffc107;
-  --die-d8-text: #000;
-  --die-d8-hover-bg: #ffca2c;
-  --die-d8-glow: rgba(255, 193, 7, 0.25);
-
-  --die-d6-bg: #dc3545;
-  --die-d6-border: #dc3545;
-  --die-d6-text: #fff;
-  --die-d6-hover-bg: #bb2d3b;
-  --die-d6-glow: rgba(220, 53, 69, 0.25);
-
-  --die-d4-bg: #212529;
-  --die-d4-border: #373b3e;
-  --die-d4-text: #fff;
-  --die-d4-hover-bg: #1c1f23;
-  --die-d4-glow: rgba(33, 37, 41, 0.25);
-
-  --die-d2-bg: #f8f9fa;
-  --die-d2-border: #f8f9fa;
-  --die-d2-text: #000;
-  --die-d2-hover-bg: #f9fafb;
-  --die-d2-glow: rgba(248, 249, 250, 0.2);
-}
-
-body.theme-bootstrap-light {
-  /* Default Bootstrap Light Theme Variables */
-  --bg-gradient: #ffffff;
-  --text-color: #212529;
-
-  --navbar-bg: #f8f9fa;
-  --navbar-border: rgba(0, 0, 0, 0.15);
-
-  --input-bg: #ffffff;
-  --input-border: #ced4da;
-  --input-text: #212529;
-  --input-placeholder: #6c757d;
-  --input-focus-bg: #ffffff;
-
-  --keypad-numeric-bg: #f8f9fa;
-  --keypad-numeric-hover-bg: #e2e3e5;
-  --keypad-numeric-border: #dee2e6;
-  --keypad-numeric-hover-border: #cbd5e1;
-  --keypad-numeric-text: #212529;
-
-  --keypad-secondary-bg: #6c757d;
-  --keypad-secondary-hover-bg: #5c636a;
-  --keypad-secondary-text: #fff;
-
-  --keypad-danger-bg: #dc3545;
-  --keypad-danger-hover-bg: #bb2d3b;
-  --keypad-danger-text: #fff;
-
-  --keypad-warning-bg: #ffc107;
-  --keypad-warning-hover-bg: #ffca2c;
-  --keypad-warning-text: #000;
-
-  --modal-bg: #ffffff;
-  --modal-border: #dee2e6;
-  --modal-text: #212529;
-  --modal-close-filter: none;
-
-  --nav-link-color: #6c757d;
-  --nav-link-hover-color: #212529;
-  --nav-link-active-bg: #0d6efd;
-  --nav-link-active-color: #fff;
-
-  --theme-card-bg: #f8f9fa;
-  --theme-card-border: #dee2e6;
-  --theme-card-selected-border: #0d6efd;
-  --theme-card-text: #212529;
-
-  /* Die-specific color variables for Bootstrap Light (Original colors) */
-  --die-d100-bg: #f8f9fa;
-  --die-d100-border: #ced4da;
-  --die-d100-text: #212529;
-  --die-d100-hover-bg: #e2e3e5;
-  --die-d100-glow: rgba(206, 212, 218, 0.3);
-
-  --die-d20-bg: #0d6efd;
-  --die-d20-border: #0d6efd;
-  --die-d20-text: #fff;
-  --die-d20-hover-bg: #0b5ed7;
-  --die-d20-glow: rgba(13, 110, 253, 0.25);
-
-  --die-d12-bg: #6c757d;
-  --die-d12-border: #6c757d;
-  --die-d12-text: #fff;
-  --die-d12-hover-bg: #5c636a;
-  --die-d12-glow: rgba(108, 117, 125, 0.25);
-
-  --die-d10-bg: #0dcaf0;
-  --die-d10-border: #0dcaf0;
-  --die-d10-text: #000;
-  --die-d10-hover-bg: #31d2f2;
-  --die-d10-glow: rgba(13, 202, 240, 0.25);
-
-  --die-d8-bg: #ffc107;
-  --die-d8-border: #ffc107;
-  --die-d8-text: #000;
-  --die-d8-hover-bg: #ffca2c;
-  --die-d8-glow: rgba(255, 193, 7, 0.25);
-
-  --die-d6-bg: #dc3545;
-  --die-d6-border: #dc3545;
-  --die-d6-text: #fff;
-  --die-d6-hover-bg: #bb2d3b;
-  --die-d6-glow: rgba(220, 53, 69, 0.25);
-
-  --die-d4-bg: #212529;
-  --die-d4-border: #212529;
-  --die-d4-text: #fff;
-  --die-d4-hover-bg: #1c1f23;
-  --die-d4-glow: rgba(33, 37, 41, 0.25);
-
-  --die-d2-bg: #f8f9fa;
-  --die-d2-border: #dee2e6;
-  --die-d2-text: #000;
-  --die-d2-hover-bg: #e2e3e5;
-  --die-d2-glow: rgba(222, 226, 230, 0.3);
-}
+@import url('themes.css');
 
 /* Main Body Configuration */
 body {
-  font-family: 'Outfit', sans-serif;
+  font-family: Outfit, sans-serif;
   background: var(--bg-gradient) !important;
   color: var(--text-color) !important;
   min-height: 100vh;
@@ -413,7 +22,6 @@ body {
 .navbar {
   background: var(--navbar-bg) !important;
   backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--navbar-border) !important;
   border-radius: 16px;
   margin-bottom: 1.25rem;
@@ -433,7 +41,7 @@ body {
 
 .navbar .btn-primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 4px 12px rgb(59 130 246 / 30%);
 }
 
 /* Glassmorphism Inputs */
@@ -453,18 +61,18 @@ body {
 .form-control:focus {
   background: var(--input-focus-bg) !important;
   border-color: #3b82f6 !important;
-  box-shadow: 0 0 15px rgba(59, 130, 246, 0.25) !important;
+  box-shadow: 0 0 15px rgb(59 130 246 / 25%) !important;
   outline: none;
 }
 
 .input-group-text .btn-outline-primary {
-  border-color: rgba(59, 130, 246, 0.4) !important;
+  border-color: rgb(59 130 246 / 40%) !important;
   color: #60a5fa !important;
   transition: all 0.2s ease;
 }
 
 .input-group-text .btn-outline-primary:hover {
-  background: rgba(59, 130, 246, 0.1) !important;
+  background: rgb(59 130 246 / 10%) !important;
   color: #93c5fd !important;
 }
 
@@ -494,7 +102,7 @@ body {
   font-size: 1.15rem !important;
   padding: 14px 6px !important;
   border: 1px solid var(--keypad-numeric-border) !important;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25) !important;
+  box-shadow: 0 4px 6px rgb(0 0 0 / 25%) !important;
   transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1) !important;
   color: var(--keypad-numeric-text) !important;
 }
@@ -518,7 +126,7 @@ body {
 /* Operators / Functions Keys Styling */
 .btn-danger.keypad {
   background: var(--keypad-danger-bg) !important;
-  border-color: rgba(220, 38, 38, 0.15) !important;
+  border-color: rgb(220 38 38 / 15%) !important;
   color: var(--keypad-danger-text) !important;
 }
 
@@ -558,6 +166,7 @@ body {
   border: 1px solid var(--die-d100-border) !important;
   color: var(--die-d100-text) !important;
 }
+
 #d100:hover {
   background: var(--die-d100-hover-bg) !important;
   border-color: var(--die-d100-border) !important;
@@ -570,6 +179,7 @@ body {
   border: 1px solid var(--die-d20-border) !important;
   color: var(--die-d20-text) !important;
 }
+
 #d20:hover {
   background: var(--die-d20-hover-bg) !important;
   border-color: var(--die-d20-border) !important;
@@ -582,6 +192,7 @@ body {
   border: 1px solid var(--die-d12-border) !important;
   color: var(--die-d12-text) !important;
 }
+
 #d12:hover {
   background: var(--die-d12-hover-bg) !important;
   border-color: var(--die-d12-border) !important;
@@ -594,6 +205,7 @@ body {
   border: 1px solid var(--die-d10-border) !important;
   color: var(--die-d10-text) !important;
 }
+
 #d10:hover {
   background: var(--die-d10-hover-bg) !important;
   border-color: var(--die-d10-border) !important;
@@ -606,6 +218,7 @@ body {
   border: 1px solid var(--die-d8-border) !important;
   color: var(--die-d8-text) !important;
 }
+
 #d8:hover {
   background: var(--die-d8-hover-bg) !important;
   border-color: var(--die-d8-border) !important;
@@ -618,6 +231,7 @@ body {
   border: 1px solid var(--die-d6-border) !important;
   color: var(--die-d6-text) !important;
 }
+
 #d6:hover {
   background: var(--die-d6-hover-bg) !important;
   border-color: var(--die-d6-border) !important;
@@ -630,6 +244,7 @@ body {
   border: 1px solid var(--die-d4-border) !important;
   color: var(--die-d4-text) !important;
 }
+
 #d4:hover {
   background: var(--die-d4-hover-bg) !important;
   border-color: var(--die-d4-border) !important;
@@ -642,6 +257,7 @@ body {
   border: 1px solid var(--die-d2-border) !important;
   color: var(--die-d2-text) !important;
 }
+
 #d2:hover {
   background: var(--die-d2-hover-bg) !important;
   border-color: var(--die-d2-border) !important;
@@ -669,7 +285,7 @@ body {
   font-weight: 700 !important;
   border-radius: 16px !important;
   padding: 16px !important;
-  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.25) !important;
+  box-shadow: 0 6px 16px rgb(16 185 129 / 25%) !important;
   transition: all 0.2s ease !important;
   margin-top: 0.25rem;
 }
@@ -677,7 +293,7 @@ body {
 .successButton:hover {
   background: linear-gradient(135deg, #34d399, #059669) !important;
   transform: translateY(-1px);
-  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.35) !important;
+  box-shadow: 0 8px 20px rgb(16 185 129 / 35%) !important;
 }
 
 .successButton:active {
@@ -688,11 +304,10 @@ body {
 .modal-content {
   background: var(--modal-bg) !important;
   backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--modal-border) !important;
   border-radius: 24px !important;
   color: var(--modal-text);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5) !important;
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 50%) !important;
   transition:
     background 0.3s ease,
     color 0.3s ease,
@@ -756,126 +371,12 @@ body {
 
 .theme-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15) !important;
+  box-shadow: 0 4px 12px rgb(59 130 246 / 15%) !important;
 }
 
 .theme-card.active {
   border-color: var(--theme-card-selected-border) !important;
   box-shadow: 0 0 0 1px var(--theme-card-selected-border) !important;
-}
-
-.theme-preview {
-  height: 60px;
-  border-radius: 8px;
-  position: relative;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.cosmic-dark-preview {
-  background: radial-gradient(circle at top left, #111827, #030712);
-}
-.cosmic-dark-preview::before {
-  content: '';
-  position: absolute;
-  bottom: 8px;
-  right: 8px;
-  width: 24px;
-  height: 12px;
-  border-radius: 4px;
-  background: linear-gradient(145deg, #1f2937, #111827);
-  border: 1px solid rgba(255, 255, 255, 0.04);
-}
-.cosmic-dark-preview::after {
-  content: '';
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  width: 14px;
-  height: 14px;
-  border-radius: 3px;
-  background: linear-gradient(145deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.03));
-  border: 1px solid rgba(59, 130, 246, 0.3);
-}
-
-.cosmic-light-preview {
-  background: radial-gradient(circle at top left, #f5f3ff, #e0e7ff, #e8eaf6);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-}
-.cosmic-light-preview::before {
-  content: '';
-  position: absolute;
-  bottom: 8px;
-  right: 8px;
-  width: 24px;
-  height: 12px;
-  border-radius: 4px;
-  background: linear-gradient(145deg, #ffffff, #f1f5f9);
-  border: 1px solid rgba(59, 130, 246, 0.1);
-}
-.cosmic-light-preview::after {
-  content: '';
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  width: 14px;
-  height: 14px;
-  border-radius: 3px;
-  background: linear-gradient(145deg, rgba(59, 130, 246, 0.08), rgba(59, 130, 246, 0.02));
-  border: 1px solid rgba(59, 130, 246, 0.25);
-}
-
-.bootstrap-dark-preview {
-  background: #212529;
-}
-.bootstrap-dark-preview::before {
-  content: '';
-  position: absolute;
-  bottom: 8px;
-  right: 8px;
-  width: 24px;
-  height: 12px;
-  border-radius: 4px;
-  background: #343a40;
-  border: 1px solid #495057;
-}
-.bootstrap-dark-preview::after {
-  content: '';
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  width: 14px;
-  height: 14px;
-  border-radius: 3px;
-  background: #0d6efd;
-  border: 1px solid #0d6efd;
-}
-
-.bootstrap-light-preview {
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-}
-.bootstrap-light-preview::before {
-  content: '';
-  position: absolute;
-  bottom: 8px;
-  right: 8px;
-  width: 24px;
-  height: 12px;
-  border-radius: 4px;
-  background: #f8f9fa;
-  border: 1px solid #dee2e6;
-}
-.bootstrap-light-preview::after {
-  content: '';
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  width: 14px;
-  height: 14px;
-  border-radius: 3px;
-  background: #0d6efd;
-  border: 1px solid #0d6efd;
 }
 
 .colButtons .keypad {

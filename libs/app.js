@@ -268,8 +268,30 @@ function modalHistoryRoll(rollID) {
 function favReRoll(rollID) {
   let favRoll = getFavByID(rollID);
   document.getElementById('DiceText').value = favRoll.dString;
-  $('#favRolls').modal('hide');
+  $('#historyRolls').modal('hide');
   rollFuncPost(favRoll);
+}
+
+function clearHistoryOrFavs() {
+  if ($('#favTab').hasClass('show') || $('#favTab').hasClass('active')) {
+    clearFavRolls();
+  } else {
+    clearHistory();
+  }
+}
+
+function clearFavRolls() {
+  setFavRolls([]);
+}
+
+function getFavByID(rollID) {
+  let favArr = getFavRolls();
+  let fav;
+  for (fav of favArr) {
+    if (fav.rollID === rollID) {
+      return fav;
+    }
+  }
 }
 
 function postMethod(url, data) {
@@ -372,7 +394,26 @@ function preLoadSession() {
  * < Theme management functions >
  */
 function setTheme(themeName) {
-  const themes = ['cosmic-dark', 'cosmic-light', 'bootstrap-dark', 'bootstrap-light'];
+  const themes = [
+    'cosmic-dark',
+    'cosmic-light',
+    'bootstrap-dark',
+    'bootstrap-light',
+    'industrial',
+    'aegis',
+    'tattoo',
+    'curvilinea',
+    'viper',
+    'volar',
+    'human',
+    'grayling',
+    'lepidonain',
+    'cryous',
+    'aconian',
+    'murid',
+    'avisari',
+    'khepri',
+  ];
   if (!themes.includes(themeName)) {
     themeName = 'cosmic-dark';
   }
@@ -402,7 +443,26 @@ function setTheme(themeName) {
 
 function applyTheme() {
   let savedTheme = window.localStorage.getItem('theme');
-  const themes = ['cosmic-dark', 'cosmic-light', 'bootstrap-dark', 'bootstrap-light'];
+  const themes = [
+    'cosmic-dark',
+    'cosmic-light',
+    'bootstrap-dark',
+    'bootstrap-light',
+    'industrial',
+    'aegis',
+    'tattoo',
+    'curvilinea',
+    'viper',
+    'volar',
+    'human',
+    'grayling',
+    'lepidonain',
+    'cryous',
+    'aconian',
+    'murid',
+    'avisari',
+    'khepri',
+  ];
   if (!savedTheme || !themes.includes(savedTheme)) {
     savedTheme = 'cosmic-dark';
   }
@@ -560,20 +620,6 @@ function appendFavRolls(favObj) {
   setFavRolls(favArr);
 }
 
-function clearFavRolls() {
-  setFavRolls([]);
-}
-
-function getFavByID(rollID) {
-  let favArr = getHistory();
-  let fav;
-  for (fav of favArr) {
-    if (fav.rollID === rollID) {
-      return fav;
-    }
-  }
-}
-
 function genHTMLFavRolls() {
   let favArr = getFavRolls();
   clearHTMLFavRolls();
@@ -643,22 +689,57 @@ function clearHTMLFavRolls() {
 }
 
 function newSaveRoll(rollID) {
-  tmpRoll = getHistoryByID(rollID);
-  if (tmpRoll !== undefined) {
-    $('#historyRolls').modal('hide');
+  let hist = getHistoryByID(rollID);
+  if (hist !== undefined) {
+    tmpRoll = Object.assign({}, hist);
+    tmpRoll.rollID = getUUID();
     let inputObj = document.getElementById('favDie-Name');
-    inputObj.value = tmpRoll.dString;
-    $('#saveFavDie').modal('show');
+    if (inputObj) {
+      inputObj.value = tmpRoll.dString;
+    }
+    const historyModalEl = document.getElementById('historyRolls');
+    const saveFavModalEl = document.getElementById('saveFavDie');
+
+    if (historyModalEl) {
+      $(historyModalEl).one('hidden.bs.modal', function () {
+        if (saveFavModalEl) {
+          let modalInstance =
+            bootstrap.Modal.getInstance(saveFavModalEl) || new bootstrap.Modal(saveFavModalEl);
+          modalInstance.show();
+        }
+      });
+      let histModalInstance =
+        bootstrap.Modal.getInstance(historyModalEl) || new bootstrap.Modal(historyModalEl);
+      histModalInstance.hide();
+    }
   }
 }
 
 function saveFromRollDetailsToFav() {
-  tmpRoll = getHistoryByID(document.getElementById('rollDetailsSaveToFavBnt').value);
-  if (tmpRoll !== undefined) {
-    $('#rollDetails').modal('hide');
+  let rollIdVal = document.getElementById('rollDetailsSaveToFavBnt').value;
+  let hist = getHistoryByID(rollIdVal);
+  if (hist !== undefined) {
+    tmpRoll = Object.assign({}, hist);
+    tmpRoll.rollID = getUUID();
     let inputObj = document.getElementById('favDie-Name');
-    inputObj.value = tmpRoll.dString;
-    $('#saveFavDie').modal('show');
+    if (inputObj) {
+      inputObj.value = tmpRoll.dString;
+    }
+    const detailsModalEl = document.getElementById('rollDetails');
+    const saveFavModalEl = document.getElementById('saveFavDie');
+
+    if (detailsModalEl) {
+      $(detailsModalEl).one('hidden.bs.modal', function () {
+        if (saveFavModalEl) {
+          let modalInstance =
+            bootstrap.Modal.getInstance(saveFavModalEl) || new bootstrap.Modal(saveFavModalEl);
+          modalInstance.show();
+        }
+      });
+      let detailsModalInstance =
+        bootstrap.Modal.getInstance(detailsModalEl) || new bootstrap.Modal(detailsModalEl);
+      detailsModalInstance.hide();
+    }
   }
 }
 
@@ -666,9 +747,37 @@ function saveHistRollInFavs() {
   if (tmpRoll === undefined) {
     return;
   }
-  tmpRoll.name = document.getElementById('favDie-Name').value;
+  let nameInput = document.getElementById('favDie-Name');
+  if (nameInput) {
+    tmpRoll.name = nameInput.value ? nameInput.value : 'Dice To Roll: ' + tmpRoll.dString;
+  }
   appendFavRolls(tmpRoll);
   tmpRoll = undefined;
+
+  const saveFavModalEl = document.getElementById('saveFavDie');
+  const historyModalEl = document.getElementById('historyRolls');
+
+  const showHistoryWithFavTab = function () {
+    if (historyModalEl) {
+      let histModalInstance =
+        bootstrap.Modal.getInstance(historyModalEl) || new bootstrap.Modal(historyModalEl);
+      histModalInstance.show();
+      let favTabBtn = document.getElementById('fav-tab');
+      if (favTabBtn && typeof bootstrap !== 'undefined') {
+        let tab = bootstrap.Tab.getInstance(favTabBtn) || new bootstrap.Tab(favTabBtn);
+        tab.show();
+      }
+    }
+  };
+
+  if (saveFavModalEl && $(saveFavModalEl).hasClass('show')) {
+    $(saveFavModalEl).one('hidden.bs.modal', showHistoryWithFavTab);
+    let saveModalInstance =
+      bootstrap.Modal.getInstance(saveFavModalEl) || new bootstrap.Modal(saveFavModalEl);
+    saveModalInstance.hide();
+  } else {
+    showHistoryWithFavTab();
+  }
 }
 
 function closeSaveFavWindow() {
