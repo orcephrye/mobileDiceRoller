@@ -40,21 +40,25 @@ let DieOptionsMap = new Map();
 let tmpRoll;
 
 class DieOptions {
-  constructor(dropLowest, rerollTotal, rerollDie, subAll, addAll) {
+  constructor(dropLowest, rerollTotal, rerollDie, subAll, addAll, exploding, luck) {
     this.dropLowest = dropLowest;
     this.rerollTotal = rerollTotal;
     this.rerollDie = rerollDie;
     this.subAll = subAll;
     this.addAll = addAll;
+    this.exploding = exploding;
+    this.luck = luck;
   }
 }
 
 class DiceOptions {
-  constructor(dropLowest, repeatRoll, subAll, addAll) {
+  constructor(dropLowest, repeatRoll, subAll, addAll, exploding, luck) {
     this.dropLowest = dropLowest;
     this.repeatRoll = repeatRoll;
     this.subAll = subAll;
     this.addAll = addAll;
+    this.exploding = exploding;
+    this.luck = luck;
   }
 }
 
@@ -104,6 +108,13 @@ function buildDiceOptions(diceOptions = null) {
   if ($('#Dice-addAll').prop('checked')) {
     diceOpt.addAll = document.getElementById('Dice-addAll-text').value;
   }
+  if ($('#Dice-exploding').prop('checked')) {
+    let expVal = document.getElementById('Dice-exploding-text').value;
+    diceOpt.exploding = expVal && Number(expVal) > 0 ? expVal : 1;
+  }
+  if ($('#Dice-luck').prop('checked')) {
+    diceOpt.luck = true;
+  }
 
   return diceOpt;
 }
@@ -129,6 +140,13 @@ function buildDieOptions(dieOptions = null) {
   }
   if ($('#DieO-addAll').prop('checked')) {
     dieOpt.addAll = document.getElementById('DieO-addAll-text').value;
+  }
+  if ($('#DieO-exploding').prop('checked')) {
+    let expVal = document.getElementById('DieO-exploding-text').value;
+    dieOpt.exploding = expVal && Number(expVal) > 0 ? expVal : 1;
+  }
+  if ($('#DieO-luck').prop('checked')) {
+    dieOpt.luck = true;
   }
 
   return dieOpt;
@@ -924,6 +942,7 @@ function clearDieOptions() {
   document.getElementById('DieO-rerollDie-text').value = 0;
   document.getElementById('DieO-subAll-text').value = 0;
   document.getElementById('DieO-addAll-text').value = 0;
+  document.getElementById('DieO-exploding-text').value = 0;
   $("[class='DieO-CheckBox-0']").prop('checked', false);
   return true;
 }
@@ -953,6 +972,17 @@ function loadDieOptions(mapKey) {
     $('#DieO-addAll').prop('checked', true);
     document.getElementById('DieO-addAll-text').value = dieOptions.addAll;
   }
+  if (
+    dieOptions.exploding !== undefined &&
+    dieOptions.exploding !== 0 &&
+    dieOptions.exploding !== false
+  ) {
+    $('#DieO-exploding').prop('checked', true);
+    document.getElementById('DieO-exploding-text').value = dieOptions.exploding;
+  }
+  if (dieOptions.luck !== undefined && dieOptions.luck !== false && dieOptions.luck !== 0) {
+    $('#DieO-luck').prop('checked', true);
+  }
 }
 
 function clearDiceOptions() {
@@ -960,6 +990,7 @@ function clearDiceOptions() {
   document.getElementById('Dice-repeatRoll-text').value = 0;
   document.getElementById('Dice-subAll-text').value = 0;
   document.getElementById('Dice-addAll-text').value = 0;
+  document.getElementById('Dice-exploding-text').value = 0;
   $("[class='Dice-CheckBox']").prop('checked', false);
   return true;
 }
@@ -1081,6 +1112,10 @@ if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
     parseModifierArr,
     buildDiceArray,
     buildMessage,
+    buildDiceOptions,
+    buildDieOptions,
+    DieOptions,
+    DiceOptions,
     getUUID,
   };
 }
