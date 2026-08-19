@@ -40,7 +40,7 @@ let DieOptionsMap = new Map();
 let tmpRoll;
 
 class DieOptions {
-  constructor(dropLowest, rerollTotal, rerollDie, subAll, addAll, exploding, luck) {
+  constructor(dropLowest, rerollTotal, rerollDie, subAll, addAll, exploding, luck, unlucky) {
     this.dropLowest = dropLowest;
     this.rerollTotal = rerollTotal;
     this.rerollDie = rerollDie;
@@ -48,17 +48,19 @@ class DieOptions {
     this.addAll = addAll;
     this.exploding = exploding;
     this.luck = luck;
+    this.unlucky = unlucky;
   }
 }
 
 class DiceOptions {
-  constructor(dropLowest, repeatRoll, subAll, addAll, exploding, luck) {
+  constructor(dropLowest, repeatRoll, subAll, addAll, exploding, luck, unlucky) {
     this.dropLowest = dropLowest;
     this.repeatRoll = repeatRoll;
     this.subAll = subAll;
     this.addAll = addAll;
     this.exploding = exploding;
     this.luck = luck;
+    this.unlucky = unlucky;
   }
 }
 
@@ -115,6 +117,9 @@ function buildDiceOptions(diceOptions = null) {
   if ($('#Dice-luck').prop('checked')) {
     diceOpt.luck = true;
   }
+  if ($('#Dice-unlucky').prop('checked')) {
+    diceOpt.unlucky = true;
+  }
 
   return diceOpt;
 }
@@ -147,6 +152,9 @@ function buildDieOptions(dieOptions = null) {
   }
   if ($('#DieO-luck').prop('checked')) {
     dieOpt.luck = true;
+  }
+  if ($('#DieO-unlucky').prop('checked')) {
+    dieOpt.unlucky = true;
   }
 
   return dieOpt;
@@ -257,7 +265,7 @@ function rollFuncPost(messageJSON = null) {
     if (typeof messageJSON !== 'object') {
       mesg = JSON.parse(messageJSON);
     } else {
-      mesg = messageJSON;
+      mesg = Object.assign({}, messageJSON);
     }
   } else {
     mesg = buildMessage();
@@ -269,7 +277,16 @@ function rollFuncPost(messageJSON = null) {
   }
   let fullURL = host + '/v1/tasks/roll';
 
-  mesg.dString = document.getElementById('DiceText').value;
+  if (!mesg.dString) {
+    mesg.dString = document.getElementById('DiceText').value;
+  }
+  if (!mesg.rollID) {
+    mesg.rollID = getUUID();
+  }
+  if (!mesg.dice || mesg.dice.length === 0) {
+    mesg.dice = buildDiceArray(mesg.dString);
+    mesg.diceOptions = mesg.diceOptions || buildDiceOptions();
+  }
 
   rollMap.set(mesg.rollID, mesg);
 
@@ -277,17 +294,41 @@ function rollFuncPost(messageJSON = null) {
 }
 
 function modalHistoryRoll(rollID) {
+  console.log("Roll ID: " + rollID);
   let histRoll = getHistoryByID(rollID);
+  if (!histRoll) {
+    return;
+  }
   document.getElementById('DiceText').value = histRoll.dString;
+  genDiceDropDown();
   $('#historyRolls').modal('hide');
-  rollFuncPost(histRoll);
+
+  let rollMsg = Object.assign({}, histRoll);
+  rollMsg.rollID = getUUID();
+  if (!rollMsg.dice || rollMsg.dice.length === 0) {
+    rollMsg.dice = buildDiceArray(rollMsg.dString);
+    rollMsg.diceOptions = rollMsg.diceOptions || buildDiceOptions();
+  }
+  rollFuncPost(rollMsg);
 }
 
 function favReRoll(rollID) {
+  console.log('Roll ID:  ' + rollID);
   let favRoll = getFavByID(rollID);
+  if (!favRoll) {
+    return;
+  }
   document.getElementById('DiceText').value = favRoll.dString;
+  genDiceDropDown();
   $('#historyRolls').modal('hide');
-  rollFuncPost(favRoll);
+
+  let rollMsg = Object.assign({}, favRoll);
+  rollMsg.rollID = getUUID();
+  if (!rollMsg.dice || rollMsg.dice.length === 0) {
+    rollMsg.dice = buildDiceArray(rollMsg.dString);
+    rollMsg.diceOptions = rollMsg.diceOptions || buildDiceOptions();
+  }
+  rollFuncPost(rollMsg);
 }
 
 function clearHistoryOrFavs() {
@@ -306,7 +347,9 @@ function getFavByID(rollID) {
   let favArr = getFavRolls();
   let fav;
   for (fav of favArr) {
+    console.log("fav: ", fav);
     if (fav.rollID === rollID) {
+      console.log("Returning fav: " + fav);
       return fav;
     }
   }
@@ -381,6 +424,7 @@ function rollFailure(data) {
 }
 
 function updateHTMLFromRoll(diceResults = '', jsonResponse = undefined, bntStatus = true) {
+  document.getElementById('DiceResults').value = diceResults;
   document.getElementById('DiceResults').placeholder = diceResults;
   document.getElementById('rollDetailsDiceResults').innerText = diceResults;
   document.getElementById('rollDetailsJSONResponse').innerText = JSON.stringify(
@@ -389,7 +433,7 @@ function updateHTMLFromRoll(diceResults = '', jsonResponse = undefined, bntStatu
     2
   );
   document.getElementById('rollDetailsSaveToFavBnt').value =
-    jsonResponse !== undefined ? jsonResponse['rollID'] : '';
+    jsonResponse !== undefined && jsonResponse['rollID'] ? jsonResponse['rollID'] : '';
   document.getElementById('showRollDetailsBnt').disabled = bntStatus;
   document.getElementById('showRollDetailsBnt').setAttribute('aria-disabled', bntStatus);
 }
@@ -406,6 +450,12 @@ function preLoadSession() {
   genHTMLHistory();
   genHTMLFavRolls();
   $('[data-bs-toggle="tooltip"]').tooltip();
+  const reqDetailsEl = document.getElementById('requestDetails');
+  if (reqDetailsEl) {
+    reqDetailsEl.addEventListener('show.bs.modal', function () {
+      showRequestDetails();
+    });
+  }
 }
 
 /*
@@ -606,9 +656,13 @@ function genHTMLHistory() {
 }
 
 function saveCurrentRoll(data, rollText) {
-  let mesg = rollMap.get(data.rollID);
+  let mesg = data && data.rollID ? rollMap.get(data.rollID) : undefined;
+  if (!mesg) {
+    let currentText = document.getElementById('DiceText').value;
+    mesg = buildMessage(currentText);
+  }
 
-  mesg.diceRoll = data['Rolls'];
+  mesg.diceRoll = data && data['Rolls'] ? data['Rolls'] : [];
   mesg.rollText = rollText.replace(/\s,\s$/, '').replace(/^Rolls:\s/, '');
 
   appendHistory(mesg);
@@ -758,6 +812,55 @@ function saveFromRollDetailsToFav() {
         bootstrap.Modal.getInstance(detailsModalEl) || new bootstrap.Modal(detailsModalEl);
       detailsModalInstance.hide();
     }
+  }
+}
+
+function showRequestDetails() {
+  let currentText = document.getElementById('DiceText').value;
+  let mesg = buildMessage(currentText);
+  if (!mesg.dString) {
+    mesg.dString = currentText;
+  }
+  let diceTextElem = document.getElementById('requestDetailsDiceText');
+  if (diceTextElem) {
+    diceTextElem.innerText = currentText ? 'Dice: ' + currentText : 'No Dice Specified';
+  }
+  let jsonElem = document.getElementById('requestDetailsJSON');
+  if (jsonElem) {
+    jsonElem.innerText = JSON.stringify(mesg, undefined, 2);
+  }
+  let saveBtn = document.getElementById('requestDetailsSaveToFavBnt');
+  if (saveBtn) {
+    saveBtn.value = mesg.rollID;
+  }
+}
+
+function saveFromRequestDetailsToFav() {
+  let currentText = document.getElementById('DiceText').value;
+  let mesg = buildMessage(currentText);
+  if (!mesg.dString) {
+    mesg.dString = currentText;
+  }
+  tmpRoll = Object.assign({}, mesg);
+  tmpRoll.rollID = getUUID();
+  let inputObj = document.getElementById('favDie-Name');
+  if (inputObj) {
+    inputObj.value = tmpRoll.dString;
+  }
+  const reqDetailsModalEl = document.getElementById('requestDetails');
+  const saveFavModalEl = document.getElementById('saveFavDie');
+
+  if (reqDetailsModalEl) {
+    $(reqDetailsModalEl).one('hidden.bs.modal', function () {
+      if (saveFavModalEl) {
+        let modalInstance =
+          bootstrap.Modal.getInstance(saveFavModalEl) || new bootstrap.Modal(saveFavModalEl);
+        modalInstance.show();
+      }
+    });
+    let reqModalInstance =
+      bootstrap.Modal.getInstance(reqDetailsModalEl) || new bootstrap.Modal(reqDetailsModalEl);
+    reqModalInstance.hide();
   }
 }
 
@@ -983,6 +1086,13 @@ function loadDieOptions(mapKey) {
   if (dieOptions.luck !== undefined && dieOptions.luck !== false && dieOptions.luck !== 0) {
     $('#DieO-luck').prop('checked', true);
   }
+  if (
+    dieOptions.unlucky !== undefined &&
+    dieOptions.unlucky !== false &&
+    dieOptions.unlucky !== 0
+  ) {
+    $('#DieO-unlucky').prop('checked', true);
+  }
 }
 
 function clearDiceOptions() {
@@ -1036,7 +1146,6 @@ function changeDie(die) {
   let dieNum = countDiesInArray(die);
   let endCharacter = '';
   if (tempText.length <= 0) {
-    console.log('The tempText is zero setting endCharacter to nothing');
     endCharacter = '';
   } else if (tempText.endsWith('+')) {
     endCharacter = '+';
@@ -1095,6 +1204,14 @@ function clearField() {
   document.getElementById('DiceResults').placeholder = '';
   document.getElementById('rollDetailsDiceResults').innerText = '';
   document.getElementById('rollDetailsJSONResponse').innerText = '';
+  let reqDiceText = document.getElementById('requestDetailsDiceText');
+  if (reqDiceText) {
+    reqDiceText.innerText = '';
+  }
+  let reqJSON = document.getElementById('requestDetailsJSON');
+  if (reqJSON) {
+    reqJSON.innerText = '';
+  }
   document.getElementById('showRollDetailsBnt').disabled = true;
   document.getElementById('showRollDetailsBnt').setAttribute('aria-disabled', true);
   DiceTextHistory = [];
@@ -1117,5 +1234,7 @@ if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
     DieOptions,
     DiceOptions,
     getUUID,
+    showRequestDetails,
+    saveFromRequestDetailsToFav,
   };
 }
